@@ -287,11 +287,98 @@ function renderizarCatalogo() {
         }
       </div>`;
 
+    card.style.cursor = 'pointer';
+    card.querySelector('.card-img-wrapper').addEventListener('click', () => abrirLightbox(vestido, urlFoto));
+    card.querySelector('.card-nombre').addEventListener('click', () => abrirLightbox(vestido, urlFoto));
+
     contenedor.appendChild(card);
   });
 }
 
 // ============================================
-// 8. INIT
+// 8. LIGHTBOX
 // ============================================
-document.addEventListener('DOMContentLoaded', cargarInventario);
+function crearLightbox() {
+  const lb = document.createElement('div');
+  lb.id = 'lightbox';
+  lb.innerHTML = `
+    <button class="lightbox-cerrar" id="lightboxCerrar">✕</button>
+    <div class="lightbox-inner">
+      <div class="lightbox-img-wrap">
+        <img id="lightbox-img" src="" alt="">
+      </div>
+      <div class="lightbox-info">
+        <h2 class="lightbox-nombre" id="lightbox-nombre"></h2>
+        <p class="lightbox-precio"  id="lightbox-precio"></p>
+        <div class="lightbox-tallas">
+          <span>Tallas disponibles</span>
+          <div class="lightbox-tallas-chips" id="lightbox-tallas"></div>
+        </div>
+        <span class="lightbox-badge" id="lightbox-badge"></span>
+        <button class="lightbox-btn-wa" id="lightbox-btn-wa"></button>
+      </div>
+    </div>`;
+  document.body.appendChild(lb);
+
+  // Cerrar con botón X
+  document.getElementById('lightboxCerrar').addEventListener('click', cerrarLightbox);
+
+  // Cerrar al hacer clic fuera
+  lb.addEventListener('click', (e) => {
+    if (e.target === lb) cerrarLightbox();
+  });
+
+  // Cerrar con Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') cerrarLightbox();
+  });
+}
+
+function abrirLightbox(vestido, urlFoto) {
+  const lb        = document.getElementById('lightbox');
+  const disponible = vestido.hayDisponible;
+
+  document.getElementById('lightbox-img').src    = urlFoto;
+  document.getElementById('lightbox-img').alt    = vestido['Nombre'];
+  document.getElementById('lightbox-nombre').textContent = vestido['Nombre'];
+  document.getElementById('lightbox-precio').textContent = '$' + (vestido['Precio_Base'] || vestido['Precio'] || '—');
+
+  // Chips de tallas
+  const chipsEl = document.getElementById('lightbox-tallas');
+  chipsEl.innerHTML = vestido.tallasDisponibles.sort()
+    .map(t => `<span class="talla-chip">${t}</span>`).join('');
+
+  // Badge estado
+  const badge = document.getElementById('lightbox-badge');
+  badge.textContent  = disponible ? '● Disponible' : 'Actualmente Rentado';
+  badge.className    = `lightbox-badge ${disponible ? 'disponible' : 'agotado'}`;
+
+  // Botón WhatsApp
+  const btnWa = document.getElementById('lightbox-btn-wa');
+  if (disponible) {
+    const textoWA = `Hola Als Dress! Vi en su catálogo el vestido "${vestido['Nombre']}". ¿Tienen disponibilidad en alguna talla?`;
+    btnWa.onclick = () => window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(textoWA)}`, '_blank');
+    btnWa.innerHTML = '💬 Consultar por WhatsApp';
+    btnWa.className = 'lightbox-btn-wa';
+  } else {
+    btnWa.innerHTML = 'No disponible por el momento';
+    btnWa.className = 'lightbox-btn-wa deshabilitado';
+    btnWa.onclick   = null;
+  }
+
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function cerrarLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ============================================
+// 9. INIT
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+  crearLightbox();
+  cargarInventario();
+});
