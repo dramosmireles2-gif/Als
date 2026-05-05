@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabase.js"></script>
 </head>
 <body>
 
@@ -43,7 +45,12 @@
         <em>que mereces</em><br>
         te espera aquí.
       </h1>
-      <a href="#catalogo" class="hero-btn reveal">Ver Catálogo</a>
+      <div class="hero-btns reveal">
+        <a href="#catalogo" class="hero-btn">Ver Catálogo</a>
+        <a href="https://wa.me/528991947566" target="_blank" class="hero-btn hero-btn-wa">
+          💬 Contáctanos
+        </a>
+      </div>
     </div>
     <div class="hero-scroll-hint">
       <span>Desliza</span>
@@ -58,14 +65,20 @@
       <h2>Catálogo de Temporada</h2>
     </div>
 
+    <!-- Categorías -->
+    <div class="categorias reveal" id="categorias">
+      <button class="cat-btn active" data-categoria="Vestido">👗 Vestidos</button>
+      <button class="cat-btn" data-categoria="Zapato">👠 Zapatos</button>
+      <button class="cat-btn" data-categoria="Bolsa">👜 Bolsas</button>
+      <button class="cat-btn" data-categoria="Accesorios">💍 Accesorios</button>
+    </div>
+
     <!-- Filtros -->
     <div class="filtros reveal" id="filtros">
       <button class="filtro-btn active" data-filter="todos">Todos</button>
       <button class="filtro-btn" data-filter="disponible">✓ Disponibles</button>
       <div class="filtro-separador"></div>
-      <div class="tallas-filtro" id="tallasFiltro">
-        <!-- Tallas se generan dinámicamente -->
-      </div>
+      <div class="tallas-filtro" id="tallasFiltro"></div>
     </div>
 
     <!-- Grid de productos -->
@@ -113,6 +126,15 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- ===== GALERÍA CLIENTAS ===== -->
+  <section id="sec-galeria-clientas" class="galeria-clientas-section hidden">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Ellas ya lo lucieron</p>
+      <h2>Nuestras Clientas</h2>
+    </div>
+    <div id="galeria-clientas-grid" class="galeria-clientas-grid"></div>
   </section>
 
   <!-- ===== TESTIMONIOS ===== -->

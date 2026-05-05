@@ -981,6 +981,150 @@ footer {
   .lightbox-nombre { font-size: 1.5rem; }
 }
 
+
+/* ============================================
+   HERO — DOS BOTONES
+   ============================================ */
+.hero-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  transition-delay: 0.3s;
+}
+
+.hero-btn-wa {
+  background: transparent !important;
+  color: var(--white) !important;
+  border: 2px solid rgba(255,255,255,0.6);
+}
+.hero-btn-wa:hover {
+  background: rgba(255,255,255,0.15) !important;
+  border-color: white;
+  transform: translateY(-3px);
+}
+
+/* ============================================
+   CATEGORÍAS
+   ============================================ */
+.categorias {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.cat-btn {
+  padding: 10px 22px;
+  border-radius: 30px;
+  border: 1.5px solid var(--gray-light);
+  background: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gray);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.cat-btn:hover  { border-color: var(--pink); color: var(--pink); }
+.cat-btn.active {
+  background: var(--dark);
+  border-color: var(--dark);
+  color: var(--white);
+}
+
+/* ============================================
+   PRÓXIMAMENTE
+   ============================================ */
+.proximamente-card {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 2px dashed var(--gray-light);
+}
+.prox-icon { font-size: 3rem; margin-bottom: 16px; }
+.proximamente-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+.proximamente-card p {
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.prox-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: var(--pink);
+  color: white;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+.prox-btn:hover { background: var(--pink-dark); }
+
+/* ============================================
+   GALERÍA CLIENTAS
+   ============================================ */
+.galeria-clientas-section {
+  padding: 100px 24px;
+  background: var(--dark);
+}
+.galeria-clientas-section .section-eyebrow { color: #f9a8d4; }
+.galeria-clientas-section .section-header h2 { color: var(--white); }
+
+.galeria-clientas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.galeria-cliente-item {
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--dark-2);
+  cursor: pointer;
+}
+.galeria-cliente-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.galeria-cliente-item:hover img { transform: scale(1.06); }
+
+.galeria-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  padding: 20px 14px 14px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+.galeria-cliente-item:hover .galeria-overlay { transform: translateY(0); }
+.galeria-overlay p {
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .hero-btns { flex-direction: column; align-items: center; gap: 10px; }
+  .categorias { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
+  .galeria-clientas-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .galeria-clientas-section { padding: 60px 16px; }
+}
+
 /* ============================================
    RESPONSIVO
    ============================================ */
