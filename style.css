@@ -16,8 +16,8 @@
   --gray-light: #e8e5e0;
   --white:      #ffffff;
 
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body:    'Outfit', sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Lato', sans-serif;
 
   --radius:   16px;
   --shadow:   0 8px 32px rgba(0,0,0,0.08);
