@@ -83,7 +83,7 @@ function irASlide(n) {
 
 document.getElementById('btn-prev').addEventListener('click', () => irASlide(slideActual - 1));
 document.getElementById('btn-next').addEventListener('click', () => irASlide(slideActual + 1));
-setInterval(() => irASlide(slideActual + 1), 4000);
+setInterval(() => irASlide(slideActual + 1), 6500);
 
 // ============================================
 // 4. CARGA DESDE SUPABASE
@@ -414,6 +414,20 @@ function abrirLightboxClientas(url, nombre) {
 // 9. INIT
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
+    // Centralizar links de WhatsApp definidos en el HTML
+    const waUrl = `https://wa.me/${WA_NUMBER}`;
+    document.querySelectorAll(`a[href*="wa.me"]`).forEach(a => a.href = waUrl);
+
+    // Ocultar botones flotantes mientras el hero es visible
+    const botonesFlotantes = document.querySelector('.botones-flotantes');
+    const heroEl = document.getElementById('inicio');
+    if (botonesFlotantes && heroEl) {
+        botonesFlotantes.classList.add('oculto');
+        new IntersectionObserver(([entry]) => {
+            botonesFlotantes.classList.toggle('oculto', entry.isIntersecting);
+        }, { threshold: 0.2 }).observe(heroEl);
+    }
+
     crearLightbox();
     cargarInventario();
     cargarGaleriaClientas();
