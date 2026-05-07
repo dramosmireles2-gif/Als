@@ -997,6 +997,16 @@ footer {
   background: transparent !important;
   color: var(--white) !important;
   border: 2px solid rgba(255,255,255,0.6);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-btn-wa-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+  flex-shrink: 0;
 }
 .hero-btn-wa:hover {
   background: rgba(255,255,255,0.15) !important;
