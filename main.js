@@ -374,6 +374,20 @@ async function cargarGaleriaClientas() {
         contenedor.appendChild(div);
     });
 }
+function abrirLightboxClientas(url, nombre) {
+    const lb = document.getElementById('lightbox');
+    document.getElementById('lightbox-img').src            = url;
+    document.getElementById('lightbox-img').alt            = nombre || 'Clienta Als Dress';
+    document.getElementById('lightbox-nombre').textContent = nombre || 'Als Dress';
+    document.getElementById('lightbox-precio').textContent = '';
+    document.getElementById('lightbox-tallas').innerHTML   = '';
+    document.getElementById('lightbox-badge').textContent  = '';
+    document.getElementById('lightbox-btn-wa').className   = 'lightbox-btn-wa deshabilitado';
+    document.getElementById('lightbox-btn-wa').innerHTML   = '💬 Contáctanos por WhatsApp';
+    document.getElementById('lightbox-btn-wa').onclick     = () => window.open('https://wa.me/528991947566', '_blank');
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
 
 // ============================================
 // 9. INIT
