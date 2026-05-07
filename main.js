@@ -352,8 +352,7 @@ async function cargarGaleriaClientas() {
         .from('galeria_clientas')
         .select('*')
         .eq('activa', true)
-        .order('created_at', { ascending: false })
-        .limit(12);
+        .order('created_at', { ascending: false });
 
     if (error || !data || data.length === 0) {
         document.getElementById('sec-galeria-clientas').classList.add('hidden');

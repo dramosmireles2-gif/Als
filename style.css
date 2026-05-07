@@ -1080,48 +1080,57 @@ footer {
 .galeria-clientas-section .section-eyebrow { color: #f9a8d4; }
 .galeria-clientas-section .section-header h2 { color: var(--white); }
 
+/* Masonry con columnas CSS */
 .galeria-clientas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
+  columns: 4;
+  column-gap: 14px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .galeria-cliente-item {
   position: relative;
-  aspect-ratio: 3/4;
+  break-inside: avoid;
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--dark-2);
   cursor: pointer;
+  margin-bottom: 14px;
+  display: block;
 }
 .galeria-cliente-item img {
-  width: 100%; height: 100%;
-  object-fit: cover;
+  width: 100%;
+  height: auto;
+  display: block;
   transition: transform 0.5s ease;
 }
-.galeria-cliente-item:hover img { transform: scale(1.06); }
+.galeria-cliente-item:hover img { transform: scale(1.04); }
 
 .galeria-overlay {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.7));
-  padding: 20px 14px 14px;
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
+  background: linear-gradient(transparent, rgba(0,0,0,0.75));
+  padding: 28px 14px 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
-.galeria-cliente-item:hover .galeria-overlay { transform: translateY(0); }
+.galeria-cliente-item:hover .galeria-overlay { opacity: 1; }
 .galeria-overlay p {
   color: white;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
+  font-family: var(--font-display);
+}
+
+@media (max-width: 1024px) {
+  .galeria-clientas-grid { columns: 3; }
 }
 
 @media (max-width: 768px) {
   .hero-btns { flex-direction: column; align-items: center; gap: 10px; }
   .categorias { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
-  .galeria-clientas-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .galeria-clientas-grid { columns: 2; column-gap: 10px; }
+  .galeria-cliente-item { margin-bottom: 10px; }
   .galeria-clientas-section { padding: 60px 16px; }
 }
 
