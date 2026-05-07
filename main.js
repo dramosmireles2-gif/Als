@@ -368,23 +368,45 @@ async function cargarGaleriaClientas() {
         div.style.cursor = 'pointer';
         div.innerHTML = `
             <img src="${foto.foto_url}" alt="${foto.nombre || 'Clienta Als Dress'}" loading="lazy"
-                onerror="this.parentElement.style.display='none'">
+                 onerror="this.parentElement.style.display='none'">
             ${foto.nombre ? `<div class="galeria-overlay"><p>${foto.nombre}</p></div>` : ''}`;
         div.onclick = () => abrirLightboxClientas(foto.foto_url, foto.nombre);
         contenedor.appendChild(div);
     });
 }
+
+// ============================================
+// 8B. LIGHTBOX CLIENTAS
+// ============================================
 function abrirLightboxClientas(url, nombre) {
-    const lb = document.getElementById('lightbox');
-    document.getElementById('lightbox-img').src            = url;
-    document.getElementById('lightbox-img').alt            = nombre || 'Clienta Als Dress';
+    const lb     = document.getElementById('lightbox');
+    const msgWA  = `Hola Als Dress! Vi las fotos de sus clientas y me encantó. ¿Me pueden ayudar a encontrar mi vestido ideal?`;
+    const urlWA  = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msgWA)}`;
+
+    document.getElementById('lightbox-img').src  = url;
+    document.getElementById('lightbox-img').alt  = nombre || 'Clienta Als Dress';
+
+    // Nombre
     document.getElementById('lightbox-nombre').textContent = nombre || 'Als Dress';
-    document.getElementById('lightbox-precio').textContent = '';
-    document.getElementById('lightbox-tallas').innerHTML   = '';
-    document.getElementById('lightbox-badge').textContent  = '';
-    document.getElementById('lightbox-btn-wa').className   = 'lightbox-btn-wa deshabilitado';
-    document.getElementById('lightbox-btn-wa').innerHTML   = '💬 Contáctanos por WhatsApp';
-    document.getElementById('lightbox-btn-wa').onclick     = () => window.open('https://wa.me/528991947566', '_blank');
+
+    // Subtítulo en lugar del precio
+    document.getElementById('lightbox-precio').innerHTML =
+        '<span style="font-size:0.95rem; color:#555; font-family:var(--font-body); font-style:italic;">✨ Lució increíble en su evento</span>';
+
+    // Chip de marca en lugar de tallas
+    document.getElementById('lightbox-tallas').innerHTML =
+        '<span class="talla-chip" style="background:#fce4ec; color:#a0255f;">Als Dress · Reynosa</span>';
+
+    // Sin badge de estado
+    document.getElementById('lightbox-badge').textContent = '';
+    document.getElementById('lightbox-badge').className   = 'lightbox-badge';
+
+    // Botón WhatsApp activo
+    const btnWa = document.getElementById('lightbox-btn-wa');
+    btnWa.innerHTML  = '💬 ¡Quiero lucir así también!';
+    btnWa.className  = 'lightbox-btn-wa';
+    btnWa.onclick    = () => window.open(urlWA, '_blank');
+
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
 }
