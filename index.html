@@ -39,8 +39,11 @@
   <header id="header">
     <div class="header-inner">
       <div class="logo">
-        <span class="logo-name">Als Dress</span>
-        <span class="logo-sub">Reynosa · Renta &amp; Venta</span>
+        <img src="./Icono.jpg" alt="Als Dress" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-name">Als Dress</span>
+          <span class="logo-sub">Reynosa · Renta &amp; Venta</span>
+        </div>
       </div>
       <button class="menu-toggle" id="menuToggle" aria-label="Menú">
         <span></span><span></span><span></span>
@@ -48,9 +51,15 @@
       <nav id="mainNav">
         <a href="#inicio">Inicio</a>
         <a href="#catalogo">Catálogo</a>
-        <a href="#proceso">¿Cómo funciona?</a>
+        <a href="#catalogo">Accesorios</a>
+        <a href="#proceso">Cómo Funciona</a>
         <a href="#ubicacion">Ubicación</a>
+        <a href="#testimonios">Contacto</a>
       </nav>
+      <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="header-wa-btn">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" class="header-wa-icon">
+        Escríbenos por WhatsApp
+      </a>
     </div>
   </header>
 
@@ -64,38 +73,62 @@
       <!-- TEXTO -->
       <div class="hero-left">
 
-        <p class="hero-eyebrow reveal">
-          Reynosa, Tamaulipas
-        </p>
+        <span class="hero-pretitle reveal">Als Boutique</span>
+
+        <p class="hero-eyebrow reveal">Renta de Vestidos en Reynosa</p>
 
         <h1 class="hero-title reveal">
           Brilla en tu<br>
           próximo <em>evento</em>
         </h1>
 
+        <div class="hero-deco" aria-hidden="true"></div>
+
         <p class="hero-description reveal">
-          Vestidos elegantes para graduaciones,
-          galas y eventos especiales.
+          Vestidos seleccionados para graduaciones, galas y eventos especiales.
+          Luce increíble sin gastar una fortuna.
         </p>
 
         <div class="hero-btns reveal">
-
           <a href="#catalogo" class="hero-btn hero-btn-primary">
-            Ver colección
+            Ver colección <span class="btn-arrow">→</span>
           </a>
-
-          <a href="https://wa.me/528991947566"
-            target="_blank"
-            class="hero-btn hero-btn-secondary">
-
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-              alt="WhatsApp"
-              class="hero-btn-wa-icon">
-
-            WhatsApp
+          <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="hero-btn hero-btn-wa">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" class="hero-btn-wa-icon">
+            Escríbenos por WhatsApp
           </a>
+        </div>
 
+        <div class="hero-trust reveal">
+          <div class="trust-item">
+            <div class="trust-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M2 9h20"/></svg>
+            </div>
+            <div class="trust-text">
+              <strong>Vestidos Exclusivos</strong>
+              <span>Colección seleccionada para cada ocasión.</span>
+            </div>
+          </div>
+          <div class="trust-sep"></div>
+          <div class="trust-item">
+            <div class="trust-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="trust-text">
+              <strong>Atención Personalizada</strong>
+              <span>Te ayudamos a encontrar tu vestido ideal.</span>
+            </div>
+          </div>
+          <div class="trust-sep"></div>
+          <div class="trust-item">
+            <div class="trust-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 16l2 2 4-4"/></svg>
+            </div>
+            <div class="trust-text">
+              <strong>Fácil y Rápido</strong>
+              <span>Reserva y disfruta tu evento sin preocupaciones.</span>
+            </div>
+          </div>
         </div>
 
       </div>
