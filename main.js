@@ -428,6 +428,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { threshold: 0.2 }).observe(heroEl);
     }
 
+    // Tarjetas de categorías → scroll a catálogo + activar filtro
+    document.querySelectorAll('[data-goto-categoria]').forEach(card => {
+        card.addEventListener('click', (e) => {
+            e.preventDefault();
+            const cat = card.dataset.gotoCategoria;
+            document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+                const btn = document.querySelector(`[data-categoria="${cat}"]`);
+                if (btn) btn.click();
+            }, 600);
+        });
+    });
+
     crearLightbox();
     cargarInventario();
     cargarGaleriaClientas();
