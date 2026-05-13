@@ -363,17 +363,23 @@ async function cargarGaleriaClientas() {
 
     document.getElementById('sec-galeria-clientas').classList.remove('hidden');
     contenedor.innerHTML = '';
-    data.forEach(foto => {
+
+    const crearItem = (foto) => {
         const div = document.createElement('div');
         div.className = 'galeria-cliente-item';
-        div.style.cursor = 'pointer';
         div.innerHTML = `
             <img src="${foto.foto_url}" alt="${foto.nombre || 'Clienta Als Dress'}" loading="lazy"
                  onerror="this.parentElement.style.display='none'">
             ${foto.nombre ? `<div class="galeria-overlay"><p>${foto.nombre}</p></div>` : ''}`;
         div.onclick = () => abrirLightboxClientas(foto.foto_url, foto.nombre);
-        contenedor.appendChild(div);
-    });
+        return div;
+    };
+
+    // Original + copia para loop continuo e invisible
+    [...data, ...data].forEach(foto => contenedor.appendChild(crearItem(foto)));
+
+    // Velocidad proporcional al número de fotos
+    contenedor.style.animationDuration = `${Math.max(30, data.length * 5)}s`;
 }
 
 // ============================================

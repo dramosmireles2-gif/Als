@@ -1700,52 +1700,89 @@ footer {
    GALERÍA CLIENTAS
    ============================================ */
 .galeria-clientas-section {
-  padding: 100px 24px;
+  padding: 80px 0;
   background: var(--dark);
+  overflow: hidden;
 }
+
 .galeria-clientas-section .section-eyebrow { color: #f9a8d4; }
 .galeria-clientas-section .section-header h2 { color: var(--white); }
+.galeria-clientas-section .section-header { padding: 0 24px; }
 
-/* Masonry con columnas CSS */
-.galeria-clientas-grid {
-  columns: 4;
-  column-gap: 14px;
-  max-width: 1200px;
-  margin: 0 auto;
+/* Cinta infinita */
+.galeria-cinta-wrapper {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.galeria-cinta {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  animation: cintaScroll 40s linear infinite;
+}
+
+.galeria-cinta:hover {
+  animation-play-state: paused;
+}
+
+@keyframes cintaScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 .galeria-cliente-item {
   position: relative;
-  break-inside: avoid;
-  border-radius: var(--radius);
+  height: 360px;
+  flex-shrink: 0;
+  border-radius: 18px;
   overflow: hidden;
   background: var(--dark-2);
   cursor: pointer;
-  margin-bottom: 14px;
-  display: block;
 }
+
 .galeria-cliente-item img {
-  width: 100%;
-  height: auto;
+  height: 100%;
+  width: auto;
   display: block;
+  object-fit: cover;
   transition: transform 0.5s ease;
+  pointer-events: none;
 }
-.galeria-cliente-item:hover img { transform: scale(1.04); }
+
+.galeria-cliente-item:hover img { transform: scale(1.05); }
 
 .galeria-overlay {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   background: linear-gradient(transparent, rgba(0,0,0,0.75));
-  padding: 28px 14px 14px;
+  padding: 32px 16px 16px;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
+
 .galeria-cliente-item:hover .galeria-overlay { opacity: 1; }
+
 .galeria-overlay p {
   color: white;
   font-size: 0.85rem;
   font-weight: 700;
   font-family: var(--font-display);
+  font-style: italic;
 }
 
 @media (max-width: 1024px) {
