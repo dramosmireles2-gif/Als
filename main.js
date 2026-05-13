@@ -238,7 +238,6 @@ function renderizarCatalogo() {
         const urlFoto    = obtenerUrlFoto(vestido.foto);
         const disponible = vestido.hayDisponible;
         const tallas     = vestido.tallasDisponibles.sort().join(', ');
-        const precio     = vestido.precio_base || '—';
         const nombre     = vestido.nombre;
 
         const textoWA = `Hola Als Dress! Vi en su catálogo el vestido "${nombre}". ¿Tienen disponibilidad en alguna talla?`;
@@ -260,7 +259,6 @@ function renderizarCatalogo() {
             <div class="card-info">
                 <h3 class="card-nombre">${nombre}</h3>
                 <div class="card-detalles">
-                    <span class="card-precio">$${precio}</span>
                     <span class="card-tallas">${tallas}</span>
                 </div>
                 ${disponible
@@ -279,24 +277,51 @@ function renderizarCatalogo() {
 // ============================================
 // 7. LIGHTBOX
 // ============================================
+const WA_ICON_SVG = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.986-1.418A9.935 9.935 0 0 0 12 22c5.523 0 10-4.477 10-10S17.522 2 12 2z"/></svg>`;
+
 function crearLightbox() {
     const lb = document.createElement('div');
     lb.id = 'lightbox';
     lb.innerHTML = `
-        <button class="lightbox-cerrar" id="lightboxCerrar">✕</button>
         <div class="lightbox-inner">
             <div class="lightbox-img-wrap">
                 <img id="lightbox-img" src="" alt="">
             </div>
             <div class="lightbox-info">
+                <button class="lightbox-cerrar" id="lightboxCerrar">✕</button>
+                <p class="lb-eyebrow">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                    <span id="lightbox-categoria"></span>
+                </p>
                 <h2 class="lightbox-nombre" id="lightbox-nombre"></h2>
-                <p class="lightbox-precio"  id="lightbox-precio"></p>
-                <div class="lightbox-tallas">
+                <div class="lb-divider">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                </div>
+                <div class="lightbox-tallas" id="lb-tallas-section">
                     <span>Tallas disponibles</span>
                     <div class="lightbox-tallas-chips" id="lightbox-tallas"></div>
                 </div>
                 <span class="lightbox-badge" id="lightbox-badge"></span>
+                <hr class="lb-hr">
+                <div class="lb-benefits">
+                    <div class="lb-benefit-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                        <span>El vestido es tuyo por 3 días</span>
+                    </div>
+                    <div class="lb-benefit-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+                        <span>Limpieza profesional incluida</span>
+                    </div>
+                    <div class="lb-benefit-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <span>Seguro contra daños menores</span>
+                    </div>
+                </div>
                 <button class="lightbox-btn-wa" id="lightbox-btn-wa"></button>
+                <p class="lb-trust">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    Tu información está segura
+                </p>
             </div>
         </div>`;
     document.body.appendChild(lb);
@@ -311,22 +336,24 @@ function abrirLightbox(vestido, urlFoto) {
 
     document.getElementById('lightbox-img').src              = urlFoto;
     document.getElementById('lightbox-img').alt              = vestido.nombre;
+    document.getElementById('lightbox-categoria').textContent = (vestido.tipo || 'Vestido').toUpperCase();
     document.getElementById('lightbox-nombre').textContent   = vestido.nombre;
-    document.getElementById('lightbox-precio').textContent   = '$' + (vestido.precio_base || '—');
 
+    document.getElementById('lb-tallas-section').style.display = '';
     const chipsEl = document.getElementById('lightbox-tallas');
     chipsEl.innerHTML = vestido.tallasDisponibles.sort()
         .map(t => `<span class="talla-chip">${t}</span>`).join('');
 
     const badge = document.getElementById('lightbox-badge');
-    badge.textContent = disponible ? '● Disponible' : 'Actualmente Rentado';
+    badge.style.display = '';
+    badge.innerHTML   = disponible ? '<span class="lb-badge-dot"></span> Disponible' : 'Actualmente Rentado';
     badge.className   = `lightbox-badge ${disponible ? 'disponible' : 'agotado'}`;
 
     const btnWa = document.getElementById('lightbox-btn-wa');
     if (disponible) {
         const textoWA = `Hola Als Dress! Vi en su catálogo el vestido "${vestido.nombre}". ¿Tienen disponibilidad en alguna talla?`;
         btnWa.onclick = () => window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(textoWA)}`, '_blank');
-        btnWa.innerHTML = '💬 Consultar por WhatsApp';
+        btnWa.innerHTML = `${WA_ICON_SVG} Consultar por WhatsApp`;
         btnWa.className = 'lightbox-btn-wa';
     } else {
         btnWa.innerHTML = 'No disponible por el momento';
@@ -386,33 +413,25 @@ async function cargarGaleriaClientas() {
 // 8B. LIGHTBOX CLIENTAS
 // ============================================
 function abrirLightboxClientas(url, nombre) {
-    const lb     = document.getElementById('lightbox');
-    const msgWA  = `Hola Als Dress! Vi las fotos de sus clientas y me encantó. ¿Me pueden ayudar a encontrar mi vestido ideal?`;
-    const urlWA  = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msgWA)}`;
+    const lb    = document.getElementById('lightbox');
+    const msgWA = `Hola Als Dress! Vi las fotos de sus clientas y me encantó. ¿Me pueden ayudar a encontrar mi vestido ideal?`;
+    const urlWA = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msgWA)}`;
 
     document.getElementById('lightbox-img').src  = url;
     document.getElementById('lightbox-img').alt  = nombre || 'Clienta Als Dress';
 
-    // Nombre
-    document.getElementById('lightbox-nombre').textContent = nombre || 'Als Dress';
+    document.getElementById('lightbox-categoria').textContent = 'ALS DRESS';
+    document.getElementById('lightbox-nombre').textContent    = nombre || 'Clienta Als Dress';
 
-    // Subtítulo en lugar del precio
-    document.getElementById('lightbox-precio').innerHTML =
-        '<span style="font-size:0.95rem; color:#555; font-family:var(--font-body); font-style:italic;">✨ Lució increíble en su evento</span>';
+    document.getElementById('lb-tallas-section').style.display = 'none';
 
-    // Chip de marca en lugar de tallas
-    document.getElementById('lightbox-tallas').innerHTML =
-        '<span class="talla-chip" style="background:#fce4ec; color:#a0255f;">Als Dress · Reynosa</span>';
+    const badge = document.getElementById('lightbox-badge');
+    badge.style.display = 'none';
 
-    // Sin badge de estado
-    document.getElementById('lightbox-badge').textContent = '';
-    document.getElementById('lightbox-badge').className   = 'lightbox-badge';
-
-    // Botón WhatsApp activo
     const btnWa = document.getElementById('lightbox-btn-wa');
-    btnWa.innerHTML  = '💬 ¡Quiero lucir así también!';
-    btnWa.className  = 'lightbox-btn-wa';
-    btnWa.onclick    = () => window.open(urlWA, '_blank');
+    btnWa.innerHTML = `${WA_ICON_SVG} ¡Quiero lucir así también!`;
+    btnWa.className = 'lightbox-btn-wa';
+    btnWa.onclick   = () => window.open(urlWA, '_blank');
 
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
