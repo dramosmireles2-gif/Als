@@ -252,18 +252,20 @@ function renderizarCatalogo() {
                 <img src="${urlFoto}" alt="${nombre}" loading="lazy"
                      onerror="this.onerror=null; this.src='https://placehold.co/400x500/f5f1eb/8a8a8e?text=Sin+Foto'">
                 <span class="badge-estado ${disponible ? 'badge-disponible' : 'badge-agotado'}">
-                    ${disponible ? '● Disponible' : 'Todo Rentado'}
+                    <span class="badge-dot"></span>
+                    ${disponible ? 'Disponible' : 'Rentado'}
                 </span>
+                <div class="card-img-hover"><span>Ver detalles</span></div>
             </div>
             <div class="card-info">
                 <h3 class="card-nombre">${nombre}</h3>
                 <div class="card-detalles">
                     <span class="card-precio">$${precio}</span>
-                    <span class="card-tallas">Talla: ${tallas}</span>
+                    <span class="card-tallas">${tallas}</span>
                 </div>
                 ${disponible
-                    ? `<button class="btn-accion btn-disponible" onclick="window.open('${urlWA}','_blank')">Consultar Disponibilidad</button>`
-                    : `<button class="btn-accion btn-agotado" disabled>Actualmente Rentado</button>`
+                    ? `<button class="btn-accion btn-disponible" onclick="window.open('${urlWA}','_blank')">Consultar disponibilidad</button>`
+                    : `<button class="btn-accion btn-agotado" disabled>Actualmente rentado</button>`
                 }
             </div>`;
 
