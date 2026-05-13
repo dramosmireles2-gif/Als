@@ -248,13 +248,13 @@ a  { text-decoration: none; color: inherit; }
 }
 
 .hero-btn-wa {
-  background: var(--pink);
+  background: #25D366;
   color: white;
   border: none;
 }
 
 .hero-btn-wa:hover {
-  background: var(--pink-dark);
+  background: #128C7E;
 }
 
 .hero-btn-wa-icon {
@@ -339,7 +339,7 @@ a  { text-decoration: none; color: inherit; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-
+  object-position: left center;
   transition: transform 0.8s ease;
 }
 
