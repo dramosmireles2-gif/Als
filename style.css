@@ -1370,85 +1370,47 @@ footer {
 }
 
 .btn-flotante {
-  width: 58px;
-  height: 58px;
-
-  border-radius: 18px;
-
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background: rgba(255,255,255,0.82);
-
+  background: rgba(255,255,255,0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-
-  border: 1px solid rgba(214, 51, 132, 0.10);
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.10);
-
+  border: 1px solid rgba(214,51,132,0.12);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.09);
+  color: var(--pink);
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
     border-color 0.25s ease,
+    color 0.25s ease,
     background 0.25s ease;
 }
 
 .btn-flotante:hover {
-  transform: translateY(-4px);
-
-  border-color: rgba(214, 51, 132, 0.25);
-
+  transform: translateY(-5px);
+  border-color: rgba(214,51,132,0.28);
   box-shadow:
-    0 16px 40px rgba(0,0,0,0.14);
-
-  background: rgba(255,255,255,0.95);
-}
-
-.btn-flotante img {
-  width: 24px;
-  height: 24px;
-
-  object-fit: contain;
-}
-
-/* WhatsApp */
-.btn-flotante.whatsapp {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,0.95),
-      rgba(240,255,245,0.95)
-    );
-}
-
-/* Facebook */
-.btn-flotante.facebook {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,0.95),
-      rgba(245,245,255,0.95)
-    );
+    0 14px 36px rgba(0,0,0,0.10),
+    0 0 0 5px rgba(214,51,132,0.08);
+  background: rgba(255,255,255,0.98);
+  color: var(--pink-dark);
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-
   .botones-flotantes {
     right: 16px;
     bottom: 16px;
   }
-
   .btn-flotante {
-    width: 54px;
-    height: 54px;
-
-    border-radius: 16px;
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
   }
-
 }
 /* ============================================
    LIGHTBOX
