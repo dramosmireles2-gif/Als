@@ -903,14 +903,14 @@ nav a:hover {
 }
 
 .badge-disponible {
-  background: rgba(255,255,255,0.88);
-  color: #15803d;
-  border: 1px solid rgba(21,128,61,0.15);
+  background: rgba(255,255,255,0.92);
+  color: var(--pink);
+  border: 1px solid rgba(214,51,132,0.18);
 }
 
 .badge-disponible .badge-dot {
-  background: #22c55e;
-  box-shadow: 0 0 0 2px rgba(34,197,94,0.25);
+  background: var(--pink);
+  box-shadow: 0 0 0 2px rgba(214,51,132,0.2);
 }
 
 .badge-agotado {
@@ -922,48 +922,90 @@ nav a:hover {
   background: rgba(255,255,255,0.4);
 }
 
+/* Heart fav button */
+.card-fav-btn {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: white;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.card-fav-btn:hover { color: var(--pink); transform: scale(1.1); }
+.card-fav-btn.faved { color: var(--pink); }
+.card-fav-btn.faved svg { fill: var(--pink); stroke: var(--pink); }
+
 /* Info */
 .card-info {
-  padding: 18px 20px 20px;
+  padding: 18px 20px 22px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   flex: 1;
 }
 
 .card-nombre {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   line-height: 1.2;
   color: var(--dark);
   font-weight: 600;
 }
 
-.card-detalles {
+.card-nombre-deco {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
+  color: var(--pink);
 }
-
-.card-precio {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--pink-dark);
+.card-nombre-deco::before,
+.card-nombre-deco::after {
+  content: '';
+  flex: 1;
+  height: 1px;
   background: var(--pink-light);
-  padding: 4px 14px;
-  border-radius: 999px;
 }
 
-.card-tallas {
-  padding: 5px 12px;
-  border-radius: 999px;
-  background: var(--cream-2);
+.card-tallas-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.card-tallas-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
   color: var(--gray);
-  font-size: 0.7rem;
+}
+.card-tallas-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.card-talla-chip {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 8px;
+  border-radius: 50px;
+  border: 1.5px solid var(--gray-light);
+  background: white;
+  color: var(--dark);
+  font-size: 0.72rem;
   font-weight: 600;
-  border: 1px solid var(--gray-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ============================================
@@ -1905,10 +1947,10 @@ footer {
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
   }
-  .card-img-wrapper { height: 240px; }
-  .card-info { padding: 14px 14px 16px; gap: 10px; }
-  .card-nombre { font-size: 1rem; }
-  .card-precio { font-size: 1.1rem; }
+  .card-img-wrapper { aspect-ratio: 3/4; height: auto; }
+  .card-info { padding: 14px 14px 18px; gap: 9px; }
+  .card-nombre { font-size: 1.1rem; }
+  .card-talla-chip { min-width: 32px; height: 32px; font-size: 0.68rem; }
 
   /* Filtros */
   .filtros { gap: 8px; padding: 14px 16px; overflow-x: auto; flex-wrap: nowrap; }
@@ -1928,8 +1970,6 @@ footer {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
-  .card-img-wrapper {
-    height: 250px;
-  }
+  .card-img-wrapper { aspect-ratio: 3/4; height: auto; }
   .btn-accion { font-size: 0.72rem; padding: 10px; }
 }
