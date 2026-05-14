@@ -2082,4 +2082,28 @@ footer {
   }
   .card-img-wrapper { aspect-ratio: 3/4; height: auto; }
   .btn-accion { font-size: 0.72rem; padding: 10px; }
+
+  /* Rating bar: apila en pantallas muy pequeñas */
+  .testimonios-rating {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 20px;
+    padding: 16px 18px;
+  }
+  .rating-divider { display: none; }
+  .rating-badge {
+    width: 100%;
+    justify-content: center;
+    padding-top: 10px;
+    border-top: 1px solid var(--gray-light);
+  }
+
+  /* Hero trust: una columna centrada */
+  .trust-item { flex-direction: column; text-align: center; gap: 8px; }
+
+  /* Cat cards: mantiene 2 cols pero reduce padding */
+  .cat-visual-section { padding: 60px 12px; }
+
+  /* Sección proceso */
+  .proceso-btn-wa { width: 100%; justify-content: center; }
 }
