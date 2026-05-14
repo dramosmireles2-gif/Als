@@ -1061,7 +1061,7 @@ nav a:hover {
    ============================================ */
 .proceso-section {
   background: var(--dark);
-  padding: 100px 24px;
+  padding: 100px 24px 90px;
   position: relative;
   overflow: hidden;
 }
@@ -1087,58 +1087,91 @@ nav a:hover {
 .proceso-section .section-eyebrow { color: #f9a8d4; }
 .proceso-section .section-header h2 { color: var(--white); }
 
+.proceso-subtitle {
+  color: rgba(255,255,255,0.45);
+  font-size: 0.95rem;
+  margin-top: 12px;
+}
+
 .pasos {
   display: flex;
   align-items: flex-start;
   gap: 0;
-  margin-top: 20px;
+  margin-top: 48px;
 }
 
 .paso {
   flex: 1;
   text-align: center;
-  padding: 40px 30px;
+  padding: 44px 28px 38px;
   background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: var(--radius);
-  transition: background var(--transition), border-color var(--transition);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
 }
 .paso:hover {
-  background: rgba(214, 51, 132, 0.1);
-  border-color: rgba(214, 51, 132, 0.3);
+  background: rgba(214,51,132,0.08);
+  border-color: rgba(214,51,132,0.28);
+  transform: translateY(-6px);
 }
 
-.paso-num {
+.paso-num-bg {
+  position: absolute;
+  top: -16px;
+  right: 12px;
   font-family: var(--font-display);
-  font-size: 3.5rem;
+  font-size: 7rem;
   font-weight: 700;
-  color: rgba(214, 51, 132, 0.25);
+  color: rgba(214,51,132,0.07);
   line-height: 1;
-  margin-bottom: 12px;
+  pointer-events: none;
+  user-select: none;
+  transition: color 0.35s ease;
 }
-.paso-icon {
-  font-size: 2.5rem;
-  margin-bottom: 18px;
+.paso:hover .paso-num-bg {
+  color: rgba(214,51,132,0.12);
 }
+
+.paso-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(214,51,132,0.35);
+  background: rgba(214,51,132,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  color: #f9a8d4;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+.paso:hover .paso-icon-wrap {
+  background: rgba(214,51,132,0.16);
+  border-color: rgba(214,51,132,0.6);
+  color: var(--pink);
+}
+
 .paso h3 {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--white);
   margin-bottom: 12px;
 }
 .paso p {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.7;
+  font-size: 0.87rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.75;
 }
 
 .paso-conector {
   width: 48px;
   flex-shrink: 0;
-  margin-top: 80px;
+  margin-top: 96px;
   height: 1px;
-  background: linear-gradient(to right, rgba(214,51,132,0.3), rgba(214,51,132,0.6), rgba(214,51,132,0.3));
+  background: linear-gradient(to right, rgba(214,51,132,0.2), rgba(214,51,132,0.55), rgba(214,51,132,0.2));
   position: relative;
 }
 .paso-conector::after {
@@ -1146,9 +1179,41 @@ nav a:hover {
   position: absolute;
   right: -5px; top: -4px;
   width: 9px; height: 9px;
-  border-right: 2px solid rgba(214,51,132,0.6);
-  border-top: 2px solid rgba(214,51,132,0.6);
+  border-right: 2px solid rgba(214,51,132,0.55);
+  border-top: 2px solid rgba(214,51,132,0.55);
   transform: rotate(45deg);
+}
+
+.proceso-cta {
+  margin-top: 60px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.proceso-cta > p {
+  color: rgba(255,255,255,0.45);
+  font-size: 0.95rem;
+  font-style: italic;
+}
+.proceso-btn-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: #25D366;
+  color: white;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: background 0.2s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.proceso-btn-wa:hover {
+  background: #1ebe5d;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(37,211,102,0.3);
 }
 
 /* ============================================
@@ -1867,12 +1932,14 @@ footer {
    ============================================ */
 @media (max-width: 900px) {
   .pasos { flex-direction: column; align-items: center; }
-  .paso  { width: 100%; max-width: 420px; }
+  .paso  { width: 100%; max-width: 460px; }
+  .paso:hover { transform: none; }
   .paso-conector { width: 1px; height: 36px; margin: 0 auto; transform: none; }
   .paso-conector::after {
     right: -4px; top: auto; bottom: -5px;
     transform: rotate(135deg);
   }
+  .proceso-cta { margin-top: 44px; }
   .ubicacion-grid { grid-template-columns: 1fr; }
 }
 
@@ -1920,7 +1987,9 @@ footer {
   .tallas-filtro { flex-wrap: nowrap; }
 
   /* Secciones */
-  .proceso-section { padding: 70px 16px; }
+  .proceso-section { padding: 70px 16px 60px; }
+  .paso-num-bg { font-size: 5rem; }
+  .proceso-btn-wa { padding: 14px 28px; font-size: 0.85rem; }
   .testimonios-section { padding: 70px 16px; }
   .ubicacion-section { padding: 70px 16px; }
   .section-header { margin-bottom: 36px; }
