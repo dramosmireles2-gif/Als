@@ -328,10 +328,6 @@ function crearLightbox() {
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
                         <span>Limpieza profesional incluida</span>
                     </div>
-                    <div class="lb-benefit-item">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        <span>Seguro contra daños menores</span>
-                    </div>
                 </div>
                 <button class="lightbox-btn-wa" id="lightbox-btn-wa"></button>
                 <p class="lb-trust">
