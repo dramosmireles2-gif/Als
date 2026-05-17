@@ -92,8 +92,8 @@ a  { text-decoration: none; color: inherit; }
   );
   overflow: hidden;
   display: flex;
-  align-items: center;
-  padding: 140px 24px 80px;
+  align-items: stretch;
+  padding: 0;
 }
 
 .hero-overlay {
@@ -112,20 +112,24 @@ a  { text-decoration: none; color: inherit; }
   position: relative;
   z-index: 2;
 
-  max-width: 1250px;
+  max-width: none;
   width: 100%;
 
-  margin: 0 auto;
+  margin: 0;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 70px;
+  grid-template-columns: 1fr 52%;
+  gap: 0;
 
-  align-items: center;
+  align-items: stretch;
+  min-height: 100svh;
 }
 
 .hero-left {
-  max-width: 560px;
+  padding: 110px clamp(24px, 5vw, 80px) 80px max(24px, calc((100vw - 1240px) / 2 + 24px));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero-pretitle {
@@ -269,9 +273,9 @@ a  { text-decoration: none; color: inherit; }
 }
 
 .hero-trust {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
   margin-top: 40px;
   padding-top: 32px;
   border-top: 1px solid var(--gray-light);
@@ -281,7 +285,6 @@ a  { text-decoration: none; color: inherit; }
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  flex: 1;
 }
 
 .trust-icon {
@@ -320,26 +323,27 @@ a  { text-decoration: none; color: inherit; }
 
 .hero-right {
   position: relative;
+  overflow: hidden;
 }
 
 .hero-image-wrapper {
-  position: relative;
+  position: absolute;
+  inset: 0;
 
-  border-radius: 36px;
+  border-radius: 0;
 
   overflow: hidden;
 
-  box-shadow:
-    0 30px 80px rgba(0,0,0,0.12);
+  box-shadow: none;
 
-  aspect-ratio: 0.82;
+  aspect-ratio: unset;
 }
 
 .hero-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: center top;
   transition: transform 0.8s ease;
 }
 
@@ -371,37 +375,18 @@ a  { text-decoration: none; color: inherit; }
 
 #header {
   position: fixed;
-  top: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: calc(100% - 40px);
-  max-width: 1240px;
-
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   z-index: 1000;
-
-  background: rgba(255,255,255,0.72);
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
-  border: 1px solid rgba(255,255,255,0.5);
-
-  border-radius: 22px;
-
-  transition:
-    box-shadow 0.3s ease,
-    border-color 0.3s ease,
-    background 0.3s ease;
+  background: var(--dark);
+  border-radius: 0;
+  transition: box-shadow 0.3s ease;
 }
 
 #header.scrolled {
-  box-shadow:
-    0 10px 40px rgba(0,0,0,0.08);
-
-  background: rgba(255,255,255,0.88);
-
-  border-color: rgba(214, 51, 132, 0.08);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
 }
 
 .header-inner {
@@ -436,11 +421,12 @@ a  { text-decoration: none; color: inherit; }
 
 .logo-name {
   font-size: 1.6rem;
+  color: white;
 }
 
 .logo-sub {
   margin-top: 4px;
-  color: var(--pink-dark);
+  color: rgba(255,255,255,0.45);
 }
 
 nav {
@@ -458,11 +444,12 @@ nav a {
   border-radius: 999px;
   transition: all 0.25s ease;
   white-space: nowrap;
+  color: rgba(255,255,255,0.82);
 }
 
 nav a:hover {
-  background: rgba(214, 51, 132, 0.08);
-  color: var(--pink-dark);
+  background: rgba(255,255,255,0.08);
+  color: white;
 }
 
 .header-wa-btn {
@@ -494,6 +481,34 @@ nav a:hover {
   flex-shrink: 0;
 }
 
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 4px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.open span:nth-child(2) { opacity: 0; }
+.menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 /* ============================================
    RESPONSIVE
 ============================================ */
@@ -508,13 +523,14 @@ nav a:hover {
 
   .hero-container {
     grid-template-columns: 1fr;
-    gap: 50px;
+    gap: 0;
+    min-height: unset;
   }
 
   .hero-left {
     order: 2;
     text-align: center;
-    max-width: 100%;
+    padding: 60px 28px 70px;
   }
 
   .hero-deco { margin: 22px auto; }
@@ -526,26 +542,37 @@ nav a:hover {
 
   .hero-btns { justify-content: center; }
 
-  .hero-trust { justify-content: center; }
+  .hero-trust {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
 
-  .hero-right { order: 1; }
+  .hero-right {
+    order: 1;
+    height: 55vw;
+    min-height: 320px;
+    max-height: 520px;
+  }
 
   .hero-image-wrapper {
-    max-width: 520px;
-    margin: 0 auto;
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
   }
 }
 
 @media (max-width: 768px) {
-  .hero { padding-top: 120px; }
+  .hero { padding-top: 76px; }
   .hero-title { font-size: 3.2rem; }
   .hero-description { font-size: 0.95rem; line-height: 1.7; }
   .hero-btns { flex-direction: column; }
   .hero-btn { width: 100%; }
-  .hero-trust { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .hero-trust {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
   .trust-sep { display: none; }
-  .hero-trust { align-items: center; }
-  .trust-item { justify-content: center; }
+  .trust-item { justify-content: center; flex-direction: column; align-items: center; text-align: center; }
 }
 
 /* ============================================
@@ -2032,11 +2059,11 @@ footer {
     top: 0; right: 0;
     width: min(300px, 80vw);
     height: 100svh;
-    background: var(--white);
+    background: var(--dark);
     flex-direction: column;
     align-items: flex-start;
     padding: 80px 28px 28px;
-    box-shadow: -4px 0 30px rgba(0,0,0,0.1);
+    box-shadow: -4px 0 30px rgba(0,0,0,0.3);
     gap: 4px;
     transition: transform 0.3s ease;
     z-index: 800;
@@ -2047,6 +2074,11 @@ footer {
     font-size: 1rem;
     padding: 12px 16px;
     border-radius: 10px;
+    color: rgba(255,255,255,0.85);
+  }
+  nav a:hover {
+    background: rgba(255,255,255,0.08);
+    color: white;
   }
 
   /* Catálogo mobile */
