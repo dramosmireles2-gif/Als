@@ -49,7 +49,7 @@ a  { text-decoration: none; color: inherit; }
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--gray);
+  color: var(--rose);
   margin-bottom: 10px;
 }
 
@@ -137,7 +137,7 @@ a  { text-decoration: none; color: inherit; }
   font-weight: 700;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--gray);
+  color: var(--rose);
   margin-bottom: 28px;
 }
 
@@ -263,7 +263,7 @@ a  { text-decoration: none; color: inherit; }
 }
 
 .trust-icon {
-  color: var(--dark);
+  color: var(--rose);
   flex-shrink: 0;
   margin-top: 2px;
   opacity: 0.85;
@@ -787,11 +787,11 @@ nav a:hover {
 }
 
 .filtro-btn.active {
-  background: rgba(28, 28, 30, 0.10);
+  background: rgba(192, 39, 90, 0.08);
 
-  color: var(--dark);
+  color: var(--rose);
 
-  border-color: rgba(28, 28, 30, 0.15);
+  border-color: rgba(192, 39, 90, 0.22);
 }
 
 .filtro-separador {
@@ -955,13 +955,13 @@ nav a:hover {
 
 .badge-disponible {
   background: rgba(255,255,255,0.92);
-  color: var(--dark);
-  border: 1px solid rgba(28,28,30,0.18);
+  color: var(--rose);
+  border: 1px solid rgba(192,39,90,0.18);
 }
 
 .badge-disponible .badge-dot {
-  background: var(--dark);
-  box-shadow: 0 0 0 2px rgba(28,28,30,0.2);
+  background: var(--rose);
+  box-shadow: 0 0 0 2px rgba(192,39,90,0.2);
 }
 
 .badge-agotado {
@@ -992,9 +992,9 @@ nav a:hover {
   box-shadow: 0 2px 10px rgba(0,0,0,0.12);
   transition: color 0.2s ease, transform 0.2s ease;
 }
-.card-fav-btn:hover { color: var(--dark); transform: scale(1.1); }
-.card-fav-btn.faved { color: var(--dark); }
-.card-fav-btn.faved svg { fill: var(--dark); stroke: var(--dark); }
+.card-fav-btn:hover { color: var(--rose); transform: scale(1.1); }
+.card-fav-btn.faved { color: var(--rose); }
+.card-fav-btn.faved svg { fill: var(--rose); stroke: var(--rose); }
 
 /* Info */
 .card-info {
@@ -1135,7 +1135,7 @@ nav a:hover {
   margin: 0 auto;
 }
 
-.proceso-section .section-eyebrow { color: rgba(255,255,255,0.45); }
+.proceso-section .section-eyebrow { color: var(--rose); }
 .proceso-section .section-header h2 { color: white; }
 
 .proceso-subtitle {
@@ -1297,7 +1297,7 @@ nav a:hover {
   line-height: 1;
 }
 .rating-mid { display: flex; flex-direction: column; gap: 4px; }
-.rating-stars { color: var(--gray); font-size: 1rem; letter-spacing: 2px; }
+.rating-stars { color: var(--rose); font-size: 1rem; letter-spacing: 2px; }
 .rating-label { font-size: 0.68rem; color: var(--gray); font-weight: 500; }
 .rating-divider { width: 1px; height: 32px; background: var(--gray-light); }
 .rating-badge {
@@ -1349,7 +1349,7 @@ nav a:hover {
 }
 
 .estrellas {
-  color: var(--dark);
+  color: var(--rose);
   font-size: 1rem;
   letter-spacing: 2px;
   position: relative;
@@ -1587,12 +1587,12 @@ footer {
 
 .btn-flotante:hover {
   transform: translateY(-5px);
-  border-color: rgba(28,28,30,0.28);
+  border-color: rgba(192,39,90,0.28);
   box-shadow:
     0 14px 36px rgba(0,0,0,0.10),
-    0 0 0 5px rgba(28,28,30,0.08);
+    0 0 0 5px rgba(192,39,90,0.10);
   background: rgba(255,255,255,0.98);
-  color: var(--dark);
+  color: var(--rose);
 }
 
 /* Mobile */
@@ -1697,7 +1697,7 @@ footer {
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--dark);
+  color: var(--rose);
   margin-top: 14px;
 }
 
@@ -1794,11 +1794,11 @@ footer {
   font-size: 0.84rem;
   color: var(--dark);
 }
-.lb-benefit-item svg { flex-shrink: 0; color: var(--dark); }
+.lb-benefit-item svg { flex-shrink: 0; color: var(--rose); }
 
 .lightbox-btn-wa {
   padding: 15px 20px;
-  background: var(--dark);
+  background: #25D366;
   color: white;
   border: none;
   border-radius: 50px;
@@ -1814,7 +1814,7 @@ footer {
   margin-top: 4px;
 }
 .lightbox-btn-wa:hover {
-  background: var(--dark);
+  background: #1aad55;
   transform: translateY(-2px);
 }
 .lightbox-btn-wa.deshabilitado {
@@ -1910,14 +1910,14 @@ footer {
 }
 
 .cat-btn.active {
-  background: var(--dark);
+  background: var(--rose);
 
   color: white;
 
-  border-color: var(--dark);
+  border-color: var(--rose);
 
   box-shadow:
-    0 12px 30px rgba(0,0,0,0.10);
+    0 12px 30px rgba(192,39,90,0.22);
 }
 
 /* ============================================
@@ -1965,7 +1965,7 @@ footer {
   overflow: hidden;
 }
 
-.galeria-clientas-section .section-eyebrow { color: rgba(255,255,255,0.45); }
+.galeria-clientas-section .section-eyebrow { color: var(--rose); }
 .galeria-clientas-section .section-header h2 { color: white; }
 .galeria-clientas-section .section-header { padding: 0 24px; }
 
