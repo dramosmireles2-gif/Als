@@ -536,67 +536,72 @@ nav a:hover {
 @media (max-width: 980px) {
   .header-wa-btn { display: none; }
 
+  /* Columna imagen más estrecha, layout sigue en dos columnas */
   .hero-container {
-    grid-template-columns: 1fr;
-    gap: 0;
+    grid-template-columns: 1fr 44%;
   }
 
   .hero-left {
-    order: 2;
-    text-align: center;
-    padding: 60px 28px 70px;
+    padding: 100px 36px 60px clamp(24px, 3vw, 56px);
   }
 
-  .hero-deco { margin: 22px auto; }
-
-  .hero-description {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-btns { justify-content: center; }
-
-  .hero-trust {
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
-  }
-
-  .hero-right {
-    order: 1;
-    height: 55vw;
-    min-height: 320px;
-    max-height: 520px;
-  }
-
-  .hero-image-wrapper {
-    position: absolute;
-    inset: 0;
-    border-radius: 0;
+  .hero-title {
+    font-size: clamp(2.6rem, 3.8vw, 4.4rem);
   }
 }
 
 @media (max-width: 768px) {
-  /* En mobile: reutilizamos ::before para gradiente inferior (fusión con sección de texto) */
+  /* Hero: apila en móvil */
+  .hero-container { grid-template-columns: 1fr; }
+
+  .hero-left {
+    order: 2;
+    text-align: center;
+    padding: 44px 24px 52px;
+  }
+  .hero-deco       { margin: 16px auto; }
+  .hero-title      { font-size: 2.8rem; }
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.9rem;
+    line-height: 1.75;
+  }
+  .hero-btns {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .hero-btn { width: 100%; max-width: 360px; }
+
+  .hero-trust {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    justify-items: center;
+    margin-top: 28px;
+    padding-top: 24px;
+  }
+  .trust-sep  { display: none; }
+  .trust-item { flex-direction: column; align-items: center; text-align: center; gap: 6px; }
+
+  /* Hero imagen apilada */
+  .hero-right {
+    order: 1;
+    height: 52vw;
+    min-height: 240px;
+    max-height: 420px;
+  }
+  .hero-image-wrapper { position: absolute; inset: 0; border-radius: 0; }
+
+  /* Gradiente inferior: fusión con sección de texto */
   .hero-right::before {
     display: block;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: auto;
+    left: 0; right: 0; bottom: 0; top: auto;
     width: 100%;
     height: 90px;
     background: linear-gradient(to bottom, transparent 0%, var(--cream) 100%);
   }
-  .hero-title { font-size: 3.2rem; }
-  .hero-description { font-size: 0.95rem; line-height: 1.7; }
-  .hero-btns { flex-direction: column; }
-  .hero-btn { width: 100%; }
-  .hero-trust {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-  .trust-sep { display: none; }
-  .trust-item { justify-content: center; flex-direction: column; align-items: center; text-align: center; }
 }
 
 /* ============================================
@@ -703,7 +708,7 @@ nav a:hover {
 }
 
 .cat-card:hover .cat-card-link {
-  color: rgba(28,28,30,0.05);
+  color: white;
 }
 
 @media (max-width: 900px) {
@@ -1535,8 +1540,8 @@ footer {
   transition: all 0.2s ease;
 }
 .footer-links a:hover {
-  border-color: var(--dark);
-  color: var(--dark);
+  border-color: rgba(255,255,255,0.6);
+  color: white;
 }
 
 .footer-bottom {
@@ -1562,6 +1567,14 @@ footer {
   gap: 14px;
 
   z-index: 950;
+
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.botones-flotantes.oculto {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
 }
 
 .btn-flotante {
@@ -1595,18 +1608,7 @@ footer {
   color: var(--rose);
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .botones-flotantes {
-    right: 16px;
-    bottom: 16px;
-  }
-  .btn-flotante {
-    width: 50px;
-    height: 50px;
-    border-radius: 14px;
-  }
-}
+/* Mobile: tamaño gestionado en el bloque responsivo al final */
 /* ============================================
    LIGHTBOX
    ============================================ */
@@ -2045,38 +2047,34 @@ footer {
   font-style: italic;
 }
 
-@media (max-width: 1024px) {
-  .galeria-clientas-grid { columns: 3; }
-}
-
-@media (max-width: 768px) {
-  .hero-btns { flex-direction: column; align-items: center; gap: 10px; }
-  .categorias { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
-  .galeria-clientas-grid { columns: 2; column-gap: 10px; }
-  .galeria-cliente-item { margin-bottom: 10px; }
-  .galeria-clientas-section { padding: 60px 16px; }
-}
-
 /* ============================================
-   RESPONSIVO
+   RESPONSIVO — Sistema limpio y unificado
+   980px → 768px → 480px → 390px
    ============================================ */
-@media (max-width: 900px) {
+
+/* ---- 980px: proceso + ubicación apilan ---- */
+@media (max-width: 980px) {
   .pasos { flex-direction: column; align-items: center; }
   .paso  { width: 100%; max-width: 460px; }
   .paso:hover { transform: none; }
-  .paso-conector { width: 1px; height: 36px; margin: 0 auto; transform: none; }
+  .paso-conector {
+    width: 1px; height: 36px;
+    margin: 0 auto; transform: none;
+  }
   .paso-conector::after {
     right: -4px; top: auto; bottom: -5px;
     transform: rotate(135deg);
   }
   .proceso-cta { margin-top: 44px; }
   .ubicacion-grid { grid-template-columns: 1fr; }
+  .galeria-clientas-section { padding: 60px 0; }
 }
 
+/* ---- 768px: Móvil principal ---- */
 @media (max-width: 768px) {
-  /* Header mobile */
-  .menu-toggle { display: flex; }
 
+  /* Header */
+  .menu-toggle { display: flex; }
   nav {
     display: none;
     position: fixed;
@@ -2089,7 +2087,6 @@ footer {
     padding: 80px 28px 28px;
     box-shadow: -4px 0 30px rgba(0,0,0,0.3);
     gap: 4px;
-    transition: transform 0.3s ease;
     z-index: 800;
   }
   nav.open { display: flex; }
@@ -2100,46 +2097,70 @@ footer {
     border-radius: 10px;
     color: rgba(255,255,255,0.85);
   }
-  nav a:hover {
-    background: rgba(255,255,255,0.08);
-    color: white;
-  }
+  nav a:hover { background: rgba(255,255,255,0.08); color: white; }
 
-  /* Catálogo mobile */
-  .catalogo-section { padding: 80px 16px 60px; }
-  .productos-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-  .card-img-wrapper { aspect-ratio: 3/4; height: auto; }
-  .card-info { padding: 14px 14px 18px; gap: 9px; }
-  .card-nombre { font-size: 1.1rem; }
-  .card-talla-chip { min-width: 32px; height: 32px; font-size: 0.68rem; }
+  /* Section headers */
+  .section-header { margin-bottom: 36px; }
+  .section-header h2 { font-size: clamp(1.75rem, 5.5vw, 2.6rem); }
 
-  /* Filtros */
+  /* Categorías visuales */
+  .cat-visual-section { padding: 56px 16px; }
+  .cat-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .cat-card-name  { font-size: 1.1rem; }
+
+  /* Catálogo */
+  .catalogo-section { padding: 72px 16px 56px; }
   .filtros { gap: 8px; padding: 14px 16px; overflow-x: auto; flex-wrap: nowrap; }
   .filtro-separador { display: none; }
   .tallas-filtro { flex-wrap: nowrap; }
+  .productos-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .card-img-wrapper { aspect-ratio: 3/4; height: auto; }
+  .card-info  { padding: 14px 14px 18px; gap: 9px; }
+  .card-nombre { font-size: 1.1rem; }
+  .card-talla-chip { min-width: 32px; height: 32px; font-size: 0.68rem; }
+  .categorias { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
 
-  /* Secciones */
-  .proceso-section { padding: 70px 16px 60px; }
-  .paso-num-bg { font-size: 5rem; }
+  /* Proceso */
+  .proceso-section { padding: 68px 16px 56px; }
+  .paso-num-bg    { font-size: 5rem; }
   .proceso-btn-wa { padding: 14px 28px; font-size: 0.85rem; }
-  .testimonios-section { padding: 70px 16px; }
-  .ubicacion-section { padding: 70px 16px; }
-  .section-header { margin-bottom: 36px; }
+
+  /* Testimonios */
+  .testimonios-section { padding: 68px 16px; }
+
+  /* Ubicación */
+  .ubicacion-section { padding: 68px 16px; }
+
+  /* Galería clientas */
+  .galeria-cliente-item { height: 280px; }
+
+  /* Floating buttons */
+  .botones-flotantes { right: 14px; bottom: 20px; gap: 10px; }
+  .btn-flotante { width: 48px; height: 48px; border-radius: 13px; }
 }
 
+/* ---- 480px: Móvil pequeño ---- */
 @media (max-width: 480px) {
-  .hero-title { font-size: 2.5rem; }
-  .productos-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-  .card-img-wrapper { aspect-ratio: 3/4; height: auto; }
-  .btn-accion { font-size: 0.72rem; padding: 10px; }
 
-  /* Rating bar: apila en pantallas muy pequeñas */
+  /* Header */
+  .header-inner { padding: 0 16px; height: 72px; }
+  .logo-name { font-size: 1.25rem; }
+  .logo-sub  { font-size: 0.5rem; }
+  .logo-img  { height: 36px; width: 36px; }
+
+  /* Hero */
+  .hero-title   { font-size: 2.4rem; }
+  .hero-right   { height: 58vw; min-height: 210px; max-height: 340px; }
+  .hero-left    { padding: 36px 18px 48px; }
+  .hero-description { font-size: 0.88rem; }
+  .hero-btn     { font-size: 0.65rem; padding: 0 20px; height: 46px; }
+  .trust-item   { flex-direction: column; align-items: center; text-align: center; gap: 6px; }
+
+  /* Categorías */
+  .cat-visual-section { padding: 48px 12px; }
+  .cat-cards-grid { gap: 10px; }
+
+  /* Rating */
   .testimonios-rating {
     flex-wrap: wrap;
     justify-content: center;
@@ -2154,12 +2175,26 @@ footer {
     border-top: 1px solid var(--gray-light);
   }
 
-  /* Hero trust: una columna centrada */
-  .trust-item { flex-direction: column; text-align: center; gap: 8px; }
+  /* Catálogo */
+  .productos-grid { gap: 10px; }
+  .btn-accion { font-size: 0.72rem; padding: 10px; }
 
-  /* Cat cards: mantiene 2 cols pero reduce padding */
-  .cat-visual-section { padding: 60px 12px; }
-
-  /* Sección proceso */
+  /* Proceso */
   .proceso-btn-wa { width: 100%; justify-content: center; }
+
+  /* Footer */
+  .footer-inner { flex-direction: column; gap: 22px; padding-bottom: 28px; }
+  .footer-links { flex-wrap: wrap; gap: 8px; }
+  .footer-links a { font-size: 0.78rem; padding: 7px 16px; }
+}
+
+/* ---- 390px: Teléfonos muy pequeños ---- */
+@media (max-width: 390px) {
+  .hero-title  { font-size: 2rem; }
+  .hero-right  { height: 62vw; min-height: 195px; }
+  .logo-name   { font-size: 1.1rem; }
+  .hero-btn    { font-size: 0.62rem; height: 44px; }
+  .section-header h2 { font-size: 1.55rem; }
+  .card-nombre { font-size: 1rem; }
+  .cat-card-name { font-size: 1rem; }
 }
