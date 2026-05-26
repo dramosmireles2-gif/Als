@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Als Dress — Renta y venta de vestidos de fiesta en Reynosa. Encuentra el vestido perfecto para tu evento. Quinceañeras, bodas, graduaciones.">
+  <meta name="description" content="Als Dress - Renta y venta de vestidos de fiesta en Reynosa. Encuentra el vestido perfecto para tu evento. Quinceaneras, bodas, graduaciones.">
   <title>Als Dress | Renta de Vestidos en Reynosa</title>
 
   <!-- Open Graph -->
@@ -28,12 +28,45 @@
   <link rel="apple-touch-icon"       href="./Icono.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="./supabase.js"></script>
 </head>
 <body>
+
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-item">
+        <span class="topbar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3l1.5 3.5L17 8l-3.5 1.5L12 13l-1.5-3.5L7 8l3.5-1.5L12 3z"></path>
+            <path d="M5 15l1 2.2L8.2 18 6 19l-1 2-1-2L2 18l2.2-.8L5 15z"></path>
+            <path d="M19 14l.9 1.9L22 16.8l-2.1.8L19 20l-.9-2.4-2.1-.8 2.1-.9L19 14z"></path>
+          </svg>
+        </span>
+        <span>Vestidos seleccionados para cada momento especial</span>
+      </div>
+      <div class="topbar-item">
+        <span class="topbar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7h11l3 4h4v5h-2a2 2 0 0 1-4 0H9a2 2 0 0 1-4 0H3V7z"></path>
+            <path d="M14 7v4h6"></path>
+          </svg>
+        </span>
+        <span>Renta facil y segura</span>
+      </div>
+      <div class="topbar-item">
+        <span class="topbar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21s-6-4.35-6-10a6 6 0 1 1 12 0c0 5.65-6 10-6 10z"></path>
+            <circle cx="12" cy="11" r="2.2"></circle>
+          </svg>
+        </span>
+        <span>Reynosa, Tamaulipas</span>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== HEADER ===== -->
   <header id="header">
@@ -45,16 +78,20 @@
           <span class="logo-sub">Reynosa · Renta &amp; Venta</span>
         </div>
       </div>
-      <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+      <button class="menu-toggle" id="menuToggle" aria-label="Menú" aria-controls="mainNav" aria-expanded="false" type="button">
         <span></span><span></span><span></span>
       </button>
       <nav id="mainNav">
-        <a href="#inicio">Inicio</a>
+        <a href="#inicio" class="active">Inicio</a>
         <a href="#catalogo">Catálogo</a>
         <a href="#catalogo">Accesorios</a>
         <a href="#proceso">Cómo Funciona</a>
         <a href="#ubicacion">Ubicación</a>
         <a href="#testimonios">Contacto</a>
+        <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="nav-mobile-wa">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" class="nav-mobile-wa-icon">
+          Escríbenos por WhatsApp
+        </a>
       </nav>
       <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="header-wa-btn">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" class="header-wa-icon">
@@ -62,97 +99,134 @@
       </a>
     </div>
   </header>
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
 
 <!-- ===== HERO ===== -->
   <section id="inicio" class="hero">
+    <div class="hero-shell">
+      <div class="hero-main">
+        <div class="hero-left reveal">
+          <span class="hero-pretitle">ALS BOUTIQUE</span>
+          <p class="hero-eyebrow">Renta de vestidos en Reynosa</p>
 
-    <div class="hero-overlay"></div>
+          <h1 class="hero-title">
+            Brilla en tu<br>
+            proximo <em>evento</em>
+          </h1>
 
-    <div class="hero-container">
+          <div class="hero-deco" aria-hidden="true"></div>
 
-      <!-- TEXTO -->
-      <div class="hero-left">
+          <p class="hero-description">
+            Vestidos seleccionados para graduaciones, galas y eventos especiales.
+            Luce increible sin gastar una fortuna.
+          </p>
 
-        <span class="hero-pretitle reveal">Als Boutique</span>
+          <div class="hero-btns">
+            <a href="#catalogo" class="hero-btn hero-btn-primary">
+              <span class="hero-btn-label">Ver coleccion</span>
+              <span class="btn-arrow">→</span>
+            </a>
+            <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="hero-btn hero-btn-wa">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" class="hero-btn-wa-icon">
+              <span class="hero-btn-copy">
+                <strong>Pregunta disponibilidad</strong>
+                <small>Por WhatsApp</small>
+              </span>
+            </a>
+          </div>
 
-        <p class="hero-eyebrow reveal">Renta de Vestidos en Reynosa</p>
-
-        <h1 class="hero-title reveal">
-          Brilla en tu<br>
-          próximo <em>evento</em>
-        </h1>
-
-        <div class="hero-deco" aria-hidden="true"></div>
-
-        <p class="hero-description reveal">
-          Vestidos seleccionados para graduaciones, galas y eventos especiales.
-          Luce increíble sin gastar una fortuna.
-        </p>
-
-        <div class="hero-btns reveal">
-          <a href="#catalogo" class="hero-btn hero-btn-primary">
-            Ver colección <span class="btn-arrow">→</span>
-          </a>
-          <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="hero-btn hero-btn-wa">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" class="hero-btn-wa-icon">
-            Escríbenos por WhatsApp
-          </a>
+          <p class="hero-note">
+            <span aria-hidden="true">⚡</span>
+            Respuesta rapida • Tallas y precios al instante
+          </p>
         </div>
 
-        <div class="hero-trust reveal">
-          <div class="trust-item">
-            <div class="trust-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 16l2 2 4-4"/></svg>
-            </div>
-            <div class="trust-text">
-              <strong>Renta Fácil</strong>
-              <span>Aparta tu vestido de forma rápida y segura.</span>
-            </div>
-          </div>
-          <div class="trust-item">
-            <div class="trust-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div class="trust-text">
-              <strong>Calidad Garantizada</strong>
-              <span>Prendas en excelente estado y limpieza.</span>
-            </div>
-          </div>
-          <div class="trust-item">
-            <div class="trust-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </div>
-            <div class="trust-text">
-              <strong>Luces Increíble</strong>
-              <span>Vestidos que te harán sentir única.</span>
-            </div>
-          </div>
-          <div class="trust-item">
-            <div class="trust-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div class="trust-text">
-              <strong>Reynosa, Tamaulipas</strong>
-              <span>Visítanos en nuestro showroom.</span>
-            </div>
+        <div class="hero-right reveal">
+          <div class="hero-image-wrapper">
+            <img src="./hero2.jpeg" alt="Modelos usando vestidos de Als Dress">
           </div>
         </div>
-
       </div>
 
-      <!-- IMAGEN -->
-      <div class="hero-right reveal">
-
-        <div class="hero-image-wrapper">
-          <img src="./hero2.jpeg" alt="Als Dress Hero">
+      <div class="hero-feature-panel reveal">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3c-2 3-4.5 4-6.5 4l1.8 13h9.4L18.5 7c-2 0-4.5-1-6.5-4z"></path>
+            </svg>
+          </div>
+          <div class="feature-copy">
+            <strong>Renta facil</strong>
+            <span>Proceso sencillo y seguro</span>
+          </div>
         </div>
-
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s7-3.8 7-9.5V6l-7-3-7 3v5.5C5 17.2 12 21 12 21z"></path>
+              <path d="M9.5 12.5l1.7 1.7 3.3-3.5"></path>
+            </svg>
+          </div>
+          <div class="feature-copy">
+            <strong>Calidad garantizada</strong>
+            <span>Prendas en perfecto estado</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.7A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path>
+            </svg>
+          </div>
+          <div class="feature-copy">
+            <strong>Luces increibles</strong>
+            <span>Disenos que te haran destacar</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s-6-4.35-6-10a6 6 0 1 1 12 0c0 5.65-6 10-6 10z"></path>
+              <circle cx="12" cy="11" r="2.2"></circle>
+            </svg>
+          </div>
+          <div class="feature-copy">
+            <strong>Reynosa, Tamaulipas</strong>
+            <span>Atencion local y personalizada</span>
+          </div>
+        </div>
       </div>
 
+      <div class="hero-proof-bar reveal">
+        <div class="proof-item">
+          <strong>+100</strong>
+          <span>Clientas satisfechas</span>
+        </div>
+        <div class="proof-item">
+          <strong>4.9/5</strong>
+          <span>Calificacion en Facebook</span>
+        </div>
+        <div class="proof-item">
+          <strong>Atencion rapida</strong>
+          <span>Por WhatsApp</span>
+        </div>
+        <div class="proof-social">
+          <span>Siguenos en redes</span>
+          <div class="proof-social-icons">
+            <a href="https://web.facebook.com/alsdress?locale=es_LA" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.6 1.7-1.6h1.3V4.8c-.2 0-1-.1-2-.1-2 0-3.4 1.2-3.4 3.5V11H9v3h2.3v7h2.2z"></path></svg>
+            </a>
+            <a href="https://www.instagram.com/als_dress" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.4" cy="6.6" r="1"></circle></svg>
+            </a>
+            <a href="https://wa.me/528991947566" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-
   </section>
-
   <!-- ===== CATEGORÍAS VISUALES ===== -->
   <section class="cat-visual-section">
     <div class="cat-visual-inner">
@@ -170,7 +244,7 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2C10 5 7 6 5 6l2 14h10L19 6c-2 0-5-1-7-4z"/></svg>
             </div>
             <h3 class="cat-card-name">Vestidos</h3>
-            <span class="cat-card-link">Ver colección →</span>
+            <span class="cat-card-link">Ver coleccion</span>
           </div>
         </a>
 
@@ -182,7 +256,7 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 18h20M2 18l3-8h5l2 4 4-4h4l2 8"/></svg>
             </div>
             <h3 class="cat-card-name">Zapatos</h3>
-            <span class="cat-card-link">Ver colección →</span>
+            <span class="cat-card-link">Ver coleccion</span>
           </div>
         </a>
 
@@ -194,7 +268,7 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg>
             </div>
             <h3 class="cat-card-name">Bolsas</h3>
-            <span class="cat-card-link">Ver colección →</span>
+            <span class="cat-card-link">Ver coleccion</span>
           </div>
         </a>
 
@@ -206,7 +280,7 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M2 9h20"/></svg>
             </div>
             <h3 class="cat-card-name">Accesorios</h3>
-            <span class="cat-card-link">Ver colección →</span>
+            <span class="cat-card-link">Ver coleccion</span>
           </div>
         </a>
 
@@ -232,7 +306,7 @@
     <!-- Filtros -->
     <div class="filtros reveal" id="filtros">
       <button class="filtro-btn active" data-filter="todos">Todos</button>
-      <button class="filtro-btn" data-filter="disponible">✓ Disponibles</button>
+      <button class="filtro-btn" data-filter="disponible">&#10003; Disponibles</button>
       <div class="filtro-separador"></div>
       <div class="tallas-filtro" id="tallasFiltro"></div>
     </div>
@@ -304,7 +378,7 @@
       <div class="proceso-cta reveal">
         <p>¿Lista para encontrar tu vestido ideal?</p>
         <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="proceso-btn-wa">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.986-1.418A9.935 9.935 0 0 0 12 22c5.523 0 10-4.477 10-10S17.522 2 12 2z"/></svg>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" class="proceso-btn-wa-icon">
           Agendar mi cita
         </a>
       </div>
@@ -334,7 +408,7 @@
     <div class="testimonios-rating reveal">
       <div class="rating-score">4.9</div>
       <div class="rating-mid">
-        <div class="rating-stars">★★★★★</div>
+        <div class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <span class="rating-label">Basado en reseñas reales</span>
       </div>
       <div class="rating-divider"></div>
@@ -348,7 +422,7 @@
 
       <div class="testimonio-card reveal">
         <span class="testimonio-quote-deco">"</span>
-        <div class="estrellas">★★★★★</div>
+        <div class="estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p>Excelente atención y servicio, 100% recomendado, tienen mucha variedad de vestidos.</p>
         <div class="testimonio-author">
           <div class="testimonio-avatar">HC</div>
@@ -364,7 +438,7 @@
 
       <div class="testimonio-card reveal">
         <span class="testimonio-quote-deco">"</span>
-        <div class="estrellas">★★★★★</div>
+        <div class="estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p>El mejor lugar sin duda en atención y servicio. Muy lindos sus vestidos y con mucha accesibilidad y accesorios muy bellos.</p>
         <div class="testimonio-author">
           <div class="testimonio-avatar">ML</div>
@@ -380,7 +454,7 @@
 
       <div class="testimonio-card reveal">
         <span class="testimonio-quote-deco">"</span>
-        <div class="estrellas">★★★★★</div>
+        <div class="estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p>Muchísima variedad de vestidos en diferentes estilos, y la calidad es buenísima. ¡Les recomiendo este lugar!</p>
         <div class="testimonio-author">
           <div class="testimonio-avatar">CM</div>
@@ -397,7 +471,7 @@
     </div>
   </section>
 
-  <!-- ===== UBICACIÓN ===== -->
+  <!-- ===== UBICACIÃ“N ===== -->
   <section id="ubicacion" class="ubicacion-section">
     <div class="section-header reveal">
       <p class="section-eyebrow">Estamos esperándote</p>
@@ -446,10 +520,7 @@
   <!-- ===== BOTONES FLOTANTES ===== -->
   <div class="botones-flotantes">
     <a href="https://wa.me/528991947566" class="btn-flotante whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-        <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.986-1.418A9.935 9.935 0 0 0 12 22c5.523 0 10-4.477 10-10S17.522 2 12 2z"/>
-      </svg>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" class="btn-flotante-wa-icon">
     </a>
     <a href="https://web.facebook.com/alsdress?locale=es_LA" class="btn-flotante facebook" target="_blank" rel="noopener" aria-label="Facebook">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
