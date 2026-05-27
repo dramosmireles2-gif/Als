@@ -1143,7 +1143,7 @@ nav a.active::after {
    CATÃLOGO
    ============================================ */
 .catalogo-section {
-  padding: 100px 24px 80px;
+  padding: 64px 24px 80px;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -1161,9 +1161,9 @@ nav a.active::after {
 
   gap: 12px;
 
-  margin-bottom: 56px;
+  margin-bottom: 32px;
 
-  padding: 22px 24px;
+  padding: 16px 20px;
 
   background:
     rgba(255,255,255,0.72);
