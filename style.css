@@ -851,33 +851,32 @@ nav a.active::after {
   }
 
   section[id] {
-    scroll-margin-top: 88px;
+    scroll-margin-top: 68px;
   }
 
+  /* ── Header compacto ── */
   .header-inner {
-    height: 82px;
+    height: 64px;
     padding-inline: 16px;
     gap: 12px;
   }
 
   .logo {
     min-width: 0;
-    gap: 12px;
+    gap: 10px;
   }
 
   .logo-img {
-    width: 46px;
-    height: 46px;
+    width: 38px;
+    height: 38px;
   }
 
   .logo-name {
-    font-size: 1.45rem;
+    font-size: 1.2rem;
   }
 
   .logo-sub {
-    margin-top: 6px;
-    font-size: 0.58rem;
-    letter-spacing: 0.12em;
+    display: none;
   }
 
   .logo-text {
@@ -892,8 +891,9 @@ nav a.active::after {
     background: rgba(255,255,255,0.08);
   }
 
+  /* ── Hero imagen: ocupa ~44% del viewport, funde con el texto ── */
   .hero {
-    padding: 0 0 22px;
+    padding: 0;
   }
 
   .hero-shell {
@@ -904,8 +904,41 @@ nav a.active::after {
     border-radius: 0;
   }
 
+  .hero-right {
+    height: 44svh;
+    min-height: 200px;
+    max-height: 320px;
+    order: -1;
+  }
+
+  /* Gradiente inferior: funde la foto con el área de texto */
+  .hero-right::before {
+    background: linear-gradient(
+      180deg,
+      rgba(255,247,248,0.06) 0%,
+      transparent 22%,
+      rgba(255,248,245,0.78) 76%,
+      #fff8f5 100%
+    );
+  }
+
+  .hero-image-wrapper img {
+    object-position: center 8%;
+  }
+
+  /* ── Hero texto: conectado a la imagen sin padding superior ── */
   .hero-left {
-    padding: 34px 18px 28px;
+    padding: 0 20px 32px;
+  }
+
+  .hero-eyebrow {
+    display: none;
+  }
+
+  .hero-deco {
+    width: 52px;
+    height: 4px;
+    margin-bottom: 14px;
   }
 
   .hero-pretitle {
@@ -913,30 +946,28 @@ nav a.active::after {
     letter-spacing: 0.3em;
   }
 
-  .hero-eyebrow {
-    margin-bottom: 20px;
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
-  }
-
   .hero-title {
-    font-size: clamp(3.1rem, 15vw, 4.6rem);
+    font-size: clamp(2.6rem, 12vw, 3.6rem);
+    margin-bottom: 12px;
   }
 
   .hero-title em {
     display: block;
     margin-left: 0;
-    margin-top: 6px;
+    margin-top: 4px;
   }
 
   .hero-description {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
   }
 
+  /* ── CTAs: primario negro, WA ghost discreto ── */
   .hero-btns {
     flex-direction: column;
     align-items: stretch;
+    gap: 10px;
   }
 
   .hero-btn,
@@ -946,30 +977,46 @@ nav a.active::after {
     min-width: 0;
   }
 
+  .hero-btn:hover {
+    transform: none;
+  }
+
+  .hero-btn-primary {
+    min-height: 52px;
+  }
+
   .hero-btn-wa {
+    min-height: 46px;
+    background: transparent;
+    color: #090b10;
+    box-shadow: none;
+    border: 1.5px solid rgba(9,11,16,0.18);
     justify-content: center;
   }
 
-  .hero-btn-copy small {
-    letter-spacing: 0.1em;
+  .hero-btn-wa:hover {
+    background: rgba(9,11,16,0.04);
+    box-shadow: none;
+    transform: none;
+  }
+
+  .hero-btn-wa-icon {
+    width: 20px;
+    height: 20px;
+    filter: none;
   }
 
   .hero-btn-copy {
     align-items: center;
   }
 
+  .hero-btn-copy small {
+    display: none;
+  }
+
   .hero-note {
     font-size: 0.86rem;
     line-height: 1.45;
-  }
-
-  .hero-right {
-    min-height: 260px;
-    order: -1;
-  }
-
-  .hero-image-wrapper img {
-    object-position: center 10%;
   }
 
   .hero-feature-panel {
@@ -1836,7 +1883,7 @@ nav a.active::after {
    UBICACIÃ“N
    ============================================ */
 .ubicacion-section {
-  padding: 100px 24px;
+  padding: 80px 24px;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -2026,10 +2073,22 @@ footer {
   color: var(--rose);
 }
 
+.btn-flotante.whatsapp {
+  background: #25D366;
+  border-color: transparent;
+}
+
+.btn-flotante.whatsapp:hover {
+  background: #1da851;
+  border-color: transparent;
+  box-shadow: 0 14px 36px rgba(37,211,102,0.35), 0 0 0 5px rgba(37,211,102,0.15);
+}
+
 .btn-flotante-wa-icon {
   width: 26px;
   height: 26px;
   display: block;
+  filter: brightness(0) invert(1);
 }
 
 /* Mobile */
@@ -2544,7 +2603,7 @@ footer {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 92px 20px 28px;
+    padding: 72px 20px 28px;
     box-shadow: -18px 0 44px rgba(0,0,0,0.34);
     gap: 6px;
     z-index: 1002;
@@ -2643,64 +2702,56 @@ footer {
 
 @media (max-width: 480px) {
   .header-inner {
-    height: 76px;
+    height: 60px;
     padding-inline: 12px;
   }
 
   .logo {
-    gap: 10px;
+    gap: 9px;
   }
 
   .logo-img {
-    width: 42px;
-    height: 42px;
+    width: 34px;
+    height: 34px;
   }
 
   .logo-name {
-    font-size: 1.28rem;
-  }
-
-  .logo-sub {
-    display: none;
+    font-size: 1.1rem;
   }
 
   .menu-toggle {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     border-radius: 12px;
   }
 
   nav {
     width: min(320px, 88vw);
-    padding: 84px 16px 24px;
+    padding: 68px 16px 24px;
   }
 
-  .hero-title { font-size: 2.9rem; }
+  .hero-title { font-size: 2.5rem; }
 
   .hero-left {
-    padding: 30px 14px 24px;
+    padding: 0 14px 24px;
   }
 
   .hero-description {
-    font-size: 0.96rem;
+    font-size: 0.9rem;
   }
 
   .hero-btn {
-    min-height: 58px;
+    min-height: 50px;
     padding-inline: 20px;
     font-size: 0.8rem;
   }
 
   .hero-btn-copy strong {
-    font-size: 0.84rem;
-  }
-
-  .hero-btn-copy small {
-    font-size: 0.68rem;
+    font-size: 0.82rem;
   }
 
   .hero-right {
-    min-height: 300px;
+    min-height: 180px;
   }
 
   .hero-feature-panel,
@@ -2896,8 +2947,14 @@ footer {
 
 /* ≤ 390px: pantallas muy pequeñas */
 @media (max-width: 390px) {
-  .hero-title  { font-size: 2.6rem; }
-  .hero-btn    { min-height: 52px; font-size: 0.78rem; }
+  .header-inner { height: 58px; }
+  .hero-right  { min-height: 180px; }
+  .hero-left   { padding: 0 14px 18px; }
+  .hero-title  { font-size: 2.3rem; margin-bottom: 10px; }
+  .hero-deco   { display: none; }
+  .hero-description { font-size: 0.88rem; margin-bottom: 14px; }
+  .hero-btn    { min-height: 48px; font-size: 0.78rem; }
+  .hero-btn-wa { min-height: 42px; }
   .section-header h2 { font-size: 1.5rem; }
   .card-nombre { font-size: 1rem; }
   .cat-card-name { font-size: 1rem; }
