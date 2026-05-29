@@ -58,6 +58,9 @@ a  { text-decoration: none; color: inherit; }
   margin-bottom: 10px;
 }
 
+.section-eyebrow::before { content: '— '; }
+.section-eyebrow::after  { content: ' —'; }
+
 .section-header {
   text-align: center;
   margin-bottom: 50px;
@@ -966,25 +969,24 @@ nav a.active::after {
     letter-spacing: 0.3em;
   }
 
-  /* Headline ~12% más pequeño, line-height elegante */
+  /* Headline oversized — declaración de marca */
   .hero-title {
-    font-size: clamp(2.2rem, 10.5vw, 3.1rem);
-    line-height: 1.06;
-    margin-bottom: 10px;
+    font-size: clamp(2.9rem, 13vw, 3.8rem);
+    line-height: 0.93;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
   }
 
   .hero-title em {
-    display: block;
+    display: inline;
     margin-left: 0;
-    margin-top: 2px;
   }
 
-  .hero-description {
-    font-size: 0.9rem;
-    line-height: 1.55;
-    margin-bottom: 16px;
-    color: #6b6268;
-  }
+  /* Sin descripción — la imagen y el titular hablan solos */
+  .hero-description { display: none; }
+
+  /* Section headers left-aligned — más editorial */
+  .section-header { text-align: left; }
 
   /* ── CTAs: primario negro, WA ghost discreto ── */
   .hero-btns {
@@ -2758,7 +2760,7 @@ footer {
     padding: 68px 16px 24px;
   }
 
-  .hero-title { font-size: 2.25rem; }
+  .hero-title { font-size: 2.6rem; letter-spacing: -0.03em; }
 
   .hero-left {
     padding: 0 14px 20px;
@@ -2908,12 +2910,6 @@ footer {
 
 /* ≤ 768px: hero compacto, imagen primero, feature panel 2-col, tira negra horizontal */
 @media (max-width: 768px) {
-  /* imagen del héroe primero */
-  .hero-right { order: -1; min-height: 260px; }
-  .hero-right::before {
-    background: linear-gradient(180deg, rgba(255,247,248,0.18) 0%, transparent 30%);
-  }
-
   /* feature panel: 2 columnas compactas en vez de 4 filas */
   .hero-feature-panel {
     margin-inline: 10px;
@@ -2954,7 +2950,7 @@ footer {
   .galeria-cliente-item { height: 280px; }
 
   /* Sección headers */
-  .section-header h2 { font-size: clamp(1.75rem, 5.5vw, 2.6rem); }
+  .section-header h2 { font-size: clamp(1.9rem, 6.5vw, 2.8rem); }
 
   /* Catálogo */
   .cat-visual-section { padding: 56px 16px; }
@@ -2978,13 +2974,13 @@ footer {
   .header-inner { height: 58px; }
   .hero-right  { min-height: 180px; }
   .hero-left   { padding: 0 14px 16px; }
-  .hero-title  { font-size: 2.0rem; margin-bottom: 8px; }
+  .hero-title  { font-size: 2.3rem; letter-spacing: -0.03em; margin-bottom: 10px; }
   .hero-deco   { display: none; }
   .hero-description { font-size: 0.86rem; margin-bottom: 12px; }
   .hero-btn    { min-height: 44px; font-size: 0.76rem; }
   .hero-btn-wa { min-height: 40px; }
   .hero-btns   { gap: 7px; }
-  .section-header h2 { font-size: 1.5rem; }
+  .section-header h2 { font-size: 1.7rem; }
   .card-nombre { font-size: 1rem; }
   .cat-card-name { font-size: 1rem; }
 }
@@ -3042,11 +3038,11 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .trust-bar-inner { padding: 24px 12px; }
-  .trust-item { padding: 0 10px; }
-  .trust-num { font-size: 1.5rem; }
-  .trust-label { font-size: 0.73rem; }
-  .trust-sep { height: 36px; }
+  .trust-bar-inner { padding: 28px 12px; }
+  .trust-item { padding: 0 8px; }
+  .trust-num { font-size: 2.2rem; }
+  .trust-label { font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .trust-sep { height: 40px; }
 }
 
 /* ============================================
