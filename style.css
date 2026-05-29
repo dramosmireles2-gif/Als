@@ -142,7 +142,7 @@ section[id] {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 1002;
   background: #090b10;
   transition: box-shadow 0.3s ease, background 0.3s ease;
 }
@@ -2140,7 +2140,7 @@ footer {
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 1020;
   background: rgba(0,0,0,0.72);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
