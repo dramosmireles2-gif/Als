@@ -58,6 +58,9 @@ a  { text-decoration: none; color: inherit; }
   margin-bottom: 10px;
 }
 
+.section-eyebrow::before { content: '— '; }
+.section-eyebrow::after  { content: ' —'; }
+
 .section-header {
   text-align: center;
   margin-bottom: 50px;
@@ -896,12 +899,24 @@ nav a.active::after {
     padding: 0;
   }
 
+  /* Limpia el blob rosa difuso — ruido visual innecesario en móvil */
+  .hero::before {
+    display: none;
+  }
+
   .hero-shell {
     padding-top: 0;
   }
 
   .hero-main {
     border-radius: 0;
+    /* Fondo sólido limpio — el horizontal no tiene sentido en layout vertical */
+    background: #fff8f5;
+  }
+
+  /* Quita las líneas verticales del fondo — solo son ruido en móvil */
+  .hero-main::after {
+    display: none;
   }
 
   .hero-right {
@@ -911,24 +926,31 @@ nav a.active::after {
     order: -1;
   }
 
-  /* Gradiente inferior: funde la foto con el área de texto */
+  /* Gradiente más editorial: modelos visibles hasta el 60%, fade suave al final */
   .hero-right::before {
     background: linear-gradient(
       180deg,
-      rgba(255,247,248,0.06) 0%,
-      transparent 22%,
-      rgba(255,248,245,0.78) 76%,
+      transparent 0%,
+      transparent 56%,
+      rgba(255,248,245,0.52) 78%,
       #fff8f5 100%
     );
   }
 
+  /* Elimina el overlay secundario que aplana la foto */
+  .hero-image-wrapper::after {
+    background: none;
+  }
+
+  /* Zoom leve + crop más alto para que las modelos llenen el frame */
   .hero-image-wrapper img {
-    object-position: center 8%;
+    object-position: center 5%;
+    transform: scale(1.07);
   }
 
   /* ── Hero texto: conectado a la imagen sin padding superior ── */
   .hero-left {
-    padding: 0 20px 32px;
+    padding: 0 20px 24px;
   }
 
   .hero-eyebrow {
@@ -936,9 +958,10 @@ nav a.active::after {
   }
 
   .hero-deco {
-    width: 52px;
-    height: 4px;
-    margin-bottom: 14px;
+    width: 48px;
+    height: 3px;
+    margin-top: 4px;
+    margin-bottom: 12px;
   }
 
   .hero-pretitle {
@@ -946,28 +969,30 @@ nav a.active::after {
     letter-spacing: 0.3em;
   }
 
+  /* Headline oversized — declaración de marca */
   .hero-title {
-    font-size: clamp(2.6rem, 12vw, 3.6rem);
-    margin-bottom: 12px;
+    font-size: clamp(2.9rem, 13vw, 3.8rem);
+    line-height: 0.93;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
   }
 
   .hero-title em {
-    display: block;
+    display: inline;
     margin-left: 0;
-    margin-top: 4px;
   }
 
-  .hero-description {
-    font-size: 0.92rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
-  }
+  /* Sin descripción — la imagen y el titular hablan solos */
+  .hero-description { display: none; }
+
+  /* Section headers left-aligned — más editorial */
+  .section-header { text-align: left; }
 
   /* ── CTAs: primario negro, WA ghost discreto ── */
   .hero-btns {
     flex-direction: column;
     align-items: stretch;
-    gap: 10px;
+    gap: 8px;
   }
 
   .hero-btn,
@@ -981,15 +1006,20 @@ nav a.active::after {
     transform: none;
   }
 
+  /* Botón primario: menos alto, más liviano */
   .hero-btn-primary {
-    min-height: 52px;
+    min-height: 48px;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
   }
 
   .hero-btn-wa {
-    min-height: 46px;
+    min-height: 42px;
     background: transparent;
     color: #090b10;
     box-shadow: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
     border: 1.5px solid rgba(9,11,16,0.18);
     justify-content: center;
   }
@@ -2730,14 +2760,14 @@ footer {
     padding: 68px 16px 24px;
   }
 
-  .hero-title { font-size: 2.5rem; }
+  .hero-title { font-size: 2.6rem; letter-spacing: -0.03em; }
 
   .hero-left {
-    padding: 0 14px 24px;
+    padding: 0 14px 20px;
   }
 
   .hero-description {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
   }
 
   .hero-btn {
@@ -2880,12 +2910,6 @@ footer {
 
 /* ≤ 768px: hero compacto, imagen primero, feature panel 2-col, tira negra horizontal */
 @media (max-width: 768px) {
-  /* imagen del héroe primero */
-  .hero-right { order: -1; min-height: 260px; }
-  .hero-right::before {
-    background: linear-gradient(180deg, rgba(255,247,248,0.18) 0%, transparent 30%);
-  }
-
   /* feature panel: 2 columnas compactas en vez de 4 filas */
   .hero-feature-panel {
     margin-inline: 10px;
@@ -2926,7 +2950,7 @@ footer {
   .galeria-cliente-item { height: 280px; }
 
   /* Sección headers */
-  .section-header h2 { font-size: clamp(1.75rem, 5.5vw, 2.6rem); }
+  .section-header h2 { font-size: clamp(1.9rem, 6.5vw, 2.8rem); }
 
   /* Catálogo */
   .cat-visual-section { padding: 56px 16px; }
@@ -2949,13 +2973,14 @@ footer {
 @media (max-width: 390px) {
   .header-inner { height: 58px; }
   .hero-right  { min-height: 180px; }
-  .hero-left   { padding: 0 14px 18px; }
-  .hero-title  { font-size: 2.3rem; margin-bottom: 10px; }
+  .hero-left   { padding: 0 14px 16px; }
+  .hero-title  { font-size: 2.3rem; letter-spacing: -0.03em; margin-bottom: 10px; }
   .hero-deco   { display: none; }
-  .hero-description { font-size: 0.88rem; margin-bottom: 14px; }
-  .hero-btn    { min-height: 48px; font-size: 0.78rem; }
-  .hero-btn-wa { min-height: 42px; }
-  .section-header h2 { font-size: 1.5rem; }
+  .hero-description { font-size: 0.86rem; margin-bottom: 12px; }
+  .hero-btn    { min-height: 44px; font-size: 0.76rem; }
+  .hero-btn-wa { min-height: 40px; }
+  .hero-btns   { gap: 7px; }
+  .section-header h2 { font-size: 1.7rem; }
   .card-nombre { font-size: 1rem; }
   .cat-card-name { font-size: 1rem; }
 }
@@ -3013,11 +3038,11 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .trust-bar-inner { padding: 20px 8px; }
+  .trust-bar-inner { padding: 28px 12px; }
   .trust-item { padding: 0 8px; }
-  .trust-num { font-size: 1.45rem; }
-  .trust-label { font-size: 0.72rem; }
-  .trust-sep { height: 34px; }
+  .trust-num { font-size: 2.2rem; }
+  .trust-label { font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .trust-sep { height: 40px; }
 }
 
 /* ============================================
