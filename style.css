@@ -93,12 +93,7 @@ section[id] {
 }
 
 .topbar {
-  position: relative;
-  z-index: 1001;
-  background:
-    radial-gradient(circle at left center, rgba(255,255,255,0.9), transparent 28%),
-    linear-gradient(90deg, #fff4f6 0%, #fff7f8 48%, #fff1f3 100%);
-  border-bottom: 1px solid rgba(192,39,90,0.1);
+  display: none;
 }
 
 .topbar-inner {
@@ -332,7 +327,7 @@ nav a.active::after {
   position: relative;
   max-width: none;
   margin: 0 auto;
-  padding-top: 34px;
+  padding-top: 0;
 }
 
 .hero-main {
@@ -362,10 +357,10 @@ nav a.active::after {
 .hero-left {
   position: relative;
   z-index: 2;
-  padding: 72px 44px 72px 52px;
+  padding: 52px 44px 60px 52px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .hero-pretitle {
@@ -732,7 +727,7 @@ nav a.active::after {
   }
 
   .hero-left {
-    padding: 64px 34px 64px 38px;
+    padding: 44px 34px 52px 38px;
   }
 
   .hero-title {
@@ -820,7 +815,7 @@ nav a.active::after {
   }
 
   .hero-left {
-    padding: 56px 28px 40px;
+    padding: 40px 28px 40px;
   }
 
   .hero-right {
