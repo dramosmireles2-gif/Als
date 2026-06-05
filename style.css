@@ -1907,12 +1907,12 @@ nav a.active::after {
 .footer-dev-link:hover { color: rgba(255,255,255,0.75); }
 
 @media (max-width: 768px) {
-  .faq-section { padding: 68px 20px; }
+  .faq-section { padding: 56px 20px 36px; }
   .faq-question { font-size: 0.95rem; padding: 18px 0; }
 }
 
 @media (max-width: 480px) {
-  .faq-section { padding: 56px 16px; }
+  .faq-section { padding: 48px 16px 28px; }
   .faq-question { font-size: 0.9rem; }
 }
 
@@ -3119,7 +3119,7 @@ footer {
 
   /* Proceso y otras secciones */
   .proceso-section    { padding: 68px 16px 56px; }
-  .testimonios-section { padding: 68px 16px; }
+  .testimonios-section { padding: 48px 16px 68px; }
   .ubicacion-section  { padding: 68px 16px; }
   .section-header     { margin-bottom: 36px; }
 
