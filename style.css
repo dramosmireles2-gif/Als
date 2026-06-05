@@ -1794,6 +1794,129 @@ nav a.active::after {
 }
 
 /* ============================================
+   FAQ
+   ============================================ */
+.faq-section {
+  padding: 90px 24px;
+  background: var(--cream);
+}
+
+.faq-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.faq-list {
+  border-top: 1px solid rgba(28,28,30,0.08);
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(28,28,30,0.08);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 0;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--dark);
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.faq-question:hover { color: var(--rose); }
+
+.faq-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(28,28,30,0.2);
+  flex-shrink: 0;
+  position: relative;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.3s ease;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--dark);
+  border-radius: 2px;
+  top: 50%;
+  left: 50%;
+  transition: background 0.25s ease;
+}
+
+.faq-icon::before {
+  width: 10px;
+  height: 1.5px;
+  transform: translate(-50%, -50%);
+}
+
+.faq-icon::after {
+  width: 1.5px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+}
+
+.faq-item.open .faq-icon {
+  background: var(--rose);
+  border-color: var(--rose);
+  transform: rotate(45deg);
+}
+
+.faq-item.open .faq-icon::before,
+.faq-item.open .faq-icon::after { background: white; }
+
+.faq-item.open .faq-question { color: var(--rose); }
+
+.faq-answer {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease;
+}
+
+.faq-answer p {
+  padding-bottom: 22px;
+  font-size: 0.95rem;
+  color: #5d5658;
+  line-height: 1.75;
+}
+
+.faq-item.open .faq-answer { max-height: 300px; }
+
+.footer-dev {
+  margin-top: 8px;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.2);
+}
+
+.footer-dev-link {
+  color: rgba(255,255,255,0.4);
+  transition: color 0.2s ease;
+}
+
+.footer-dev-link:hover { color: rgba(255,255,255,0.75); }
+
+@media (max-width: 768px) {
+  .faq-section { padding: 68px 20px; }
+  .faq-question { font-size: 0.95rem; padding: 18px 0; }
+}
+
+@media (max-width: 480px) {
+  .faq-section { padding: 56px 16px; }
+  .faq-question { font-size: 0.9rem; }
+}
+
+/* ============================================
    TESTIMONIOS
    ============================================ */
 .testimonios-section {
