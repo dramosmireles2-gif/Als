@@ -1098,7 +1098,7 @@ nav a.active::after {
    CATEGORÃAS VISUALES
    ============================================ */
 .cat-visual-section {
-  padding: 80px 24px;
+  padding: 48px 24px 80px;
   background: var(--cream);
 }
 
@@ -2836,7 +2836,7 @@ footer {
   .trust-item { flex-direction: column; text-align: center; gap: 8px; }
 
   /* Cat cards: mantiene 2 cols pero reduce padding */
-  .cat-visual-section { padding: 60px 12px; }
+  .cat-visual-section { padding: 32px 12px 52px; }
 
   .cat-cards-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2948,7 +2948,7 @@ footer {
   .section-header h2 { font-size: clamp(1.9rem, 6.5vw, 2.8rem); }
 
   /* Catálogo */
-  .cat-visual-section { padding: 56px 16px; }
+  .cat-visual-section { padding: 36px 16px 56px; }
   .cat-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .cat-card-name  { font-size: 1.1rem; }
   .catalogo-section { padding: 72px 16px 56px; }
