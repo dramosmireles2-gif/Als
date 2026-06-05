@@ -2049,6 +2049,24 @@ footer {
   font-size: 0.75rem;
   color: rgba(255,255,255,0.3);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-dev {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.18);
+}
+
+.footer-dev-link {
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-dev-link:hover {
+  color: rgba(255,255,255,0.65);
 }
 
 /* ============================================
