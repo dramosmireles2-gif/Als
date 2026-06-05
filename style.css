@@ -1003,8 +1003,6 @@ nav a.active::after {
   /* Sin descripción — la imagen y el titular hablan solos */
   .hero-description { display: none; }
 
-  /* Section headers left-aligned — más editorial */
-  .section-header { text-align: left; }
 
   /* ── CTAs: primario negro, WA ghost discreto ── */
   .hero-btns {
