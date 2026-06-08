@@ -95,14 +95,8 @@ const slides        = document.querySelectorAll('.foto-slide');
 const dotsContainer = document.getElementById('galeriaDots');
 let slideActual     = 0;
 
-slides.forEach((_, i) => {
-    const dot = document.createElement('div');
-    dot.className = `galeria-dot${i === 0 ? ' active' : ''}`;
-    dot.addEventListener('click', () => irASlide(i));
-    dotsContainer.appendChild(dot);
-});
-
 function irASlide(n) {
+    if (!slides.length) return;
     slides[slideActual].classList.remove('active');
     dotsContainer.children[slideActual].classList.remove('active');
     slideActual = (n + slides.length) % slides.length;
@@ -110,9 +104,17 @@ function irASlide(n) {
     dotsContainer.children[slideActual].classList.add('active');
 }
 
-document.getElementById('btn-prev').addEventListener('click', () => irASlide(slideActual - 1));
-document.getElementById('btn-next').addEventListener('click', () => irASlide(slideActual + 1));
-setInterval(() => irASlide(slideActual + 1), 6500);
+if (slides.length && dotsContainer) {
+    slides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = `galeria-dot${i === 0 ? ' active' : ''}`;
+        dot.addEventListener('click', () => irASlide(i));
+        dotsContainer.appendChild(dot);
+    });
+    document.getElementById('btn-prev')?.addEventListener('click', () => irASlide(slideActual - 1));
+    document.getElementById('btn-next')?.addEventListener('click', () => irASlide(slideActual + 1));
+    setInterval(() => irASlide(slideActual + 1), 6500);
+}
 
 // ============================================
 // 4. CARGA DESDE SUPABASE
@@ -515,13 +517,12 @@ function abrirLightboxClientas(url, nombre) {
 // 9. URL MANAGEMENT — clean paths, no hashes
 // ============================================
 const RUTAS = {
-    'inicio':     '/',
-    'categorias': '/coleccion',
-    'catalogo':   '/catalogo',
-    'beneficios': '/beneficios',
-    'faq':        '/preguntas',
-    'testimonios':'/contacto',
-    'ubicacion':  '/visita',
+    'inicio':      '/',
+    'categorias':  '/coleccion',
+    'beneficios':  '/beneficios',
+    'faq':         '/preguntas',
+    'testimonios': '/contacto',
+    'ubicacion':   '/visita',
 };
 const RUTAS_INVERSO = Object.fromEntries(Object.entries(RUTAS).map(([k,v]) => [v, k]));
 
@@ -574,39 +575,52 @@ function restaurarRuta() {
 // 10. INIT
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-    restaurarRuta();
-    initNavLinks();
-    document.querySelectorAll('section[id]').forEach(s => urlObserver.observe(s));
+    const esCatalogo = document.body.dataset.pagina === 'catalogo';
+
+    // Página de catálogo: mostrar todo, sin filtro de destacados
+    if (esCatalogo) {
+        mostrandoDestacados = false;
+        // Marcar nav link activo
+        document.querySelectorAll('#mainNav a').forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '/catalogo');
+        });
+        // Aplicar filtro de categoría desde URL (?cat=X)
+        const catParam = new URLSearchParams(location.search).get('cat');
+        if (catParam) {
+            categoriaActiva = catParam;
+            history.replaceState(null, '', '/catalogo');
+        }
+    } else {
+        restaurarRuta();
+        initNavLinks();
+        document.querySelectorAll('section[id]').forEach(s => urlObserver.observe(s));
+
+        // Ocultar botones flotantes mientras el hero es visible
+        const botonesFlotantes = document.querySelector('.botones-flotantes');
+        const heroEl = document.getElementById('inicio');
+        if (botonesFlotantes && heroEl) {
+            botonesFlotantes.classList.add('oculto');
+            new IntersectionObserver(([entry]) => {
+                botonesFlotantes.classList.toggle('oculto', entry.isIntersecting);
+            }, { threshold: 0.2 }).observe(heroEl);
+        }
+    }
 
     // Centralizar links de WhatsApp definidos en el HTML
     const waUrl = `https://wa.me/${WA_NUMBER}`;
     document.querySelectorAll(`a[href*="wa.me"]`).forEach(a => a.href = waUrl);
 
-    // Ocultar botones flotantes mientras el hero es visible
-    const botonesFlotantes = document.querySelector('.botones-flotantes');
-    const heroEl = document.getElementById('inicio');
-    if (botonesFlotantes && heroEl) {
-        botonesFlotantes.classList.add('oculto');
-        new IntersectionObserver(([entry]) => {
-            botonesFlotantes.classList.toggle('oculto', entry.isIntersecting);
-        }, { threshold: 0.2 }).observe(heroEl);
-    }
-
-    // Tarjetas de categorías → scroll a catálogo + activar filtro
+    // Tarjetas de categorías → navegar a página de catálogo con filtro
     document.querySelectorAll('[data-goto-categoria]').forEach(card => {
         card.addEventListener('click', (e) => {
             e.preventDefault();
             const cat = card.dataset.gotoCategoria;
-            document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
-            setTimeout(() => {
-                const btn = document.querySelector(`[data-categoria="${cat}"]`);
-                if (btn) btn.click();
-            }, 600);
+            window.location.href = `/catalogo?cat=${encodeURIComponent(cat)}`;
         });
     });
 
     crearLightbox();
-    cargarInventario();
+    if (document.getElementById('productos-container')) cargarInventario();
     cargarGaleriaClientas();
 
     // FAQ accordion

@@ -1279,6 +1279,46 @@ nav a.active::after {
   margin: 0 auto;
 }
 
+/* ---- Página dedicada: /catalogo ---- */
+.catalogo-page-header {
+  padding: 120px 24px 32px;
+  background: var(--cream);
+  text-align: center;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.catalogo-page-header .section-eyebrow {
+  margin-bottom: 12px;
+}
+
+.catalogo-page-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 14px;
+}
+
+.catalogo-page-desc {
+  font-size: 1rem;
+  color: var(--gray);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.catalogo-page-section {
+  padding-top: 48px;
+}
+
+@media (max-width: 768px) {
+  .catalogo-page-header { padding: 96px 20px 24px; }
+  .catalogo-page-header h1 { font-size: clamp(2rem, 8vw, 2.6rem); }
+  .catalogo-page-section { padding-top: 32px; }
+}
+
 /* ============================================
    FILTROS NUEVOS
 ============================================ */
