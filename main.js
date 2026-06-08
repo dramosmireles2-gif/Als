@@ -170,8 +170,8 @@ function iniciarCarruselDestacados(total) {
     const dotsEl   = document.getElementById('destDots');
     if (!carousel || !track || total === 0) return;
 
-    const GAP = 24;
     let idx = 0;
+    let gap = parseFloat(getComputedStyle(track).columnGap) || 24;
 
     function getVisible() {
         return window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
@@ -206,7 +206,7 @@ function iniciarCarruselDestacados(total) {
         idx = Math.max(0, Math.min(i, maxIdx));
         const firstCard = track.firstElementChild;
         if (!firstCard) return;
-        const cardW = firstCard.getBoundingClientRect().width + GAP;
+        const cardW = firstCard.getBoundingClientRect().width + gap;
         track.style.transform = `translateX(-${idx * cardW}px)`;
         dotsEl?.querySelectorAll('.dest-dot').forEach((d, j) => d.classList.toggle('active', j === idx));
         if (prevBtn) prevBtn.disabled = idx === 0;
@@ -226,8 +226,9 @@ function iniciarCarruselDestacados(total) {
         timer = setInterval(() => goTo(idx >= getMaxIdx() ? 0 : idx + 1), 5500);
     });
 
-    // Recalculate on resize
+    // Recalculate on resize — update gap since CSS changes it at breakpoints
     window.addEventListener('resize', () => {
+        gap = parseFloat(getComputedStyle(track).columnGap) || 24;
         buildDots();
         goTo(Math.min(idx, getMaxIdx()));
     }, { passive: true });

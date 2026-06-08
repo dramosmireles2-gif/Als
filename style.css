@@ -1146,8 +1146,9 @@ nav a.active::after {
   content: '';
   position: absolute;
   top: -52px;
-  left: -4%;
-  width: 108%;
+  left: 0;
+  right: 0;
+  width: auto;
   height: 56px;
   background: #faf6f3;
   border-radius: 50% 50% 0 0 / 100% 100% 0 0;
@@ -1449,6 +1450,9 @@ nav a.active::after {
   font-size: 0.875rem;
   text-align: left;
 }
+
+/* Always wrap size chips inside sidebar — overrides the mobile nowrap rule */
+.catalogo-sidebar .tallas-filtro { flex-wrap: wrap; }
 
 /* ---- Main content ---- */
 .catalogo-main { flex: 1; min-width: 0; }
