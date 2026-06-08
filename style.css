@@ -1588,7 +1588,7 @@ nav a.active::after {
     top: 0;
     left: 0;
     bottom: 0;
-    width: 290px;
+    width: min(290px, 85vw);
     z-index: 1000;
     overflow-y: auto;
     border-radius: 0 18px 18px 0;

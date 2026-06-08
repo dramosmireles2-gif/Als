@@ -165,6 +165,7 @@ async function cargarInventario() {
 function iniciarCarruselDestacados(total) {
     const carousel = document.getElementById('destCarousel');
     const track    = document.getElementById('productos-container');
+    const wrapper  = document.getElementById('destWrapper');
     const prevBtn  = document.getElementById('destPrev');
     const nextBtn  = document.getElementById('destNext');
     const dotsEl   = document.getElementById('destDots');
@@ -225,6 +226,21 @@ function iniciarCarruselDestacados(total) {
     carousel.addEventListener('mouseleave', () => {
         timer = setInterval(() => goTo(idx >= getMaxIdx() ? 0 : idx + 1), 5500);
     });
+
+    // Touch/swipe — primary navigation method on mobile
+    if (wrapper) {
+        let swipeX = 0;
+        wrapper.addEventListener('touchstart', (e) => {
+            swipeX = e.touches[0].clientX;
+            clearInterval(timer);
+        }, { passive: true });
+        wrapper.addEventListener('touchend', (e) => {
+            const diff = swipeX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 40) goTo(diff > 0 ? idx + 1 : idx - 1);
+            clearInterval(timer);
+            timer = setInterval(() => goTo(idx >= getMaxIdx() ? 0 : idx + 1), 5500);
+        }, { passive: true });
+    }
 
     // Recalculate on resize — update gap since CSS changes it at breakpoints
     window.addEventListener('resize', () => {
