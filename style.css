@@ -327,7 +327,7 @@ nav a.active::after {
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 0;
+  padding: 0 0 60px;
   background:
     radial-gradient(circle at 15% 8%, rgba(192,39,90,0.12), transparent 30%),
     radial-gradient(circle at 88% 0%, rgba(255,194,204,0.4), transparent 24%),
@@ -344,6 +344,23 @@ nav a.active::after {
   background: rgba(255,235,240,0.75);
   filter: blur(10px);
   pointer-events: none;
+}
+
+/* Soft cream fade at the very bottom — blends into cat section */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 82px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(250,246,243,0.5) 55%,
+    rgba(250,246,243,0.92) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
 }
 
 .hero-shell {
@@ -1119,8 +1136,29 @@ nav a.active::after {
    CATEGORÃAS VISUALES
    ============================================ */
 .cat-visual-section {
-  padding: 48px 24px 80px;
-  background: var(--cream);
+  position: relative;
+  padding: 0 24px 80px;
+  background: #faf6f3;
+}
+
+/* Organic curved arc — paints over hero bottom, creates seamless curve */
+.cat-visual-section::before {
+  content: '';
+  position: absolute;
+  top: -52px;
+  left: -4%;
+  width: 108%;
+  height: 56px;
+  background: #faf6f3;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Eyebrow floats centered in ~70px franja between hero and h2 */
+.cat-visual-section .section-header {
+  padding-top: 52px;
+  margin-bottom: 40px;
 }
 
 .cat-visual-inner {
@@ -2998,7 +3036,9 @@ footer {
   .trust-item { flex-direction: column; text-align: center; gap: 8px; }
 
   /* Cat cards: mantiene 2 cols pero reduce padding */
-  .cat-visual-section { padding: 32px 12px 52px; }
+  .cat-visual-section { padding: 0 12px 52px; }
+  .cat-visual-section::before { top: -36px; height: 38px; }
+  .cat-visual-section .section-header { padding-top: 38px; }
 
   .cat-cards-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -3110,7 +3150,9 @@ footer {
   .section-header h2 { font-size: clamp(1.9rem, 6.5vw, 2.8rem); }
 
   /* Catálogo */
-  .cat-visual-section { padding: 36px 16px 56px; }
+  .cat-visual-section { padding: 0 16px 56px; }
+  .cat-visual-section::before { top: -34px; height: 36px; }
+  .cat-visual-section .section-header { padding-top: 36px; }
   .cat-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .cat-card-name  { font-size: 1.1rem; }
   .catalogo-section { padding: 72px 16px 56px; }
@@ -3128,6 +3170,8 @@ footer {
 
 /* ≤ 390px: pantallas muy pequeñas */
 @media (max-width: 390px) {
+  .cat-visual-section::before { top: -24px; height: 26px; }
+  .cat-visual-section .section-header { padding-top: 28px; }
   .header-inner { height: 58px; }
   .hero-right  { min-height: 180px; }
   .hero-left   { padding: 0 14px 16px; }
