@@ -1410,6 +1410,53 @@ nav a.active::after {
   gap: 28px;
 }
 
+/* ============================================
+   SECCIÓN DESTACADOS (landing)
+   ============================================ */
+.destacados-section {
+  padding: 80px 24px 88px;
+  background: var(--cream);
+}
+
+.destacados-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.destacados-cta {
+  margin-top: 56px;
+  text-align: center;
+}
+
+.destacados-btn-ver {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 44px;
+  border: 1.5px solid var(--dark);
+  border-radius: 999px;
+  color: var(--dark);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+
+.destacados-btn-ver:hover {
+  background: var(--dark);
+  color: white;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .destacados-section { padding: 56px 16px 64px; }
+  .destacados-cta { margin-top: 40px; }
+  .destacados-btn-ver { width: 100%; justify-content: center; padding: 15px 24px; }
+}
+
 /* ---- Banner: Ver catálogo completo ---- */
 .catalogo-ver-mas {
   padding: 44px 24px 8px;
