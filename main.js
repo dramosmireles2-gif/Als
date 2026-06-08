@@ -716,14 +716,14 @@ document.addEventListener('DOMContentLoaded', () => {
         restaurarRuta();
         initNavLinks();
 
-        // Ocultar botones flotantes mientras el hero es visible
+        // Ocultar botones flotantes mientras el botón WA del hero es visible
         const botonesFlotantes = document.querySelector('.botones-flotantes');
-        const heroEl = document.getElementById('inicio');
-        if (botonesFlotantes && heroEl) {
+        const heroWaBtn = document.querySelector('.hero-btn-wa');
+        if (botonesFlotantes && heroWaBtn) {
             botonesFlotantes.classList.add('oculto');
             new IntersectionObserver(([entry]) => {
                 botonesFlotantes.classList.toggle('oculto', entry.isIntersecting);
-            }, { threshold: 0.2 }).observe(heroEl);
+            }, { threshold: 0 }).observe(heroWaBtn);
         }
     }
 
