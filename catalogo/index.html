@@ -69,35 +69,87 @@
   </section>
 
   <!-- ===== CATÁLOGO ===== -->
-  <section id="catalogo" class="catalogo-section catalogo-page-section">
+  <section id="catalogo" class="catalogo-page-section">
+    <div class="catalogo-layout">
 
-    <!-- Tabs de categoría -->
-    <div class="categorias" id="categorias">
-      <button class="cat-btn active" data-categoria="Vestido">Vestidos</button>
-      <button class="cat-btn" data-categoria="Zapato">Zapatos</button>
-      <button class="cat-btn" data-categoria="Bolsa">Bolsas</button>
-      <button class="cat-btn" data-categoria="Accesorios">Accesorios</button>
+      <!-- SIDEBAR -->
+      <aside class="catalogo-sidebar" id="catalogoSidebar">
+        <div class="sidebar-header">
+          <span class="sidebar-header-title">Filtros</span>
+          <button class="sidebar-close-btn" id="sidebarClose" aria-label="Cerrar filtros">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Categoría</h3>
+          <div class="categorias-sidebar" id="categorias">
+            <button class="cat-btn active" data-categoria="Vestido">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3L5 8l3 2v11h8V10l3-2-4-5"/><line x1="9" y1="3" x2="15" y2="3"/></svg>
+              Vestidos
+            </button>
+            <button class="cat-btn" data-categoria="Zapato">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h5l2-4h6l3 4H3z"/><path d="M3 13v4h18v-4"/></svg>
+              Zapatos
+            </button>
+            <button class="cat-btn" data-categoria="Bolsa">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="13" rx="2"/><path d="M8 9V7a4 4 0 0 1 8 0v2"/></svg>
+              Bolsas
+            </button>
+            <button class="cat-btn" data-categoria="Accesorios">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              Accesorios
+            </button>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Disponibilidad</h3>
+          <div class="sidebar-filtros-disp">
+            <button class="filtro-btn active" data-filter="todos">Todos</button>
+            <button class="filtro-btn" data-filter="disponible">&#10003; Disponibles</button>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Talla</h3>
+          <div class="tallas-filtro" id="tallasFiltro"></div>
+        </div>
+      </aside>
+
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- MAIN -->
+      <main class="catalogo-main">
+        <div class="catalogo-toolbar">
+          <button class="toolbar-filtros-btn" id="sidebarToggle">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+            Filtros
+          </button>
+          <span class="catalogo-result-count" id="resultCount"></span>
+          <div class="vista-toggle">
+            <button class="vista-btn active" data-vista="small" aria-label="Vista compacta">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="6.5" height="6.5" rx="1.2"/><rect x="9.5" y="0" width="6.5" height="6.5" rx="1.2"/><rect x="0" y="9.5" width="6.5" height="6.5" rx="1.2"/><rect x="9.5" y="9.5" width="6.5" height="6.5" rx="1.2"/></svg>
+            </button>
+            <button class="vista-btn" data-vista="large" aria-label="Vista amplia">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="6.5" height="16" rx="1.2"/><rect x="9.5" y="0" width="6.5" height="16" rx="1.2"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div id="productos-container" class="productos-grid productos-grid--small">
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+        </div>
+
+        <p id="mensaje-vacio" class="mensaje-vacio hidden">No se encontraron artículos con ese filtro.</p>
+      </main>
+
     </div>
-
-    <!-- Filtros -->
-    <div class="filtros reveal" id="filtros">
-      <button class="filtro-btn active" data-filter="todos">Todos</button>
-      <button class="filtro-btn" data-filter="disponible">&#10003; Disponibles</button>
-      <div class="filtro-separador"></div>
-      <div class="tallas-filtro" id="tallasFiltro"></div>
-    </div>
-
-    <!-- Grid de productos -->
-    <div id="productos-container" class="productos-grid">
-      <div class="skeleton-card"></div>
-      <div class="skeleton-card"></div>
-      <div class="skeleton-card"></div>
-      <div class="skeleton-card"></div>
-      <div class="skeleton-card"></div>
-      <div class="skeleton-card"></div>
-    </div>
-
-    <p id="mensaje-vacio" class="mensaje-vacio hidden">No se encontraron vestidos con ese filtro.</p>
   </section>
 
   <!-- ===== FOOTER ===== -->

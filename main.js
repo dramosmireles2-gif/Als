@@ -184,8 +184,7 @@ async function cargarDestacados() {
 
         todosLosModelos = agruparPorModelo(data);
         const catPrevia  = categoriaActiva;
-        categoriaActiva  = null;  // mostrar todos los tipos en landing
-        mostrandoDestacados = false;
+        categoriaActiva  = null;
         renderizarCatalogo();
         categoriaActiva  = catPrevia;
 
@@ -282,6 +281,9 @@ function renderizarCatalogo() {
     if (tallaActiva) lista = lista.filter(m => m.tallasDisponibles.includes(tallaActiva));
 
     contenedor.innerHTML = '';
+
+    const countEl = document.getElementById('resultCount');
+    if (countEl) countEl.textContent = lista.length ? `${lista.length} ${lista.length === 1 ? 'pieza' : 'piezas'}` : '';
 
     if (lista.length === 0) {
         msgVacio.classList.remove('hidden');
@@ -521,44 +523,34 @@ function abrirLightboxClientas(url, nombre) {
 // ============================================
 // 9. URL MANAGEMENT — clean paths, no hashes
 // ============================================
-const RUTAS = {
+const RUTAS_SECCIONES = {
     'inicio':      '/',
-    'categorias':  '/coleccion',
-    'beneficios':  '/beneficios',
-    'faq':         '/preguntas',
-    'testimonios': '/contacto',
-    'ubicacion':   '/visita',
+    'categorias':  '/',
+    'beneficios':  '/',
+    'faq':         '/',
+    'testimonios': '/',
+    'ubicacion':   '/',
 };
-const RUTAS_INVERSO = Object.fromEntries(Object.entries(RUTAS).map(([k,v]) => [v, k]));
 
-// Actualiza la URL mientras el usuario scrollea
-const urlObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const path = RUTAS[entry.target.id] ?? `/${entry.target.id}`;
-            history.replaceState(null, '', path);
-            document.querySelectorAll('#mainNav a').forEach(a => {
-                a.classList.toggle('active', a.getAttribute('href') === path);
-            });
-        }
-    });
-}, {
-    threshold: 0,
-    rootMargin: '-45% 0px -45% 0px',
-});
-
-// Intercepta clics en nav para hacer scroll en vez de navegar
+// Intercepta clics en nav para hacer scroll suave en vez de navegar
 function initNavLinks() {
+    const SCROLL_IDS = {
+        '/coleccion':  'categorias',
+        '/beneficios': 'beneficios',
+        '/preguntas':  'faq',
+        '/contacto':   'testimonios',
+        '/visita':     'ubicacion',
+    };
     document.querySelectorAll('#mainNav a[href^="/"], .hero-btn[href^="/"]').forEach(link => {
         link.addEventListener('click', e => {
             const path  = new URL(link.href, location.origin).pathname;
-            const secId = RUTAS_INVERSO[path];
+            const secId = SCROLL_IDS[path];
             if (secId) {
                 e.preventDefault();
-                const target = secId === 'inicio'
-                    ? document.body
-                    : document.getElementById(secId);
-                target?.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById(secId)?.scrollIntoView({ behavior: 'smooth' });
+            } else if (path === '/') {
+                e.preventDefault();
+                document.body.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
@@ -569,9 +561,17 @@ function restaurarRuta() {
     const params  = new URLSearchParams(location.search);
     const rutaRaw = params.get('p');
     if (!rutaRaw) return;
-    history.replaceState(null, '', rutaRaw);
-    const secId = RUTAS_INVERSO[rutaRaw];
-    if (secId && secId !== 'inicio') {
+    // Always keep URL clean as /
+    history.replaceState(null, '', '/');
+    const SCROLL_IDS = {
+        '/coleccion':  'categorias',
+        '/beneficios': 'beneficios',
+        '/preguntas':  'faq',
+        '/contacto':   'testimonios',
+        '/visita':     'ubicacion',
+    };
+    const secId = SCROLL_IDS[rutaRaw];
+    if (secId) {
         setTimeout(() => document.getElementById(secId)?.scrollIntoView(), 100);
     }
 }
@@ -584,21 +584,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Página de catálogo: mostrar todo, sin filtro de destacados
     if (esCatalogo) {
-        mostrandoDestacados = false;
         // Marcar nav link activo
         document.querySelectorAll('#mainNav a').forEach(a => {
             a.classList.toggle('active', a.getAttribute('href') === '/catalogo');
         });
+
         // Aplicar filtro de categoría desde URL (?cat=X)
         const catParam = new URLSearchParams(location.search).get('cat');
         if (catParam) {
             categoriaActiva = catParam;
             history.replaceState(null, '', '/catalogo');
+            document.querySelectorAll('[data-categoria]').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.categoria === catParam);
+            });
         }
+
+        // Vista toggle
+        document.querySelectorAll('.vista-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.vista-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const grid = document.getElementById('productos-container');
+                if (!grid) return;
+                grid.classList.remove('productos-grid--small', 'productos-grid--large');
+                grid.classList.add(`productos-grid--${btn.dataset.vista}`);
+            });
+        });
+
+        // Sidebar mobile toggle
+        const $sidebar  = document.getElementById('catalogoSidebar');
+        const $overlay  = document.getElementById('sidebarOverlay');
+        const openSidebar  = () => { $sidebar?.classList.add('open'); $overlay?.classList.add('open'); document.body.classList.add('menu-open'); };
+        const closeSidebar = () => { $sidebar?.classList.remove('open'); $overlay?.classList.remove('open'); document.body.classList.remove('menu-open'); };
+        document.getElementById('sidebarToggle')?.addEventListener('click', openSidebar);
+        document.getElementById('sidebarClose')?.addEventListener('click', closeSidebar);
+        $overlay?.addEventListener('click', closeSidebar);
+
     } else {
         restaurarRuta();
         initNavLinks();
-        document.querySelectorAll('section[id]').forEach(s => urlObserver.observe(s));
 
         // Ocultar botones flotantes mientras el hero es visible
         const botonesFlotantes = document.querySelector('.botones-flotantes');
