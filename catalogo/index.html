@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catálogo completo de vestidos, zapatos, bolsas y accesorios en Als Dress Reynosa. Renta y venta para quinceañeras, bodas y eventos especiales.">
+  <title>Catálogo Completo | Als Dress Reynosa</title>
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:site_name"   content="Als Dress">
+  <meta property="og:title"       content="Catálogo Completo | Als Dress Reynosa">
+  <meta property="og:description" content="Explora nuestra colección completa: vestidos, zapatos, bolsas y accesorios para tu evento especial.">
+  <meta property="og:url"         content="https://alsdress.com.mx/catalogo">
+  <meta property="og:image"       content="https://alsdress.com.mx/hero2.jpeg">
+  <meta property="og:locale"      content="es_MX">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="../Icono.jpg">
+  <link rel="apple-touch-icon"       href="../Icono.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../supabase.js"></script>
+</head>
+<body data-pagina="catalogo">
+
+  <!-- ===== HEADER ===== -->
+  <header id="header">
+    <div class="header-inner">
+      <div class="logo">
+        <a href="/">
+          <img src="../Icono.jpg" alt="Als Dress" class="logo-img">
+        </a>
+        <div class="logo-text">
+          <a href="/"><span class="logo-name">Als Dress</span></a>
+          <span class="logo-sub">Reynosa · Renta &amp; Venta</span>
+        </div>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menú" aria-controls="mainNav" aria-expanded="false" type="button">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="mainNav">
+        <a href="/">Inicio</a>
+        <a href="/catalogo">Catálogo</a>
+        <a href="/catalogo">Accesorios</a>
+        <a href="/beneficios">Beneficios</a>
+        <a href="/ubicacion">Ubicación</a>
+        <a href="/contacto">Contacto</a>
+        <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="nav-mobile-wa">
+          <img src="../wa.svg" alt="" class="nav-mobile-wa-icon">
+          Escríbenos por WhatsApp
+        </a>
+      </nav>
+      <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="header-wa-btn">
+        <img src="../wa.svg" alt="" class="header-wa-icon">
+        Escríbenos por WhatsApp
+      </a>
+    </div>
+  </header>
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <section class="catalogo-page-header">
+    <p class="section-eyebrow">Als Dress · Reynosa</p>
+    <h1>Catálogo completo</h1>
+    <p class="catalogo-page-desc">Vestidos, zapatos, bolsas y accesorios para tu momento especial.</p>
+  </section>
+
+  <!-- ===== CATÁLOGO ===== -->
+  <section id="catalogo" class="catalogo-section catalogo-page-section">
+
+    <!-- Tabs de categoría -->
+    <div class="categorias" id="categorias">
+      <button class="cat-btn active" data-categoria="Vestido">Vestidos</button>
+      <button class="cat-btn" data-categoria="Zapato">Zapatos</button>
+      <button class="cat-btn" data-categoria="Bolsa">Bolsas</button>
+      <button class="cat-btn" data-categoria="Accesorios">Accesorios</button>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filtros reveal" id="filtros">
+      <button class="filtro-btn active" data-filter="todos">Todos</button>
+      <button class="filtro-btn" data-filter="disponible">&#10003; Disponibles</button>
+      <div class="filtro-separador"></div>
+      <div class="tallas-filtro" id="tallasFiltro"></div>
+    </div>
+
+    <!-- Grid de productos -->
+    <div id="productos-container" class="productos-grid">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+
+    <p id="mensaje-vacio" class="mensaje-vacio hidden">No se encontraron vestidos con ese filtro.</p>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Als Dress</h3>
+        <p>Luce increíble en tu próximo evento sin gastar una fortuna.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://web.facebook.com/alsdress?locale=es_LA" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/als_dress" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/528991947566" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Als Dress · Reynosa, Tamaulipas · Todos los derechos reservados.</p>
+      <p class="footer-dev">Sitio desarrollado por <a href="https://ramosmkt.lat/" target="_blank" rel="noopener" class="footer-dev-link">RMKT web &amp; apps</a></p>
+    </div>
+  </footer>
+
+  <!-- ===== BOTONES FLOTANTES ===== -->
+  <div class="botones-flotantes">
+    <a href="https://wa.me/528991947566" class="btn-flotante whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <img src="../wa.svg" alt="" class="btn-flotante-wa-icon">
+    </a>
+  </div>
+
+  <script src="../main.js"></script>
+</body>
+</html>

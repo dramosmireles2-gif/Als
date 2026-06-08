@@ -1279,6 +1279,46 @@ nav a.active::after {
   margin: 0 auto;
 }
 
+/* ---- Página dedicada: /catalogo ---- */
+.catalogo-page-header {
+  padding: 120px 24px 32px;
+  background: var(--cream);
+  text-align: center;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.catalogo-page-header .section-eyebrow {
+  margin-bottom: 12px;
+}
+
+.catalogo-page-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 14px;
+}
+
+.catalogo-page-desc {
+  font-size: 1rem;
+  color: var(--gray);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.catalogo-page-section {
+  padding-top: 48px;
+}
+
+@media (max-width: 768px) {
+  .catalogo-page-header { padding: 96px 20px 24px; }
+  .catalogo-page-header h1 { font-size: clamp(2rem, 8vw, 2.6rem); }
+  .catalogo-page-section { padding-top: 32px; }
+}
+
 /* ============================================
    FILTROS NUEVOS
 ============================================ */
@@ -1368,6 +1408,44 @@ nav a.active::after {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 28px;
+}
+
+/* ---- Banner: Ver catálogo completo ---- */
+.catalogo-ver-mas {
+  padding: 44px 24px 8px;
+  text-align: center;
+}
+
+.ver-mas-info {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 18px;
+}
+
+.ver-mas-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 40px;
+  border: 1.5px solid var(--rose);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--rose);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+
+.ver-mas-btn:hover {
+  background: var(--rose);
+  color: white;
+  transform: translateY(-2px);
 }
 
 /* Skeleton loader */
