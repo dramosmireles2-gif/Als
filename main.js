@@ -7,11 +7,10 @@ const APP_NAME   = 'RentaVestidosAPP-250346467';
 const TABLE_NAME = 'Inventario';
 
 // ---- Estado ----
-let todosLosModelos    = [];
-let filtroDisponible   = false;
-let tallaActiva        = null;
-let categoriaActiva    = 'Vestido';
-let mostrandoDestacados = true;
+let todosLosModelos  = [];
+let filtroDisponible = false;
+let tallaActiva      = null;
+let categoriaActiva  = 'Vestido';
 
 // ---- Helper foto ----
 function obtenerUrlFoto(foto) {
@@ -119,6 +118,28 @@ if (slides.length && dotsContainer) {
 // ============================================
 // 4. CARGA DESDE SUPABASE
 // ============================================
+function agruparPorModelo(data) {
+    const modelos = {};
+    data.forEach(item => {
+        const nombre = (item.nombre || '').trim();
+        if (!nombre) return;
+        if (!modelos[nombre]) {
+            modelos[nombre] = {
+                ...item,
+                tallasDisponibles: [item.talla].filter(Boolean),
+                hayDisponible: item.estado_actual === 'Disponible'
+            };
+        } else {
+            if (item.talla && !modelos[nombre].tallasDisponibles.includes(item.talla)) {
+                modelos[nombre].tallasDisponibles.push(item.talla);
+            }
+            if (item.estado_actual === 'Disponible') modelos[nombre].hayDisponible = true;
+        }
+    });
+    return Object.values(modelos);
+}
+
+// Carga el catálogo completo (página /catalogo)
 async function cargarInventario() {
     try {
         const { data, error } = await sb
@@ -129,34 +150,48 @@ async function cargarInventario() {
 
         if (error) throw error;
 
-        // Agrupar por nombre de modelo
-        const modelos = {};
-        data.forEach(item => {
-            const nombre = (item.nombre || '').trim();
-            if (!nombre) return;
-            if (!modelos[nombre]) {
-                modelos[nombre] = {
-                    ...item,
-                    tallasDisponibles: [item.talla].filter(Boolean),
-                    hayDisponible: item.estado_actual === 'Disponible'
-                };
-            } else {
-                if (item.talla && !modelos[nombre].tallasDisponibles.includes(item.talla)) {
-                    modelos[nombre].tallasDisponibles.push(item.talla);
-                }
-                if (item.estado_actual === 'Disponible') modelos[nombre].hayDisponible = true;
-            }
-        });
-
-        todosLosModelos = Object.values(modelos);
-        if (!todosLosModelos.some(m => m.destacado)) mostrandoDestacados = false;
+        todosLosModelos = agruparPorModelo(data);
         construirFiltrosTallas();
         renderizarCatalogo();
 
     } catch (err) {
         console.error('Error cargando catálogo:', err);
-        document.getElementById('productos-container').innerHTML =
-            '<p class="mensaje-vacio">No se pudo cargar el catálogo. Intenta más tarde.</p>';
+        const c = document.getElementById('productos-container');
+        if (c) c.innerHTML = '<p class="mensaje-vacio">No se pudo cargar el catálogo. Intenta más tarde.</p>';
+    }
+}
+
+// Carga solo los items marcados como destacado=true (landing)
+async function cargarDestacados() {
+    const contenedor = document.getElementById('productos-container');
+    if (!contenedor) return;
+
+    try {
+        const { data, error } = await sb
+            .from('inventario')
+            .select('*')
+            .eq('publicado', true)
+            .eq('destacado', true)
+            .order('nombre');
+
+        if (error) throw error;
+
+        if (!data.length) {
+            // Sin destacados: ocultar sección entera
+            document.getElementById('destacados')?.classList.add('hidden');
+            return;
+        }
+
+        todosLosModelos = agruparPorModelo(data);
+        const catPrevia  = categoriaActiva;
+        categoriaActiva  = null;  // mostrar todos los tipos en landing
+        mostrandoDestacados = false;
+        renderizarCatalogo();
+        categoriaActiva  = catPrevia;
+
+    } catch (err) {
+        console.error('Error cargando destacados:', err);
+        document.getElementById('destacados')?.classList.add('hidden');
     }
 }
 
@@ -203,6 +238,7 @@ function construirFiltrosTallas() {
     });
 
     const contenedor = document.getElementById('tallasFiltro');
+    if (!contenedor) return;
     contenedor.innerHTML = '';
     tallas.forEach(t => {
         const btn = document.createElement('button');
@@ -231,9 +267,6 @@ function renderizarCatalogo() {
     const contenedor = document.getElementById('productos-container');
     const msgVacio   = document.getElementById('mensaje-vacio');
     if (!contenedor) return;
-
-    // Limpiar banner previo
-    document.getElementById('catalogo-ver-mas')?.remove();
 
     let lista = [...todosLosModelos];
 
@@ -268,16 +301,6 @@ function renderizarCatalogo() {
     }
 
     msgVacio.classList.add('hidden');
-
-    // Filtro destacados: si algún item tiene destacado=true, mostrar solo esos primero
-    let ocultos = 0;
-    if (mostrandoDestacados) {
-        const destacados = lista.filter(m => m.destacado);
-        if (destacados.length > 0) {
-            ocultos = lista.length - destacados.length;
-            lista = destacados;
-        }
-    }
 
     lista.forEach((vestido, i) => {
         const urlFoto    = obtenerUrlFoto(vestido.foto);
@@ -334,24 +357,6 @@ function renderizarCatalogo() {
         contenedor.appendChild(card);
     });
 
-    // Banner "Ver catálogo completo" si hay items ocultos
-    if (ocultos > 0) {
-        const banner = document.createElement('div');
-        banner.id = 'catalogo-ver-mas';
-        banner.className = 'catalogo-ver-mas';
-        banner.innerHTML = `
-            <p class="ver-mas-info">${ocultos} vestido${ocultos !== 1 ? 's' : ''} más disponible${ocultos !== 1 ? 's' : ''} en el catálogo</p>
-            <button class="ver-mas-btn">
-                Ver catálogo completo
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </button>
-        `;
-        contenedor.insertAdjacentElement('afterend', banner);
-        banner.querySelector('.ver-mas-btn').addEventListener('click', () => {
-            mostrandoDestacados = false;
-            renderizarCatalogo();
-        });
-    }
 }
 
 // ============================================
@@ -620,7 +625,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     crearLightbox();
-    if (document.getElementById('productos-container')) cargarInventario();
+    if (esCatalogo) {
+        cargarInventario();
+    } else {
+        cargarDestacados();
+    }
     cargarGaleriaClientas();
 
     // FAQ accordion
