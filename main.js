@@ -512,9 +512,72 @@ function abrirLightboxClientas(url, nombre) {
 }
 
 // ============================================
-// 9. INIT
+// 9. URL MANAGEMENT — clean paths, no hashes
+// ============================================
+const RUTAS = {
+    'inicio':     '/',
+    'categorias': '/coleccion',
+    'catalogo':   '/catalogo',
+    'beneficios': '/beneficios',
+    'faq':        '/preguntas',
+    'testimonios':'/contacto',
+    'ubicacion':  '/visita',
+};
+const RUTAS_INVERSO = Object.fromEntries(Object.entries(RUTAS).map(([k,v]) => [v, k]));
+
+// Actualiza la URL mientras el usuario scrollea
+const urlObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const path = RUTAS[entry.target.id] ?? `/${entry.target.id}`;
+            history.replaceState(null, '', path);
+            document.querySelectorAll('#mainNav a').forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === path);
+            });
+        }
+    });
+}, {
+    threshold: 0,
+    rootMargin: '-45% 0px -45% 0px',
+});
+
+// Intercepta clics en nav para hacer scroll en vez de navegar
+function initNavLinks() {
+    document.querySelectorAll('#mainNav a[href^="/"], .hero-btn[href^="/"]').forEach(link => {
+        link.addEventListener('click', e => {
+            const path  = new URL(link.href, location.origin).pathname;
+            const secId = RUTAS_INVERSO[path];
+            if (secId) {
+                e.preventDefault();
+                const target = secId === 'inicio'
+                    ? document.body
+                    : document.getElementById(secId);
+                target?.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+}
+
+// Restaura scroll si el usuario llegó por una URL directa (via 404.html redirect)
+function restaurarRuta() {
+    const params  = new URLSearchParams(location.search);
+    const rutaRaw = params.get('p');
+    if (!rutaRaw) return;
+    history.replaceState(null, '', rutaRaw);
+    const secId = RUTAS_INVERSO[rutaRaw];
+    if (secId && secId !== 'inicio') {
+        setTimeout(() => document.getElementById(secId)?.scrollIntoView(), 100);
+    }
+}
+
+// ============================================
+// 10. INIT
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
+    restaurarRuta();
+    initNavLinks();
+    document.querySelectorAll('section[id]').forEach(s => urlObserver.observe(s));
+
     // Centralizar links de WhatsApp definidos en el HTML
     const waUrl = `https://wa.me/${WA_NUMBER}`;
     document.querySelectorAll(`a[href*="wa.me"]`).forEach(a => a.href = waUrl);

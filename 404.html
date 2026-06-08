@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Als Dress</title>
+  <script>
+    var path  = window.location.pathname;
+    var query = window.location.search;
+    var qs    = query ? query + '&p=' + encodeURIComponent(path)
+                      : '?p='  + encodeURIComponent(path);
+    window.location.replace('/' + qs);
+  </script>
+</head>
+<body></body>
+</html>
