@@ -239,13 +239,26 @@
         <p class="section-eyebrow">Selección de temporada</p>
         <h2>Piezas destacadas</h2>
       </div>
-      <div id="productos-container" class="productos-grid">
-        <div class="skeleton-card"></div>
-        <div class="skeleton-card"></div>
-        <div class="skeleton-card"></div>
-        <div class="skeleton-card"></div>
+
+      <div class="dest-carousel" id="destCarousel">
+        <button class="dest-arrow dest-arrow--prev" id="destPrev" aria-label="Anterior">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="dest-track-wrapper" id="destWrapper">
+          <div id="productos-container" class="dest-track">
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+          </div>
+        </div>
+        <button class="dest-arrow dest-arrow--next" id="destNext" aria-label="Siguiente">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
+
+      <div class="dest-dots" id="destDots"></div>
       <p id="mensaje-vacio" class="mensaje-vacio hidden">Sin piezas destacadas por el momento.</p>
+
       <div class="destacados-cta reveal">
         <a href="/catalogo" class="destacados-btn-ver">
           Ver catálogo completo

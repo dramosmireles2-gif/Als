@@ -1764,6 +1764,109 @@ nav a.active::after {
   .destacados-btn-ver { width: 100%; justify-content: center; padding: 15px 24px; }
 }
 
+/* ============================================
+   CARRUSEL PIEZAS DESTACADAS (landing)
+   ============================================ */
+
+.dest-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dest-track-wrapper {
+  flex: 1;
+  overflow: hidden;
+}
+
+.dest-track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+/* Cards & skeletons take up 1/3 each (3 visible) */
+.dest-track > * {
+  flex: 0 0 calc(33.333% - 16px);
+  min-width: 0;
+}
+
+.dest-track .skeleton-card { height: 460px; }
+
+/* Few-items mode: center the cards */
+.dest-carousel--few .dest-arrow { display: none !important; }
+.dest-carousel--few .dest-track { justify-content: center; }
+.dest-carousel--few .dest-track > * { flex: 0 0 clamp(220px, 32%, 380px); }
+
+.dest-arrow {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(28,28,30,0.12);
+  background: white;
+  color: var(--dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease,
+              box-shadow 0.22s ease, opacity 0.22s ease;
+}
+
+.dest-arrow:hover:not(:disabled) {
+  background: var(--dark);
+  color: white;
+  border-color: var(--dark);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+}
+
+.dest-arrow:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.dest-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+  min-height: 14px;
+}
+
+.dest-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(28,28,30,0.15);
+  cursor: pointer;
+  padding: 0;
+  transition: width 0.25s ease, border-radius 0.25s ease, background 0.25s ease;
+}
+
+.dest-dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background: var(--rose);
+}
+
+@media (max-width: 900px) {
+  /* 2 cards visible on tablet */
+  .dest-track > * { flex: 0 0 calc(50% - 12px); }
+  .dest-arrow { display: none; }
+  .dest-dots { margin-top: 20px; }
+}
+
+@media (max-width: 580px) {
+  /* ~1.15 cards visible on mobile (shows peek of next) */
+  .dest-track > * { flex: 0 0 min(280px, 80vw); }
+  .dest-track { gap: 14px; }
+}
+
 /* ---- Banner: Ver catálogo completo ---- */
 .catalogo-ver-mas {
   padding: 44px 24px 8px;
