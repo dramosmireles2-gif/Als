@@ -1370,6 +1370,44 @@ nav a.active::after {
   gap: 28px;
 }
 
+/* ---- Banner: Ver catálogo completo ---- */
+.catalogo-ver-mas {
+  padding: 44px 24px 8px;
+  text-align: center;
+}
+
+.ver-mas-info {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 18px;
+}
+
+.ver-mas-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 40px;
+  border: 1.5px solid var(--rose);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--rose);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+
+.ver-mas-btn:hover {
+  background: var(--rose);
+  color: white;
+  transform: translateY(-2px);
+}
+
 /* Skeleton loader */
 .skeleton-card {
   height: 460px;

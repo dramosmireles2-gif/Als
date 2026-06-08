@@ -7,10 +7,11 @@ const APP_NAME   = 'RentaVestidosAPP-250346467';
 const TABLE_NAME = 'Inventario';
 
 // ---- Estado ----
-let todosLosModelos = [];
-let filtroDisponible = false;
-let tallaActiva      = null;
-let categoriaActiva  = 'Vestido';
+let todosLosModelos    = [];
+let filtroDisponible   = false;
+let tallaActiva        = null;
+let categoriaActiva    = 'Vestido';
+let mostrandoDestacados = true;
 
 // ---- Helper foto ----
 function obtenerUrlFoto(foto) {
@@ -146,6 +147,7 @@ async function cargarInventario() {
         });
 
         todosLosModelos = Object.values(modelos);
+        if (!todosLosModelos.some(m => m.destacado)) mostrandoDestacados = false;
         construirFiltrosTallas();
         renderizarCatalogo();
 
@@ -228,6 +230,9 @@ function renderizarCatalogo() {
     const msgVacio   = document.getElementById('mensaje-vacio');
     if (!contenedor) return;
 
+    // Limpiar banner previo
+    document.getElementById('catalogo-ver-mas')?.remove();
+
     let lista = [...todosLosModelos];
 
     // Filtro categoría
@@ -261,6 +266,16 @@ function renderizarCatalogo() {
     }
 
     msgVacio.classList.add('hidden');
+
+    // Filtro destacados: si algún item tiene destacado=true, mostrar solo esos primero
+    let ocultos = 0;
+    if (mostrandoDestacados) {
+        const destacados = lista.filter(m => m.destacado);
+        if (destacados.length > 0) {
+            ocultos = lista.length - destacados.length;
+            lista = destacados;
+        }
+    }
 
     lista.forEach((vestido, i) => {
         const urlFoto    = obtenerUrlFoto(vestido.foto);
@@ -316,6 +331,25 @@ function renderizarCatalogo() {
         card.style.cursor = 'pointer';
         contenedor.appendChild(card);
     });
+
+    // Banner "Ver catálogo completo" si hay items ocultos
+    if (ocultos > 0) {
+        const banner = document.createElement('div');
+        banner.id = 'catalogo-ver-mas';
+        banner.className = 'catalogo-ver-mas';
+        banner.innerHTML = `
+            <p class="ver-mas-info">${ocultos} vestido${ocultos !== 1 ? 's' : ''} más disponible${ocultos !== 1 ? 's' : ''} en el catálogo</p>
+            <button class="ver-mas-btn">
+                Ver catálogo completo
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+        `;
+        contenedor.insertAdjacentElement('afterend', banner);
+        banner.querySelector('.ver-mas-btn').addEventListener('click', () => {
+            mostrandoDestacados = false;
+            renderizarCatalogo();
+        });
+    }
 }
 
 // ============================================
