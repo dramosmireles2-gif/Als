@@ -1155,7 +1155,6 @@ nav a.active::after {
   background: #faf6f3;
   border-radius: 50% 50% 0 0 / 100% 100% 0 0;
   pointer-events: none;
-  z-index: 3;
 }
 
 /* Eyebrow floats centered in ~70px franja between hero and h2 */
