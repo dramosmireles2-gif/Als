@@ -1871,6 +1871,8 @@ nav a.active::after {
   /* ~1.15 cards visible on mobile (shows peek of next) */
   .dest-track > * { flex: 0 0 min(280px, 80vw); }
   .dest-track { gap: 14px; }
+  /* Skeleton height matches real card proportions while loading */
+  .dest-track .skeleton-card { height: auto; aspect-ratio: 3/4; }
 }
 
 /* ---- Banner: Ver catálogo completo ---- */
@@ -3458,12 +3460,12 @@ footer {
   .tallas-filtro { flex-wrap: nowrap; }
 
   /* Secciones */
-  .proceso-section { padding: 70px 16px 60px; }
+  .proceso-section { padding: 60px 16px 52px; }
   .paso-num-bg { font-size: 5rem; }
   .proceso-btn-wa { padding: 14px 28px; font-size: 0.85rem; }
-  .testimonios-section { padding: 70px 16px; }
-  .ubicacion-section { padding: 70px 16px; }
-  .section-header { margin-bottom: 36px; }
+  .testimonios-section { padding: 60px 16px; }
+  .ubicacion-section { padding: 60px 16px; }
+  .section-header { margin-bottom: 32px; }
 }
 
 @media (max-width: 480px) {
@@ -3699,10 +3701,10 @@ footer {
   .catalogo-section { padding: 72px 16px 56px; }
 
   /* Proceso y otras secciones */
-  .proceso-section    { padding: 68px 16px 56px; }
-  .testimonios-section { padding: 48px 16px 68px; }
-  .ubicacion-section  { padding: 68px 16px; }
-  .section-header     { margin-bottom: 36px; }
+  .proceso-section    { padding: 52px 16px 48px; }
+  .testimonios-section { padding: 52px 16px; }
+  .ubicacion-section  { padding: 52px 16px; }
+  .section-header     { margin-bottom: 28px; }
 
   /* Botones flotantes */
   .botones-flotantes { right: 14px; bottom: 20px; gap: 10px; }
@@ -3714,7 +3716,7 @@ footer {
   .cat-visual-section::before { top: -24px; height: 26px; }
   .cat-visual-section .section-header { padding-top: 28px; }
   .header-inner { height: 58px; }
-  .hero-right  { min-height: 180px; }
+  .hero-right  { height: 38svh; min-height: 180px; }
   .hero-left   { padding: 0 14px 16px; }
   .hero-title  { font-size: 2.3rem; letter-spacing: -0.03em; margin-bottom: 10px; }
   .hero-deco   { display: none; }
@@ -3905,8 +3907,9 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .beneficios-section { padding: 68px 16px; }
-  .beneficios-grid { gap: 14px; }
-  .beneficio-card { padding: 28px 18px; }
+  .beneficios-section { padding: 52px 16px; }
+  .beneficios-grid { gap: 14px; margin-top: 32px; }
+  .beneficio-card { padding: 24px 16px; }
   .beneficios-btn-wa { width: 100%; justify-content: center; }
+  .testimonios-grid { gap: 14px; }
 }
