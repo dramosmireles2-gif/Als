@@ -669,7 +669,59 @@ function restaurarRuta() {
 }
 
 // ============================================
-// 10. INIT
+// 10. CARRUSEL TESTIMONIOS (solo móvil)
+// ============================================
+function iniciarCarruselTestimonios() {
+    if (window.innerWidth > 768) return;
+
+    const grid   = document.getElementById('testimoniosGrid');
+    const dotsEl = document.getElementById('testDots');
+    if (!grid || !dotsEl) return;
+
+    const cards = Array.from(grid.querySelectorAll('.testimonio-card'));
+    if (cards.length < 2) return;
+
+    // Construir dots
+    const dots = cards.map((_, i) => {
+        const d = document.createElement('span');
+        d.className = 'test-dot' + (i === 0 ? ' active' : '');
+        d.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(d);
+        return d;
+    });
+
+    function currentIdx() {
+        const gap = 14;
+        const cardW = cards[0].offsetWidth + gap;
+        return Math.round(grid.scrollLeft / cardW);
+    }
+
+    function goTo(i) {
+        const gap = 14;
+        grid.scrollTo({ left: i * (cards[0].offsetWidth + gap), behavior: 'smooth' });
+    }
+
+    function updateDots() {
+        const idx = currentIdx();
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+
+    grid.addEventListener('scroll', updateDots, { passive: true });
+
+    let timer = setInterval(() => {
+        const next = (currentIdx() + 1) % cards.length;
+        goTo(next);
+    }, 4200);
+
+    grid.addEventListener('touchstart', () => clearInterval(timer), { passive: true });
+    grid.addEventListener('touchend',   () => {
+        clearInterval(timer);
+        timer = setInterval(() => goTo((currentIdx() + 1) % cards.length), 4200);
+    }, { passive: true });
+}
+
+// ============================================
+// 11. INIT
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
     const esCatalogo = document.body.dataset.pagina === 'catalogo';
@@ -745,6 +797,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cargarInventario();
     } else {
         cargarDestacados();
+        iniciarCarruselTestimonios();
     }
     cargarGaleriaClientas();
 

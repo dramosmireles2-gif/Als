@@ -3910,5 +3910,51 @@ footer {
   .beneficios-grid { gap: 14px; margin-top: 32px; }
   .beneficio-card { padding: 24px 16px; }
   .beneficios-btn-wa { width: 100%; justify-content: center; }
-  .testimonios-grid { gap: 14px; }
 }
+
+/* ============================================
+   TESTIMONIOS — carrusel en móvil
+   ============================================ */
+@media (max-width: 768px) {
+  .testimonios-grid {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 14px;
+    padding: 4px 16px 8px;
+    margin-inline: -16px;
+  }
+  .testimonios-grid::-webkit-scrollbar { display: none; }
+
+  .testimonio-card {
+    flex: 0 0 min(300px, 84vw);
+    scroll-snap-align: start;
+  }
+  .testimonio-card:hover { transform: none; }
+
+  /* Dots */
+  .test-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 18px;
+  }
+  .test-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(28,28,30,0.15);
+    cursor: pointer;
+    transition: background 0.3s, width 0.3s, border-radius 0.3s;
+  }
+  .test-dot.active {
+    width: 20px;
+    border-radius: 3px;
+    background: var(--rose);
+  }
+}
+
+/* Ocultar dots en desktop */
+.test-dots { display: none; }
