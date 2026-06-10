@@ -7,7 +7,7 @@ const APP_NAME   = 'RentaVestidosAPP-250346467';
 
 // Google Ads conversion — reemplaza CONVERSION_LABEL con el ID real (AW-11262534800/XXXXXXXX)
 const GA_CONVERSION_ID = 'AW-11262534800';
-const GA_CONVERSION_LABEL = null; // TODO: pegar aquí el label, ej: 'AbCdEfGhIjKlMnOp'
+const GA_CONVERSION_LABEL = '_Ri3CMHfnrwcEJDJsvop';
 
 function trackWAClick() {
     if (typeof gtag === 'undefined') return;
@@ -15,7 +15,11 @@ function trackWAClick() {
     gtag('event', 'click_whatsapp', { event_category: 'contacto', event_label: 'whatsapp' });
     // Conversión específica de campaña (activa cuando se agregue el label)
     if (GA_CONVERSION_LABEL) {
-        gtag('event', 'conversion', { send_to: `${GA_CONVERSION_ID}/${GA_CONVERSION_LABEL}` });
+        gtag('event', 'conversion', {
+            send_to: `${GA_CONVERSION_ID}/${GA_CONVERSION_LABEL}`,
+            value: 1.0,
+            currency: 'MXN'
+        });
     }
 }
 const TABLE_NAME = 'Inventario';
