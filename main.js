@@ -4,6 +4,20 @@
 
 const WA_NUMBER  = '528991947566';
 const APP_NAME   = 'RentaVestidosAPP-250346467';
+
+// Google Ads conversion — reemplaza CONVERSION_LABEL con el ID real (AW-11262534800/XXXXXXXX)
+const GA_CONVERSION_ID = 'AW-11262534800';
+const GA_CONVERSION_LABEL = null; // TODO: pegar aquí el label, ej: 'AbCdEfGhIjKlMnOp'
+
+function trackWAClick() {
+    if (typeof gtag === 'undefined') return;
+    // Evento genérico — visible en Google Ads como evento de click
+    gtag('event', 'click_whatsapp', { event_category: 'contacto', event_label: 'whatsapp' });
+    // Conversión específica de campaña (activa cuando se agregue el label)
+    if (GA_CONVERSION_LABEL) {
+        gtag('event', 'conversion', { send_to: `${GA_CONVERSION_ID}/${GA_CONVERSION_LABEL}` });
+    }
+}
 const TABLE_NAME = 'Inventario';
 
 // ---- Estado ----
@@ -779,9 +793,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Centralizar links de WhatsApp definidos en el HTML
+    // Centralizar links de WhatsApp y registrar conversión en cada click
     const waUrl = `https://wa.me/${WA_NUMBER}`;
-    document.querySelectorAll(`a[href*="wa.me"]`).forEach(a => a.href = waUrl);
+    document.querySelectorAll(`a[href*="wa.me"]`).forEach(a => {
+        a.href = waUrl;
+        a.addEventListener('click', trackWAClick);
+    });
 
     // Tarjetas de categorías → navegar a página de catálogo con filtro
     document.querySelectorAll('[data-goto-categoria]').forEach(card => {
