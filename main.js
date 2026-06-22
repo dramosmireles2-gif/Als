@@ -1054,6 +1054,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 );
             }, { threshold: 0.15 }).observe(beneficioGrid);
         }
+
+        // ── 11. HERO PARALLAX — imagen se mueve al 30% del scroll ────────────
+        const heroSection = document.querySelector('.hero');
+        const heroParallaxImg = document.querySelector('.hero-image-wrapper img');
+        if (heroSection && heroParallaxImg && !shouldReduceMotion()) {
+            setTimeout(() => {
+                let ticking = false;
+                window.addEventListener('scroll', () => {
+                    if (ticking) return;
+                    ticking = true;
+                    requestAnimationFrame(() => {
+                        const rect = heroSection.getBoundingClientRect();
+                        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+                            heroParallaxImg.style.translate = `0 ${-rect.top * 0.3}px`;
+                        }
+                        ticking = false;
+                    });
+                }, { passive: true });
+            }, 1200);
+        }
     }
 
     // Centralizar links de WhatsApp y registrar conversión en cada click
