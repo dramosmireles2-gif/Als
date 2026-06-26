@@ -140,7 +140,7 @@ mainNav.querySelectorAll('a').forEach(link => {
 navOverlay?.addEventListener('click', cerrarMenu);
 
 window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 900) {
         cerrarMenu();
     }
     if (window.innerWidth > 960) {
@@ -258,7 +258,7 @@ function iniciarCarruselDestacados(total) {
     let gap = parseFloat(getComputedStyle(track).columnGap) || 24;
 
     function getVisible() {
-        return window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+        return window.innerWidth > 900 ? 3 : window.innerWidth >= 640 ? 2 : 1;
     }
 
     function getMaxIdx() {
