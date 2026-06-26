@@ -3529,8 +3529,10 @@ footer {
   animation: cintaScroll 40s linear infinite;
 }
 
-.galeria-cinta:hover {
-  animation-play-state: paused;
+@media (hover: hover) {
+  .galeria-cinta:hover {
+    animation-play-state: paused;
+  }
 }
 
 @keyframes cintaScroll {
@@ -3557,7 +3559,9 @@ footer {
   pointer-events: none;
 }
 
-.galeria-cliente-item:hover img { transform: scale(1.05); }
+@media (hover: hover) {
+  .galeria-cliente-item:hover img { transform: scale(1.05); }
+}
 
 .galeria-overlay {
   position: absolute;
@@ -3568,7 +3572,9 @@ footer {
   transition: opacity 0.3s ease;
 }
 
-.galeria-cliente-item:hover .galeria-overlay { opacity: 1; }
+@media (hover: hover) {
+  .galeria-cliente-item:hover .galeria-overlay { opacity: 1; }
+}
 
 .galeria-overlay p {
   color: white;
@@ -3578,14 +3584,9 @@ footer {
   font-style: italic;
 }
 
-@media (max-width: 1024px) {
-  .galeria-clientas-grid { columns: 3; }
-}
-
 @media (max-width: 768px) {
   .hero-btns { flex-direction: column; align-items: stretch; gap: 12px; }
   .categorias { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
-  .galeria-clientas-grid { columns: 2; column-gap: 10px; }
   .galeria-cliente-item { margin-bottom: 10px; }
   .galeria-clientas-section { padding: 60px 16px; }
 }
