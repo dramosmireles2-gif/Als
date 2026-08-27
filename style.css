@@ -296,6 +296,21 @@ nav a.active::after {
   transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
 
+.header-wa-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.header-wa-num {
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  opacity: 0.72;
+  margin-top: 2px;
+}
+
 .header-wa-btn:hover {
   transform: translateY(-1px);
   border-color: rgba(255,255,255,0.6);
@@ -868,16 +883,48 @@ nav a.active::after {
     row-gap: 10px;
   }
 
-  .hero-main {
-    grid-template-columns: 1fr;
+  /* Hero: layout vertical con imagen primero */
+  .hero {
+    padding: 0;
   }
 
-  .hero-left {
-    padding: 40px 28px 40px;
+  .hero::before,
+  .hero::after {
+    display: none;
+  }
+
+  .hero-main {
+    grid-template-columns: 1fr;
+    background: #fff8f5;
+  }
+
+  .hero-main::after {
+    display: none;
   }
 
   .hero-right {
-    min-height: 560px;
+    height: 50svh;
+    min-height: 280px;
+    max-height: 460px;
+    order: -1;
+  }
+
+  .hero-right::before {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 56%,
+      rgba(255,248,245,0.52) 78%,
+      #fff8f5 100%
+    );
+  }
+
+  .hero-image-wrapper::after {
+    background: none;
+  }
+
+  .hero-left {
+    padding: 24px 32px 40px;
   }
 
   .hero-feature-panel {
@@ -1068,7 +1115,7 @@ nav a.active::after {
   }
 
   .hero-btn-wa {
-    min-height: 42px;
+    min-height: 52px;
     background: linear-gradient(180deg, #23d564 0%, #15b64a 100%);
     color: white;
     box-shadow: 0 10px 22px rgba(24,182,74,0.28);
@@ -1094,7 +1141,10 @@ nav a.active::after {
   }
 
   .hero-btn-copy small {
-    display: none;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: none;
+    opacity: 0.88;
   }
 
   .hero-note {
@@ -3529,8 +3579,10 @@ footer {
   animation: cintaScroll 40s linear infinite;
 }
 
-.galeria-cinta:hover {
-  animation-play-state: paused;
+@media (hover: hover) {
+  .galeria-cinta:hover {
+    animation-play-state: paused;
+  }
 }
 
 @keyframes cintaScroll {
@@ -3557,7 +3609,9 @@ footer {
   pointer-events: none;
 }
 
-.galeria-cliente-item:hover img { transform: scale(1.05); }
+@media (hover: hover) {
+  .galeria-cliente-item:hover img { transform: scale(1.05); }
+}
 
 .galeria-overlay {
   position: absolute;
@@ -3568,7 +3622,9 @@ footer {
   transition: opacity 0.3s ease;
 }
 
-.galeria-cliente-item:hover .galeria-overlay { opacity: 1; }
+@media (hover: hover) {
+  .galeria-cliente-item:hover .galeria-overlay { opacity: 1; }
+}
 
 .galeria-overlay p {
   color: white;
@@ -3578,14 +3634,9 @@ footer {
   font-style: italic;
 }
 
-@media (max-width: 1024px) {
-  .galeria-clientas-grid { columns: 3; }
-}
-
 @media (max-width: 768px) {
   .hero-btns { flex-direction: column; align-items: stretch; gap: 12px; }
   .categorias { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
-  .galeria-clientas-grid { columns: 2; column-gap: 10px; }
   .galeria-cliente-item { margin-bottom: 10px; }
   .galeria-clientas-section { padding: 60px 16px; }
 }
@@ -3606,8 +3657,50 @@ footer {
   .ubicacion-grid { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 768px) {
-  /* Header mobile */
+/* ≤ 900px: nav colapsa a hamburgesa (cubre tablets en portrait) */
+@media (max-width: 900px) {
+  section[id] {
+    scroll-margin-top: 68px;
+  }
+
+  .header-inner {
+    height: 64px;
+    padding-inline: 16px;
+    gap: 12px;
+  }
+
+  .logo {
+    min-width: 0;
+    gap: 10px;
+  }
+
+  .logo-img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .logo-name {
+    font-size: 1.2rem;
+  }
+
+  .logo-sub {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    margin-top: 3px;
+  }
+
+  .logo-text {
+    min-width: 0;
+  }
+
+  nav a::after {
+    display: none;
+  }
+
+  nav a.active {
+    background: rgba(255,255,255,0.08);
+  }
+
   #header {
     overflow: visible;
   }
@@ -3694,6 +3787,21 @@ footer {
     flex: 0 0 auto;
   }
 
+  .nav-mobile-wa-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.2;
+  }
+
+  .nav-mobile-wa-copy small {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    opacity: 0.85;
+    margin-top: 2px;
+  }
+
   .nav-overlay {
     display: block;
     position: fixed;
@@ -3711,6 +3819,9 @@ footer {
     visibility: visible;
     pointer-events: auto;
   }
+}
+
+@media (max-width: 768px) {
 
   /* CatÃ¡logo mobile */
   .catalogo-section { padding: 80px 16px 60px; }
