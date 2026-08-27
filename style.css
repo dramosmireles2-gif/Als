@@ -1053,7 +1053,7 @@ nav a.active::after {
 
   /* ── Hero texto: conectado a la imagen sin padding superior ── */
   .hero-left {
-    padding: 0 20px 24px;
+    padding: 14px 20px 28px;
   }
 
   .hero-eyebrow {
@@ -1061,10 +1061,10 @@ nav a.active::after {
   }
 
   .hero-deco {
-    width: 48px;
+    width: 40px;
     height: 3px;
     margin-top: 4px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .hero-pretitle {
@@ -1072,12 +1072,12 @@ nav a.active::after {
     letter-spacing: 0.3em;
   }
 
-  /* Headline oversized — declaración de marca */
+  /* Headline mobile */
   .hero-title {
-    font-size: clamp(2.9rem, 13vw, 3.8rem);
-    line-height: 0.93;
+    font-size: clamp(2.4rem, 10vw, 3.2rem);
+    line-height: 0.95;
     letter-spacing: -0.03em;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
   }
 
   .hero-title em {
@@ -1085,8 +1085,13 @@ nav a.active::after {
     margin-left: 0;
   }
 
-  /* Sin descripción — la imagen y el titular hablan solos */
-  .hero-description { display: none; }
+  .hero-description {
+    display: block;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
+    opacity: 0.75;
+  }
 
 
   /* ── CTAs: primario negro, WA ghost discreto ── */
