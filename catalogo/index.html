@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Catálogo de vestidos, zapatos, bolsas y accesorios en Als Dress Reynosa. Renta y venta para quinceañeras, bodas y eventos especiales.">
+  <title>Catálogo | Als Dress Reynosa</title>
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:site_name"   content="Als Dress">
+  <meta property="og:title"       content="Catálogo | Als Dress Reynosa">
+  <meta property="og:description" content="Explora nuestra colección de vestidos, zapatos, bolsas y accesorios para tu evento especial.">
+  <meta property="og:url"         content="https://alsdress.com.mx/catalogo">
+  <meta property="og:image"       content="https://alsdress.com.mx/hero2.jpeg">
+  <meta property="og:locale"      content="es_MX">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="../Icono.jpg">
+  <link rel="apple-touch-icon"       href="../Icono.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11262534800"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-11262534800');
+  </script>
+  <link rel="stylesheet" href="../style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../supabase.js"></script>
+</head>
+<body data-pagina="catalogo">
+
+  <!-- ===== HEADER ===== -->
+  <header id="header">
+    <div class="header-inner">
+      <div class="logo">
+        <a href="/">
+          <img src="../Icono.webp" alt="Als Dress" class="logo-img">
+        </a>
+        <div class="logo-text">
+          <a href="/"><span class="logo-name">Als Dress</span></a>
+          <span class="logo-sub">Reynosa · Renta &amp; Venta</span>
+        </div>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menú" aria-controls="mainNav" aria-expanded="false" type="button">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="mainNav">
+        <a href="/">Inicio</a>
+        <a href="/catalogo">Catálogo</a>
+        <a href="/beneficios">Beneficios</a>
+        <a href="/ubicacion">Ubicación</a>
+        <a href="/contacto">Contacto</a>
+        <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="nav-mobile-wa">
+          <img src="../wa.svg" alt="" class="nav-mobile-wa-icon">
+          Escríbenos por WhatsApp
+        </a>
+      </nav>
+      <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="header-wa-btn">
+        <img src="../wa.svg" alt="" class="header-wa-icon">
+        Escríbenos por WhatsApp
+      </a>
+    </div>
+  </header>
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <section class="catalogo-page-header">
+    <p class="section-eyebrow">Als Dress · Reynosa</p>
+    <h1>Catálogo</h1>
+    <p class="catalogo-page-desc">Vestidos, zapatos, bolsas y accesorios para tu momento especial.</p>
+  </section>
+
+  <!-- ===== CATÁLOGO ===== -->
+  <section id="catalogo" class="catalogo-page-section">
+    <div class="catalogo-layout">
+
+      <!-- SIDEBAR -->
+      <aside class="catalogo-sidebar" id="catalogoSidebar">
+        <div class="sidebar-header">
+          <span class="sidebar-header-title">Filtros</span>
+          <button class="sidebar-close-btn" id="sidebarClose" aria-label="Cerrar filtros" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Categoría</h3>
+          <div class="categorias-sidebar" id="categorias">
+            <button class="cat-btn active" data-categoria="Vestido" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3L5 8l3 2v11h8V10l3-2-4-5"/><line x1="9" y1="3" x2="15" y2="3"/></svg>
+              Vestidos
+            </button>
+            <button class="cat-btn" data-categoria="Zapato" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h5l2-4h6l3 4H3z"/><path d="M3 13v4h18v-4"/></svg>
+              Zapatos
+            </button>
+            <button class="cat-btn" data-categoria="Bolsa" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="13" rx="2"/><path d="M8 9V7a4 4 0 0 1 8 0v2"/></svg>
+              Bolsas
+            </button>
+            <button class="cat-btn" data-categoria="Accesorios" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              Accesorios
+            </button>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Disponibilidad</h3>
+          <div class="sidebar-filtros-disp">
+            <button class="filtro-btn active" data-filter="todos" type="button">Todos</button>
+            <button class="filtro-btn" data-filter="disponible" type="button">&#10003; Disponibles</button>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Talla</h3>
+          <div class="tallas-filtro" id="tallasFiltro"></div>
+        </div>
+      </aside>
+
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- MAIN -->
+      <main class="catalogo-main">
+        <div class="catalogo-toolbar">
+          <button class="toolbar-filtros-btn" id="sidebarToggle" type="button" aria-controls="catalogoSidebar" aria-expanded="false">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+            Filtros
+          </button>
+          <span class="catalogo-result-count" id="resultCount"></span>
+        </div>
+
+        <div id="productos-container" class="productos-grid productos-grid--small">
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+        </div>
+
+        <p id="mensaje-vacio" class="mensaje-vacio hidden">No se encontraron artículos con ese filtro.</p>
+      </main>
+
+    </div>
+  </section>
+
+  <section class="catalogo-visita-cta">
+    <div class="catalogo-visita-cta-inner">
+      <p class="cta-eyebrow">Als Dress · Reynosa, Tamaulipas</p>
+      <h2 class="cta-title">¿No encontraste lo que buscabas?</h2>
+      <p class="cta-body">Visítanos y descubre más opciones. Pruébate estilos, colores y tallas — tenemos piezas que no están en el catálogo.</p>
+      <div class="cta-actions">
+        <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="cta-btn-wa">
+          <img src="../wa.svg" alt="" class="cta-wa-icon">
+          Consultar disponibilidad
+        </a>
+        <a href="/ubicacion" class="cta-btn-location">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-4.35-6-10a6 6 0 1 1 12 0c0 5.65-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
+          Ver ubicación
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Als Dress</h3>
+        <p>Luce increíble en tu próximo evento sin gastar una fortuna.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://web.facebook.com/alsdress?locale=es_LA" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/als_dress" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/528991947566" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Als Dress · Reynosa, Tamaulipas · Todos los derechos reservados.</p>
+      <p class="footer-dev">Sitio desarrollado por <a href="https://ramosmkt.lat/" target="_blank" rel="noopener" class="footer-dev-link">RMKT web &amp; apps</a></p>
+    </div>
+  </footer>
+
+  <!-- ===== BOTONES FLOTANTES ===== -->
+  <div class="botones-flotantes">
+    <a href="https://wa.me/528991947566" class="btn-flotante whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <img src="../wa.svg" alt="" class="btn-flotante-wa-icon">
+    </a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+  <script src="../main.js"></script>
+</body>
+</html>
