@@ -264,7 +264,7 @@ Sitemap: https://alsdress.com.mx/sitemap.xml
 
 ### Avance
 - **Fases 0 a 4 terminadas** (2 de octubre de 2026): limpieza, Vite + deploy, tokens y componentes, header/menú/footer/barra inferior, e inicio nuevo. Todo en commits locales, **sin push**.
-- Pendiente de decisión: cargar Google Ads después de pintar la página (para subir la velocidad a 90+), junto con el banner de cookies en la fase 6.
+- **Aprobado por David:** en la fase 6, cargar Google Ads después de pintar la página (para subir la velocidad a 90+), junto con el banner de cookies y Consent Mode; verificar con Tag Assistant.
 - Pendiente de David: fotos por ocasión; aplicar `docs/sql/001-propuesta-ocasion.sql` cuando lo decida.
 
 
