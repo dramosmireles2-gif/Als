@@ -1,0 +1,112 @@
+/* =============================================
+   Tarjeta de producto + badges de estado
+   La tarjeta se adapta a su contenedor (container queries)
+   ============================================= */
+.tarjeta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  gap: clamp(1rem, .6rem + 1.5vw, 1.75rem);
+}
+
+.tarjeta {
+  container-type: inline-size;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.tarjeta__media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: var(--champagne);
+  overflow: hidden;
+}
+.tarjeta__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s var(--ease-out);
+}
+
+.tarjeta__badge {
+  position: absolute;
+  top: .75rem;
+  left: .75rem;
+  z-index: 2;
+}
+
+.tarjeta__fav {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  border: 0;
+  border-radius: 50%;
+  background: rgba(251,248,245,.92);
+  color: var(--orchid-700);
+  cursor: pointer;
+}
+.tarjeta__fav svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.tarjeta__fav[aria-pressed="true"] svg { fill: currentColor; }
+
+.tarjeta__cuerpo {
+  display: grid;
+  gap: .35rem;
+  padding: .9rem 1rem 1.1rem;
+}
+.tarjeta__nombre {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+}
+/* El enlace cubre toda la tarjeta; el corazón queda encima */
+.tarjeta__enlace { color: inherit; text-decoration: none; }
+.tarjeta__enlace::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.tarjeta__enlace:focus-visible { outline: none; }
+.tarjeta:has(.tarjeta__enlace:focus-visible) { outline: var(--focus-ring); outline-offset: 3px; }
+
+.tarjeta__tallas { font-size: .875rem; color: var(--muted); }
+.tarjeta__precio { font-size: .9375rem; font-weight: 700; color: var(--orchid-700); }
+
+@container (min-width: 280px) {
+  .tarjeta__cuerpo { padding: 1.1rem 1.25rem 1.3rem; }
+  .tarjeta__nombre { font-size: 1.1875rem; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta:hover .tarjeta__media img { transform: scale(1.04); }
+}
+
+/* ---- Badges ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .3rem .75rem;
+  border-radius: var(--pill);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+.badge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.badge--disponible { background: #fff;          color: var(--wa-700); }
+.badge--apartado   { background: var(--lavanda); color: var(--ink); }
+.badge--nuevo      { background: var(--malva);   color: var(--ink); }

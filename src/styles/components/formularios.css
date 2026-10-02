@@ -1,0 +1,108 @@
+/* =============================================
+   Formularios: campo, input, select, textarea, switch, checkbox
+   Letra de 16 px o más para que iOS no haga zoom.
+   ============================================= */
+.campo {
+  display: grid;
+  gap: .4rem;
+}
+.campo__label {
+  font-size: .9375rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.campo__ayuda {
+  font-size: .875rem;
+  color: var(--muted);
+}
+.campo__error {
+  display: flex;
+  gap: .4rem;
+  font-size: .875rem;
+  font-weight: 700;
+  color: var(--orchid-800);
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: .75rem 1rem;
+  border: 1.5px solid var(--lila); /* 3.4:1, el borde se distingue (WCAG 1.4.11) */
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.4;
+  transition: border-color .2s var(--ease-out);
+}
+.textarea { min-height: 120px; resize: vertical; }
+.input::placeholder,
+.textarea::placeholder { color: var(--muted); opacity: 1; }
+.input:focus,
+.select:focus,
+.textarea:focus { border-color: var(--orchid-700); }
+.input[aria-invalid="true"],
+.select[aria-invalid="true"],
+.textarea[aria-invalid="true"] {
+  border-color: var(--orchid-800);
+  border-width: 2px;
+}
+
+.select {
+  appearance: none;
+  padding-right: 2.75rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2716%27 height=%2716%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%236E3A87%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpolyline points=%276 9 12 15 18 9%27/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+
+/* Switch: <label class="switch-label"><input type="checkbox" role="switch" class="switch"> Texto</label> */
+.switch-label {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  min-height: var(--tap);
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+}
+.switch {
+  appearance: none;
+  position: relative;
+  flex-shrink: 0;
+  width: 52px;
+  height: 30px;
+  margin: 0;
+  border: 1.5px solid var(--muted);
+  border-radius: var(--pill);
+  background: var(--line);
+  cursor: pointer;
+  transition: background-color .25s var(--ease-out), border-color .25s var(--ease-out);
+}
+.switch::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(26,20,28,.3);
+  transition: transform .25s var(--ease-out);
+}
+.switch:checked { background: var(--orchid-700); border-color: var(--orchid-700); }
+.switch:checked::before { transform: translateX(22px); }
+
+/* Checkbox y radio nativos con el color de la marca */
+.check-label {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  min-height: var(--tap);
+  cursor: pointer;
+}
+.check-label input { width: 20px; height: 20px; accent-color: var(--orchid-700); }

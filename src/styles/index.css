@@ -1,0 +1,9 @@
+/* Punto de entrada de estilos. El orden importa:
+   tokens, estilos actuales del sitio, base del sistema y componentes nuevos */
+@import './tokens.css';
+@import './style.css';
+@import './base.css';
+@import './components/botones.css';
+@import './components/chips.css';
+@import './components/tarjeta.css';
+@import './components/formularios.css';

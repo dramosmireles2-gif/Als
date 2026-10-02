@@ -1,0 +1,66 @@
+/* =============================================
+   Botones: primario · secundario · WhatsApp · claro
+   ============================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  min-height: 52px;
+  padding: 0 1.75rem;
+  border: 2px solid transparent;
+  border-radius: var(--pill);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: .02em;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .25s var(--ease-out), color .25s var(--ease-out),
+              border-color .25s var(--ease-out), transform .25s var(--ease-out),
+              box-shadow .25s var(--ease-out);
+}
+.btn svg, .btn img { width: 20px; height: 20px; flex-shrink: 0; }
+.btn:active { transform: scale(.98); }
+.btn:disabled,
+.btn[aria-disabled="true"] { opacity: .5; cursor: not-allowed; transform: none; }
+
+.btn--primario {
+  background: var(--orchid-700);
+  color: #fff;
+}
+.btn--secundario {
+  background: transparent;
+  color: var(--orchid-700);
+  border-color: var(--orchid-700);
+}
+/* WhatsApp: el verde da 4.1:1 con blanco, por eso el texto es grande (19 px negrita) */
+.btn--wa {
+  background: var(--wa);
+  color: #fff;
+  font-size: 1.1875rem;
+}
+.btn--wa svg, .btn--wa img { width: 24px; height: 24px; }
+/* Para bloques oscuros (--noche) */
+.btn--claro {
+  background: var(--marfil);
+  color: var(--noche);
+}
+.btn--contorno-claro {
+  background: transparent;
+  color: var(--malva);
+  border-color: var(--malva);
+}
+
+.btn--bloque { display: flex; width: 100%; }
+.btn--compacto { min-height: var(--tap); padding: 0 1.25rem; font-size: .9375rem; }
+
+@media (hover: hover) and (pointer: fine) {
+  .btn--primario:hover       { background: var(--orchid-800); box-shadow: var(--shadow); }
+  .btn--secundario:hover     { background: var(--rubor); }
+  .btn--wa:hover             { background: var(--wa-700); }
+  .btn--claro:hover          { background: var(--rubor); }
+  .btn--contorno-claro:hover { background: rgba(227,172,218,.12); }
+}

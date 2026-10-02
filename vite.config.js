@@ -26,6 +26,7 @@ export default defineConfig({
         inicio:   resolve(root, 'index.html'),
         catalogo: resolve(root, 'catalogo/index.html'),
         404:      resolve(root, '404.html'),
+        estilos:  resolve(root, '_estilos/index.html'),
       },
     },
   },

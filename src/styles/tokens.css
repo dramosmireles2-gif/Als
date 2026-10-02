@@ -1,0 +1,48 @@
+/* =============================================
+   tokens.css: sistema visual Als Dress
+   Paleta del moodboard aprobado. El rosa frambuesa anterior quedó eliminado.
+   ============================================= */
+:root {
+  /* Color */
+  --ink:        #1A141C; /* textos, trazo del logo */
+  --orchid-700: #6E3A87; /* CTA principal, enlaces (AA sobre blanco y marfil) */
+  --orchid-800: #4E2862; /* hover del CTA */
+  --lila:       #A873BB; /* íconos, subrayados, detalles y anillo de foco. Solo texto grande */
+  --malva:      #E3ACDA; /* acentos sobre fondo oscuro, etiquetas */
+  --lavanda:    #B6A5E0; /* secundario */
+  --rubor:      #F3E6EE; /* fondos de sección */
+  --champagne:  #F2DDD1; /* fondos de foto */
+  --marfil:     #FBF8F5; /* fondo base */
+  --noche:      #2A1E30; /* bloques oscuros */
+  --muted:      #5B5160; /* texto secundario (AA) */
+  --line:       #E6DCE6; /* divisores decorativos */
+  --wa:         #1F8F55; /* SOLO botón WhatsApp. Con texto blanco da 4.1:1: usar texto grande */
+  --wa-700:     #187547; /* hover WhatsApp y texto verde sobre claro (5.7:1) */
+
+  /* Tipografía */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Lato', system-ui, sans-serif;
+  --font-script:  'Allura', cursive; /* 1 a 3 palabras máximo, nunca párrafos */
+
+  --fs-h1:   clamp(2.4rem, 1.6rem + 3.6vw, 4rem);
+  --fs-h2:   clamp(1.9rem, 1.4rem + 2vw, 2.6rem);
+  --fs-body: clamp(1rem, .95rem + .2vw, 1.125rem);
+
+  /* Forma */
+  --radius-sm: 12px;
+  --radius:    16px;
+  --radius-lg: 20px;
+  --pill:      999px;
+  --shadow:    0 8px 28px rgba(110,58,135,.08);
+  --shadow-lg: 0 20px 60px rgba(110,58,135,.12);
+
+  /* Movimiento */
+  --ease-out:  cubic-bezier(.22,1,.36,1);
+  --ease-soft: cubic-bezier(.25,.46,.45,.94);
+  --transition: .35s var(--ease-soft);
+
+  /* Espaciado y accesibilidad */
+  --space-section: clamp(4rem, 3rem + 5vw, 8rem);
+  --tap: 44px; /* área táctil mínima */
+  --focus-ring: 2px solid var(--lila);
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Sistema visual | Als Dress (interno)</title>
+{{> head-comun}}
+  <link rel="stylesheet" href="/src/styles/index.css">
+  <style>
+    /* Solo para maquetar esta página de referencia */
+    .ref { max-width: 1120px; margin: 0 auto; padding: 48px 16px 96px; color: var(--ink); }
+    .ref h1 { font-family: var(--font-display); font-size: var(--fs-h1); font-weight: 600; line-height: 1.1; }
+    .ref h2 { font-family: var(--font-display); font-size: var(--fs-h2); font-weight: 600; margin: 64px 0 8px; }
+    .ref h3.sub { font-size: .8125rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 28px 0 12px; }
+    .ref p.nota { color: var(--muted); max-width: 64ch; margin-bottom: 16px; }
+    .fila { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+    .bloque-oscuro { background: var(--noche); color: var(--marfil); padding: 28px; border-radius: var(--radius-lg); margin-top: 16px; }
+    .paleta { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 16px; list-style: none; padding: 0; }
+    .paleta li.color { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #fff; }
+    .paleta__muestra { height: 84px; }
+    .paleta__info { padding: 12px 14px 14px; font-size: .875rem; }
+    .paleta__info strong { display: block; font-size: 1rem; }
+    .paleta__ratios { list-style: none; padding: 0; margin-top: 6px; color: var(--muted); }
+    .formulario { display: grid; gap: 20px; max-width: 480px; }
+    .auditoria__bien { font-weight: 700; color: var(--wa-700); }
+    .auditoria__mal { font-weight: 700; color: var(--orchid-800); }
+    #auditoria { display: grid; gap: 6px; padding: 20px; border-radius: var(--radius); background: #fff; border: 1px solid var(--line); }
+  </style>
+</head>
+<body>
+  <main class="ref">
+    <p class="nota">Página interna (no indexada) para revisar el sistema visual antes de usarlo en el sitio.</p>
+    <h1>Sistema visual <span class="script" style="color: var(--orchid-700)">Als</span></h1>
+
+    <!-- ===== PALETA ===== -->
+    <h2>Paleta</h2>
+    <p class="nota">Contraste calculado en vivo. "Solo grande" significa que sirve para texto de 24 px (o 19 px en negrita), íconos y bordes, pero no para texto normal.</p>
+    <ul class="paleta" id="paleta"></ul>
+
+    <!-- ===== TIPOGRAFÍA ===== -->
+    <h2>Tipografía</h2>
+    <h3 class="sub">Playfair Display · títulos (400, 400 itálica, 600)</h3>
+    <p style="font-family:var(--font-display);font-size:var(--fs-h1);font-weight:600;line-height:1.1">El vestido que <em style="font-weight:400">buscabas.</em></p>
+    <p style="font-family:var(--font-display);font-size:var(--fs-h2);font-weight:600">Renta fácil, sin complicaciones</p>
+    <h3 class="sub">Lato · texto (400, 700)</h3>
+    <p style="font-size:var(--fs-body);max-width:60ch">Pruébatelo en tienda, te lo ajustamos y lo devuelves después de tu evento. <strong>Texto en negrita para resaltar.</strong></p>
+    <p style="font-size:var(--fs-body);color:var(--muted);max-width:60ch">Texto secundario en --muted para notas y descripciones.</p>
+    <h3 class="sub">Allura · acentos de 1 a 3 palabras</h3>
+    <p class="script" style="font-size:3rem;color:var(--orchid-700);line-height:1.2">Tu momento</p>
+
+    <!-- ===== BOTONES ===== -->
+    <h2>Botones</h2>
+    <p class="nota">52 px de alto (44 px el compacto). El de WhatsApp lleva letra de 19 px en negrita para cumplir AA con el verde de la marca.</p>
+    <div class="fila">
+      <a class="btn btn--primario" href="#">Ver colección</a>
+      <a class="btn btn--secundario" href="#">Agendar prueba</a>
+      <a class="btn btn--wa" href="#"><img src="/wa.svg" alt="">WhatsApp</a>
+      <button class="btn btn--primario btn--compacto" type="button">Compacto</button>
+      <button class="btn btn--primario" type="button" disabled>Deshabilitado</button>
+    </div>
+    <div class="bloque-oscuro">
+      <p style="margin-bottom:16px">Sobre fondo noche</p>
+      <div class="fila">
+        <a class="btn btn--claro" href="#">Ver colección</a>
+        <a class="btn btn--contorno-claro" href="#">Cómo rentar</a>
+        <a class="btn btn--wa" href="#"><img src="/wa.svg" alt="">WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- ===== CHIPS ===== -->
+    <h2>Chips de filtro</h2>
+    <h3 class="sub">Talla (una a la vez)</h3>
+    <div class="chip-grupo" data-unico role="group" aria-label="Talla">
+      <button class="chip" type="button" aria-pressed="false">XS</button>
+      <button class="chip" type="button" aria-pressed="true">S</button>
+      <button class="chip" type="button" aria-pressed="false">M</button>
+      <button class="chip" type="button" aria-pressed="false">L</button>
+      <button class="chip chip--agotada" type="button" aria-pressed="false" disabled>XL</button>
+    </div>
+    <h3 class="sub">Ocasión (varias)</h3>
+    <div class="chip-grupo" role="group" aria-label="Ocasión">
+      <button class="chip" type="button" aria-pressed="true">XV años</button>
+      <button class="chip" type="button" aria-pressed="false">Graduación</button>
+      <button class="chip" type="button" aria-pressed="false">Boda</button>
+      <button class="chip" type="button" aria-pressed="false">Gala</button>
+    </div>
+    <h3 class="sub">Color</h3>
+    <div class="chip-grupo" data-unico role="group" aria-label="Color">
+      <button class="swatch" type="button" aria-pressed="true" style="--swatch:#A873BB" title="Lila"><span class="sr-only">Lila</span></button>
+      <button class="swatch" type="button" aria-pressed="false" style="--swatch:#1A141C" title="Negro"><span class="sr-only">Negro</span></button>
+      <button class="swatch" type="button" aria-pressed="false" style="--swatch:#F2DDD1" title="Champagne"><span class="sr-only">Champagne</span></button>
+      <button class="swatch" type="button" aria-pressed="false" style="--swatch:#7A1F2B" title="Vino"><span class="sr-only">Vino</span></button>
+      <button class="swatch" type="button" aria-pressed="false" style="--swatch:#2F4A7A" title="Azul marino"><span class="sr-only">Azul marino</span></button>
+    </div>
+
+    <!-- ===== BADGES ===== -->
+    <h2>Badges de estado</h2>
+    <div class="fila" style="background:var(--champagne);padding:20px;border-radius:var(--radius)">
+      <span class="badge badge--disponible">Disponible</span>
+      <span class="badge badge--apartado">Apartado</span>
+      <span class="badge badge--nuevo">Nuevo</span>
+    </div>
+
+    <!-- ===== TARJETAS ===== -->
+    <h2>Tarjeta de producto</h2>
+    <p class="nota">Foto 3:4 con alto fijo (sin saltos de diseño). Toda la tarjeta es un enlace; el corazón es un botón aparte. Datos de ejemplo.</p>
+    <div class="tarjeta-grid">
+      <article class="tarjeta">
+        <div class="tarjeta__media">
+          <img src="/cat-vestidos.webp" alt="Vestido de ejemplo" width="600" height="800" loading="lazy">
+          <span class="badge badge--disponible tarjeta__badge">Disponible</span>
+          <button class="tarjeta__fav" type="button" aria-pressed="false" aria-label="Añadir a Mi lista"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.7A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+        </div>
+        <div class="tarjeta__cuerpo">
+          <h3 class="tarjeta__nombre"><a class="tarjeta__enlace" href="#">Vestido de ejemplo</a></h3>
+          <p class="tarjeta__tallas">Tallas: S · M · L</p>
+          <p class="tarjeta__precio">Renta desde [PRECIO]</p>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <div class="tarjeta__media">
+          <img src="/hero2.webp" alt="Vestido de ejemplo" width="600" height="800" loading="lazy">
+          <span class="badge badge--apartado tarjeta__badge">Apartado</span>
+          <button class="tarjeta__fav" type="button" aria-pressed="true" aria-label="Añadir a Mi lista"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.7A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+        </div>
+        <div class="tarjeta__cuerpo">
+          <h3 class="tarjeta__nombre"><a class="tarjeta__enlace" href="#">Otro vestido de ejemplo con nombre largo</a></h3>
+          <p class="tarjeta__tallas">Tallas: M</p>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <div class="tarjeta__media">
+          <img src="/cat-zapatos.webp" alt="Zapatos de ejemplo" width="600" height="800" loading="lazy">
+          <span class="badge badge--nuevo tarjeta__badge">Nuevo</span>
+          <button class="tarjeta__fav" type="button" aria-pressed="false" aria-label="Añadir a Mi lista"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.7A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+        </div>
+        <div class="tarjeta__cuerpo">
+          <h3 class="tarjeta__nombre"><a class="tarjeta__enlace" href="#">Zapatos de ejemplo</a></h3>
+          <p class="tarjeta__tallas">Tallas: 23 · 24 · 25</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- ===== FORMULARIOS ===== -->
+    <h2>Formularios</h2>
+    <form class="formulario" action="#">
+      <div class="campo">
+        <label class="campo__label" for="f-nombre">Tu nombre</label>
+        <input class="input" id="f-nombre" type="text" placeholder="Ej. Ana" autocomplete="given-name">
+      </div>
+      <div class="campo">
+        <label class="campo__label" for="f-fecha">Fecha de tu evento</label>
+        <input class="input" id="f-fecha" type="date" aria-describedby="f-fecha-ayuda">
+        <p class="campo__ayuda" id="f-fecha-ayuda">Opcional. Nos ayuda a revisar la disponibilidad.</p>
+      </div>
+      <div class="campo">
+        <label class="campo__label" for="f-ocasion">Ocasión</label>
+        <select class="select" id="f-ocasion">
+          <option>XV años</option><option>Graduación</option><option>Boda</option><option>Gala</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label class="campo__label" for="f-tel">WhatsApp</label>
+        <input class="input" id="f-tel" type="tel" inputmode="tel" aria-invalid="true" aria-describedby="f-tel-error" value="899 12">
+        <p class="campo__error" id="f-tel-error">Revisa el número: deben ser 10 dígitos.</p>
+      </div>
+      <div class="campo">
+        <label class="campo__label" for="f-msg">Mensaje</label>
+        <textarea class="textarea" id="f-msg" placeholder="Cuéntanos qué buscas"></textarea>
+      </div>
+      <label class="switch-label"><input class="switch" type="checkbox" role="switch" checked> Solo disponibles</label>
+      <label class="check-label"><input type="checkbox"> Acepto el aviso de privacidad</label>
+      <button class="btn btn--primario" type="button">Enviar</button>
+    </form>
+
+    <!-- ===== AUDITORÍA ===== -->
+    <h2>Contraste de esta página</h2>
+    <p class="nota">Se revisa cada texto contra su fondo real con la fórmula de WCAG 2.2: 4.5:1 para texto normal y 3:1 para texto grande.</p>
+    <div id="auditoria" aria-live="polite"><p>Revisando…</p></div>
+  </main>
+  <script type="module" src="/src/js/estilos.js"></script>
+</body>
+</html>

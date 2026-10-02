@@ -1,0 +1,58 @@
+/* =============================================
+   Chips de filtro (tallas, ocasión) y swatches de color
+   Usar <button type="button" aria-pressed="false">
+   ============================================= */
+.chip-grupo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  min-width: var(--tap);
+  min-height: var(--tap);
+  padding: 0 1.1rem;
+  border: 1px solid var(--lila); /* 3.4:1 sobre marfil */
+  border-radius: var(--pill);
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: .9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color .2s var(--ease-out), color .2s var(--ease-out), border-color .2s var(--ease-out);
+}
+.chip[aria-pressed="true"] {
+  background: var(--orchid-700);
+  border-color: var(--orchid-700);
+  color: #fff;
+}
+/* Talla sin existencia: se ve, pero tachada */
+.chip--agotada,
+.chip:disabled {
+  border-style: dashed;
+  color: var(--muted);
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+@media (hover: hover) and (pointer: fine) {
+  .chip:not([aria-pressed="true"]):not(:disabled):hover { background: var(--rubor); }
+}
+
+/* Swatch de color: el nombre va en .sr-only y en title */
+.swatch {
+  width: var(--tap);
+  height: var(--tap);
+  padding: 0;
+  border: 1px solid rgba(26,20,28,.18);
+  border-radius: 50%;
+  background: var(--swatch, var(--line));
+  cursor: pointer;
+}
+.swatch[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px var(--marfil), 0 0 0 4px var(--ink);
+}
