@@ -1,0 +1,54 @@
+/* =============================================
+   Barra inferior fija: solo en teléfono (< 768 px).
+   Reemplaza al botón flotante de WhatsApp.
+   ============================================= */
+.bottom-bar { display: none; }
+
+@media (max-width: 767px) {
+  .bottom-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 900;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+    background: rgba(251,248,245,.94);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -6px 24px rgba(26,20,28,.06);
+  }
+  body { padding-bottom: calc(70px + env(safe-area-inset-bottom)); }
+}
+
+.bottom-bar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 56px;
+  border-radius: 14px;
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.bottom-bar__item svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; }
+.bottom-bar__item img { width: 24px; height: 24px; }
+.bottom-bar__item[aria-current="page"] { color: var(--orchid-700); background: var(--rubor); }
+
+.bottom-bar__icono { position: relative; display: grid; }
+.bottom-bar__icono .contador-lista {
+  position: absolute;
+  top: -6px;
+  right: -12px;
+  min-width: 18px;
+  height: 18px;
+  font-size: .6875rem;
+}
+
+/* Letra chica sobre verde: verde oscuro (AA) */
+.bottom-bar__item--wa { background: var(--wa-700); color: #fff; }

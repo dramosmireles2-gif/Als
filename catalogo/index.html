@@ -23,6 +23,8 @@
 
 {{> header}}
 
+  <main id="contenido">
+
   <!-- ===== PAGE HEADER ===== -->
   <section class="catalogo-page-header">
     <p class="section-eyebrow">Als Dress · Reynosa</p>
@@ -82,7 +84,7 @@
       <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
       <!-- MAIN -->
-      <main class="catalogo-main">
+      <div class="catalogo-main">
         <div class="catalogo-toolbar">
           <button class="toolbar-filtros-btn" id="sidebarToggle" type="button" aria-controls="catalogoSidebar" aria-expanded="false">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
@@ -101,7 +103,7 @@
         </div>
 
         <p id="mensaje-vacio" class="mensaje-vacio hidden">No se encontraron artículos con ese filtro.</p>
-      </main>
+      </div>
 
     </div>
   </section>
@@ -116,13 +118,15 @@
           <img src="/wa.svg" alt="" class="cta-wa-icon">
           Consultar disponibilidad
         </a>
-        <a href="/ubicacion" class="cta-btn-location">
+        <a href="/#visitanos" class="cta-btn-location">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-4.35-6-10a6 6 0 1 1 12 0c0 5.65-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
           Ver ubicación
         </a>
       </div>
     </div>
   </section>
+
+  </main>
 
 {{> footer}}
 </body>

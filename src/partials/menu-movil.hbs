@@ -1,0 +1,40 @@
+  <!-- ===== MENÚ (teléfono y tablet) ===== -->
+  <div class="menu-movil" id="menuMovil" role="dialog" aria-modal="true" aria-label="Menú" hidden data-menu>
+    <div class="menu-movil__fondo" data-menu-cerrar></div>
+    <div class="menu-movil__panel">
+      <div class="menu-movil__top">
+        <span class="menu-movil__marca">Als Dress</span>
+        <button class="menu-movil__cerrar" type="button" data-menu-cerrar>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          <span class="sr-only">Cerrar menú</span>
+        </button>
+      </div>
+
+      <nav aria-label="Secciones">
+        <ul class="menu-movil__links">
+          <li><a href="/"{{#if esInicio}} aria-current="page"{{/if}}>Inicio</a></li>
+          <li><a href="/catalogo/"{{#if esCatalogo}} aria-current="page"{{/if}}>Catálogo</a></li>
+          <li><a href="/#faq">Cómo rentar</a></li>
+          <li><a href="/#opiniones">Opiniones</a></li>
+          <li><a href="/#visitanos">Visítanos</a></li>
+          <li><a href="/catalogo/#mi-lista">Mi lista <span class="contador-lista" data-lista-contador>0</span><span class="sr-only"> vestidos</span></a></li>
+        </ul>
+      </nav>
+
+      <a class="btn btn--wa btn--bloque" href="https://wa.me/528991947566" target="_blank" rel="noopener">
+        <img src="/wa.svg" alt="" width="24" height="24">Escríbenos por WhatsApp
+      </a>
+
+      <div class="menu-movil__info">
+        <h2 class="menu-movil__titulo">Horario</h2>
+{{> horario}}
+        <h2 class="menu-movil__titulo">Dirección</h2>
+        <p>[PENDIENTE: dirección completa]<br>Reynosa, Tamaulipas</p>
+        <a class="menu-movil__llegar" href="https://www.google.com/maps/dir/?api=1&amp;destination=26.056655677167793,-98.29061312382362" target="_blank" rel="noopener">Cómo llegar</a>
+        <p class="menu-movil__redes">
+          <a href="https://www.instagram.com/als_dress" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://web.facebook.com/alsdress?locale=es_LA" target="_blank" rel="noopener">Facebook</a>
+        </p>
+      </div>
+    </div>
+  </div>

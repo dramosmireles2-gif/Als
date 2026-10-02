@@ -1,0 +1,167 @@
+/* =============================================
+   Header: fijo arriba, marfil translúcido.
+   Se compacta al bajar (88 → 64 px) y en teléfono
+   se esconde al bajar rápido y vuelve al subir.
+   ============================================= */
+:root { --alto-header: 64px; }
+@media (min-width: 768px) { :root { --alto-header: 88px; } }
+html { scroll-padding-top: calc(var(--alto-header) + 12px); }
+
+.saltar-contenido {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 2000;
+  padding: .75rem 1.25rem;
+  border-radius: var(--pill);
+  background: var(--orchid-700);
+  color: #fff;
+  font-weight: 700;
+}
+.saltar-contenido:focus { top: 8px; }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(251,248,245,.88);
+  -webkit-backdrop-filter: saturate(1.4) blur(12px);
+  backdrop-filter: saturate(1.4) blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: transform .35s var(--ease-out), border-color .35s var(--ease-out), box-shadow .35s var(--ease-out);
+}
+.site-header--compacto {
+  border-bottom-color: var(--line);
+  box-shadow: 0 6px 24px rgba(26,20,28,.06);
+}
+.site-header--oculto { transform: translateY(-100%); }
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 1280px;
+  height: var(--alto-header);
+  margin: 0 auto;
+  padding: 0 16px;
+  transition: height .35s var(--ease-out);
+}
+.site-header--compacto .site-header__inner { height: 64px; }
+
+.site-header__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: var(--tap);
+  margin-right: auto;
+  color: var(--ink);
+}
+.site-header__logo img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transition: width .35s var(--ease-out), height .35s var(--ease-out);
+}
+.site-header__marca { display: grid; line-height: 1.1; }
+.site-header__nombre { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; }
+.site-header__sub {
+  margin-top: 4px;
+  font-size: .6875rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Navegación de escritorio */
+.site-nav { display: none; }
+.site-nav__lista { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.site-nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 14px;
+  font-weight: 700;
+  font-size: .9375rem;
+  color: var(--ink);
+}
+.site-nav__link::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 6px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--lila);
+  transform: scaleX(0);
+  transition: transform .3s var(--ease-out);
+}
+.site-nav__link[aria-current="page"] { color: var(--orchid-700); }
+.site-nav__link[aria-current="page"]::after { transform: scaleX(1); }
+
+.site-header__acciones { display: flex; align-items: center; gap: 8px; }
+
+.site-header__lista {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--tap);
+  padding: 0 12px;
+  border-radius: var(--pill);
+  font-weight: 700;
+  font-size: .9375rem;
+  color: var(--ink);
+}
+.site-header__lista svg,
+.site-header__menu svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+
+.contador-lista {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: var(--pill);
+  background: var(--orchid-700);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: .75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.site-header__wa { display: none; }
+/* Letra chica sobre verde: se usa el verde oscuro (AA) */
+.btn--wa.btn--compacto { background: var(--wa-700); font-size: .9375rem; }
+
+.site-header__menu {
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .site-header__inner { padding: 0 24px; }
+  .site-header__logo img { width: 52px; height: 52px; }
+  .site-header--compacto .site-header__logo img { width: 44px; height: 44px; }
+  .site-header__nombre { font-size: 1.4375rem; }
+  .site-header__lista,
+  .site-header__wa { display: inline-flex; }
+}
+@media (min-width: 1100px) {
+  .site-nav { display: block; }
+  .site-header__menu { display: none; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .site-nav__link:hover::after { transform: scaleX(1); }
+  .site-header__lista:hover,
+  .site-header__menu:hover { background: var(--rubor); }
+}

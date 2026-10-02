@@ -1,55 +1,41 @@
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
   <!-- ===== HEADER ===== -->
-  <header id="header">
-    <div class="header-inner">
-      <div class="logo">
-{{#if esCatalogo}}
-        <a href="/">
-          <img src="/Icono.webp" alt="Als Dress" class="logo-img">
-        </a>
-        <div class="logo-text">
-          <a href="/"><span class="logo-name">Als Dress</span></a>
-          <span class="logo-sub">Reynosa · Renta &amp; Venta</span>
-        </div>
-{{else}}
-        <img src="/Icono.webp" alt="Als Dress" class="logo-img">
-        <div class="logo-text">
-          <span class="logo-name">Als Dress</span>
-          <span class="logo-sub">Reynosa · Renta &amp; Venta</span>
-        </div>
-{{/if}}
-      </div>
-      <button class="menu-toggle" id="menuToggle" aria-label="Menú" aria-controls="mainNav" aria-expanded="false" type="button">
-        <span></span><span></span><span></span>
-      </button>
-      <nav id="mainNav">
-        <a href="/"{{#if esInicio}} class="active"{{/if}}>Inicio</a>
-        <a href="/catalogo">Catálogo</a>
-        <a href="/beneficios">Beneficios</a>
-        <a href="/ubicacion">Ubicación</a>
-        <a href="/contacto">Contacto</a>
-        <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="nav-mobile-wa">
-          <img src="/wa.svg" alt="" class="nav-mobile-wa-icon">
-{{#if esCatalogo}}
-          Escríbenos por WhatsApp
-{{else}}
-          <span class="nav-mobile-wa-copy">
-            <span>Escríbenos por WhatsApp</span>
-            <small>+52 899 194 7566</small>
-          </span>
-{{/if}}
-        </a>
-      </nav>
-      <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="header-wa-btn">
-        <img src="/wa.svg" alt="" class="header-wa-icon">
-{{#if esCatalogo}}
-        Escríbenos por WhatsApp
-{{else}}
-        <span class="header-wa-copy">
-          <span>Escríbenos por WhatsApp</span>
-          <small class="header-wa-num">+52 899 194 7566</small>
+  <header class="site-header" data-header>
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="/"{{#if esInicio}} aria-current="page"{{/if}}>
+        <img src="/Icono.webp" alt="" width="52" height="52">
+        <span class="site-header__marca">
+          <span class="site-header__nombre">Als Dress</span>
+          <span class="site-header__sub">Reynosa · Renta y venta</span>
         </span>
-{{/if}}
+        <span class="sr-only">, ir al inicio</span>
       </a>
+
+      <nav class="site-nav" aria-label="Principal">
+        <ul class="site-nav__lista">
+          <li><a class="site-nav__link" href="/catalogo/"{{#if esCatalogo}} aria-current="page"{{/if}}>Catálogo</a></li>
+          <li><a class="site-nav__link" href="/#faq">Cómo rentar</a></li>
+          <li><a class="site-nav__link" href="/#opiniones">Opiniones</a></li>
+          <li><a class="site-nav__link" href="/#visitanos">Visítanos</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-header__acciones">
+        <a class="site-header__lista" href="/catalogo/#mi-lista">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.7A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+          <span class="site-header__lista-texto">Mi lista</span>
+          <span class="contador-lista" data-lista-contador>0</span><span class="sr-only"> vestidos</span>
+        </a>
+        <a class="btn btn--wa btn--compacto site-header__wa" href="https://wa.me/528991947566" target="_blank" rel="noopener">
+          <img src="/wa.svg" alt="" width="20" height="20">WhatsApp
+        </a>
+        <button class="site-header__menu" type="button" aria-expanded="false" aria-controls="menuMovil" data-menu-abrir>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <span class="sr-only">Abrir menú</span>
+        </button>
+      </div>
     </div>
   </header>
-  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
+{{> menu-movil}}

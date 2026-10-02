@@ -3,6 +3,7 @@
 // =============================================
 import { animate, stagger } from 'motion';
 import { sb } from './supabase.js';
+import './nav.js';
 
 const Motion = { animate, stagger };
 
@@ -98,55 +99,8 @@ function obtenerUrlFoto(foto) {
     return `https://www.appsheet.com/template/gettablefileurl?appName=${encodeURIComponent(APP_NAME)}&tableName=${encodeURIComponent(TABLE_NAME)}&fileName=${encodeURIComponent(foto)}`;
 }
 
-// ============================================
-// 1. HEADER scroll + menú hamburguesa
-// ============================================
-const header     = document.getElementById('header');
-const menuToggle = document.getElementById('menuToggle');
-const mainNav    = document.getElementById('mainNav');
-const navOverlay = document.getElementById('navOverlay');
-
-function cerrarMenu() {
-    mainNav.classList.remove('open');
-    menuToggle.classList.remove('open');
-    menuToggle.setAttribute('aria-expanded', 'false');
-    navOverlay?.classList.remove('open');
-    unlockBodyScroll('main-menu');
-}
-
-function abrirMenu() {
-    mainNav.classList.add('open');
-    menuToggle.classList.add('open');
-    menuToggle.setAttribute('aria-expanded', 'true');
-    navOverlay?.classList.add('open');
-    lockBodyScroll('main-menu');
-}
-
-window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 20);
-}, { passive: true });
-
-menuToggle.addEventListener('click', () => {
-    const isOpen = mainNav.classList.contains('open');
-    if (isOpen) {
-        cerrarMenu();
-    } else {
-        abrirMenu();
-    }
-});
-
-mainNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        cerrarMenu();
-    });
-});
-
-navOverlay?.addEventListener('click', cerrarMenu);
-
+// Al agrandar la ventana se cierra el panel de filtros del catálogo
 window.addEventListener('resize', () => {
-    if (window.innerWidth > 900) {
-        cerrarMenu();
-    }
     if (window.innerWidth > 960) {
         cerrarSidebarCatalogo();
     }
@@ -801,9 +755,9 @@ const RUTAS_SECCIONES = {
     'categorias':  '/',
     'beneficios':  '/',
     'faq':         '/',
-    'testimonios': '/',
+    'opiniones':   '/',
     'contacto':    '/',
-    'ubicacion':   '/',
+    'visitanos':   '/',
 };
 
 // Intercepta clics en nav para hacer scroll suave en vez de navegar
@@ -813,11 +767,11 @@ function initNavLinks() {
         '/beneficios': 'beneficios',
         '/preguntas':  'faq',
         '/contacto':   'contacto',
-        '/visita':     'ubicacion',
-        '/ubicacion':  'ubicacion',
+        '/visita':     'visitanos',
+        '/ubicacion':  'visitanos',
     };
     const esCatalogo = document.body.dataset.pagina === 'catalogo';
-    document.querySelectorAll('#mainNav a[href^="/"], .hero-btn[href^="/"]').forEach(link => {
+    document.querySelectorAll('.hero-btn[href^="/"]').forEach(link => {
         link.addEventListener('click', e => {
             const path  = new URL(link.href, location.origin).pathname;
             const secId = SCROLL_IDS[path];
@@ -850,8 +804,8 @@ function restaurarRuta() {
         '/beneficios': 'beneficios',
         '/preguntas':  'faq',
         '/contacto':   'contacto',
-        '/visita':     'ubicacion',
-        '/ubicacion':  'ubicacion',
+        '/visita':     'visitanos',
+        '/ubicacion':  'visitanos',
     };
     const secId = SCROLL_IDS[rutaRaw];
     if (secId) {
@@ -930,11 +884,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (esCatalogo) {
         initNavLinks();
 
-        // Marcar nav link activo
-        document.querySelectorAll('#mainNav a').forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === '/catalogo');
-        });
-
         // Aplicar filtro de categoría desde URL (?cat=X)
         const catParam = new URLSearchParams(location.search).get('cat');
         if (catParam) {
@@ -952,16 +901,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         restaurarRuta();
         initNavLinks();
-
-        // Ocultar botones flotantes mientras el botón WA del hero es visible
-        const botonesFlotantes = document.querySelector('.botones-flotantes');
-        const heroWaBtn = document.querySelector('.hero-btn-wa');
-        if (botonesFlotantes && heroWaBtn) {
-            botonesFlotantes.classList.add('oculto');
-            new IntersectionObserver(([entry]) => {
-                botonesFlotantes.classList.toggle('oculto', entry.isIntersecting);
-            }, { threshold: 0 }).observe(heroWaBtn);
-        }
 
         // ── 1. HERO ENTRANCE — stagger por hijo ──────────────────────────────
         const heroLeft = document.querySelector('.hero-left');
@@ -993,23 +932,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const heroImgFallback = document.querySelector('.hero-image-wrapper img');
                 if (heroImgFallback) heroImgFallback.style.opacity = '1';
             }
-        }
-
-        // ── 2. WHATSAPP FLOAT — pulso de atención ────────────────────────────
-        const waFloat = document.querySelector('.btn-flotante.whatsapp');
-        if (waFloat && !shouldReduceMotion() && Motion) {
-            const ring = document.createElement('span');
-            ring.className = 'wa-pulse-ring';
-            ring.setAttribute('aria-hidden', 'true');
-            waFloat.appendChild(ring);
-
-            const pulse = () => {
-                Motion.animate(ring,
-                    { scale: [1, 1.85], opacity: [0.65, 0] },
-                    { duration: 1.1, ease: 'ease-out' }
-                ).then(() => { setTimeout(pulse, 3000); });
-            };
-            setTimeout(pulse, 3500); // primer pulso a los 3.5s
         }
 
         // ── 5. RATING COUNTER — cuenta 4.5 → 4.9 al entrar en viewport ──────
@@ -1100,7 +1022,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── 8. BUTTON PRESS FEEDBACK — scale 0.96 → 1 con overshoot ────────────
     if (!shouldReduceMotion() && Motion) {
         document.querySelectorAll(
-            '.hero-btn, .beneficios-btn-wa, .destacados-btn-ver, .btn-flotante, .hero-btn-wa'
+            '.hero-btn, .beneficios-btn-wa, .destacados-btn-ver, .hero-btn-wa'
         ).forEach(el => {
             el.addEventListener('pointerdown', () => {
                 Motion.animate(el, { scale: 0.96 }, { duration: 0.1, ease: 'ease-out' });

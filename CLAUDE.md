@@ -6,7 +6,7 @@ Sitio de **Als Boutique**, negocio familiar de renta y venta de vestidos de fies
 
 ## Reglas fijas
 - **El logo no se cambia** (ni colores, ni forma, ni recorte creativo).
-- Paleta del moodboard aprobado: tinta `#1A141C`, orquídea `#6E3A87` (CTA), lila `#A873BB`, malva `#E3ACDA`, lavanda `#B6A5E0`, rubor `#F3E6EE`, champagne `#F2DDD1`, marfil `#FBF8F5`, noche `#2A1E30`, WhatsApp `#1F8F55`. **No usar `#C0275A`.**
+- Paleta del moodboard aprobado: tinta `#1A141C`, orquídea `#6E3A87` (CTA), lila `#A873BB`, malva `#E3ACDA`, lavanda `#B6A5E0`, rubor `#F3E6EE`, champagne `#F2DDD1`, marfil `#FBF8F5`, noche `#2A1E30`, WhatsApp `#1F8F55` (con texto chico usar el verde oscuro `#187547` / `--wa-700`, porque `#1F8F55` con blanco no llega a AA). **No usar `#C0275A`.**
 - Tipografía: Playfair Display (títulos), Lato (texto), Allura (acentos de 1–3 palabras).
 - Tono: de **tú**, cálido y cercano. Nada de "estimada clienta".
 - **No romper la medición:** Google Ads `AW-11262534800` y la conversión al hacer clic en WhatsApp.
@@ -16,4 +16,4 @@ Sitio de **Als Boutique**, negocio familiar de renta y venta de vestidos de fies
 - **El catálogo se administra desde otro repo, `../AdminAls/sistema-als`** (mismo Supabase). La web solo lee: no renombrar ni borrar columnas, no cambiar valores de `estado_actual` y conservar `obtenerUrlFoto()` (fotos de AppSheet y de Supabase Storage). Ver la sección 11 del plan.
 - Mobile-first, accesible (AA, foco visible, áreas táctiles ≥ 44 px), respetar `prefers-reduced-motion`.
 - Se trabaja **directo en `main`, en local, sin crear ramas**. GitHub Pages publica desde `main`, así que **`git push` = publicar en vivo**: haz solo commits locales y **nunca hagas push sin el OK explícito de David**. Corre `git pull` al iniciar cada sesión.
-- Servidor local: `npx serve -p 5500 .` (actual) o `npm run dev` (después de la fase 1).
+- Servidor local: `npm run dev` (http://localhost:5173). Build: `npm run build` y `npm run preview`.
