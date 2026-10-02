@@ -1,0 +1,15 @@
+# Dependencias
+node_modules/
+
+# Archivos internos (no se publican): manuales, flyers, SQL, originales pesados
+_interno/
+
+# Build (fase 1)
+dist/
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+__pycache__/
+*.pyc
