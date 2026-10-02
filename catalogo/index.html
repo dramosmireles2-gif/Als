@@ -15,59 +15,13 @@
   <meta property="og:image"       content="https://alsdress.com.mx/hero2.jpeg">
   <meta property="og:locale"      content="es_MX">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="../Icono.jpg">
-  <link rel="apple-touch-icon"       href="../Icono.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11262534800"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-11262534800');
-  </script>
-  <link rel="stylesheet" href="../style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../supabase.js"></script>
+{{> head-comun}}
+{{> gtag}}
+  <link rel="stylesheet" href="/src/styles/style.css">
 </head>
 <body data-pagina="catalogo">
 
-  <!-- ===== HEADER ===== -->
-  <header id="header">
-    <div class="header-inner">
-      <div class="logo">
-        <a href="/">
-          <img src="../Icono.webp" alt="Als Dress" class="logo-img">
-        </a>
-        <div class="logo-text">
-          <a href="/"><span class="logo-name">Als Dress</span></a>
-          <span class="logo-sub">Reynosa · Renta &amp; Venta</span>
-        </div>
-      </div>
-      <button class="menu-toggle" id="menuToggle" aria-label="Menú" aria-controls="mainNav" aria-expanded="false" type="button">
-        <span></span><span></span><span></span>
-      </button>
-      <nav id="mainNav">
-        <a href="/">Inicio</a>
-        <a href="/catalogo">Catálogo</a>
-        <a href="/beneficios">Beneficios</a>
-        <a href="/ubicacion">Ubicación</a>
-        <a href="/contacto">Contacto</a>
-        <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="nav-mobile-wa">
-          <img src="../wa.svg" alt="" class="nav-mobile-wa-icon">
-          Escríbenos por WhatsApp
-        </a>
-      </nav>
-      <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="header-wa-btn">
-        <img src="../wa.svg" alt="" class="header-wa-icon">
-        Escríbenos por WhatsApp
-      </a>
-    </div>
-  </header>
-  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+{{> header}}
 
   <!-- ===== PAGE HEADER ===== -->
   <section class="catalogo-page-header">
@@ -159,7 +113,7 @@
       <p class="cta-body">Visítanos y descubre más opciones. Pruébate estilos, colores y tallas — tenemos piezas que no están en el catálogo.</p>
       <div class="cta-actions">
         <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="cta-btn-wa">
-          <img src="../wa.svg" alt="" class="cta-wa-icon">
+          <img src="/wa.svg" alt="" class="cta-wa-icon">
           Consultar disponibilidad
         </a>
         <a href="/ubicacion" class="cta-btn-location">
@@ -170,33 +124,6 @@
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <h3>Als Dress</h3>
-        <p>Luce increíble en tu próximo evento sin gastar una fortuna.</p>
-      </div>
-      <div class="footer-links">
-        <a href="https://web.facebook.com/alsdress?locale=es_LA" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://www.instagram.com/als_dress" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://wa.me/528991947566" target="_blank" rel="noopener">WhatsApp</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Als Dress · Reynosa, Tamaulipas · Todos los derechos reservados.</p>
-      <p class="footer-dev">Sitio desarrollado por <a href="https://ramosmkt.lat/" target="_blank" rel="noopener" class="footer-dev-link">RMKT web &amp; apps</a></p>
-    </div>
-  </footer>
-
-  <!-- ===== BOTONES FLOTANTES ===== -->
-  <div class="botones-flotantes">
-    <a href="https://wa.me/528991947566" class="btn-flotante whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
-      <img src="../wa.svg" alt="" class="btn-flotante-wa-icon">
-    </a>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
-  <script src="../main.js"></script>
+{{> footer}}
 </body>
 </html>

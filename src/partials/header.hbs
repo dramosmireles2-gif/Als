@@ -1,0 +1,55 @@
+  <!-- ===== HEADER ===== -->
+  <header id="header">
+    <div class="header-inner">
+      <div class="logo">
+{{#if esCatalogo}}
+        <a href="/">
+          <img src="/Icono.webp" alt="Als Dress" class="logo-img">
+        </a>
+        <div class="logo-text">
+          <a href="/"><span class="logo-name">Als Dress</span></a>
+          <span class="logo-sub">Reynosa · Renta &amp; Venta</span>
+        </div>
+{{else}}
+        <img src="/Icono.webp" alt="Als Dress" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-name">Als Dress</span>
+          <span class="logo-sub">Reynosa · Renta &amp; Venta</span>
+        </div>
+{{/if}}
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menú" aria-controls="mainNav" aria-expanded="false" type="button">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="mainNav">
+        <a href="/"{{#if esInicio}} class="active"{{/if}}>Inicio</a>
+        <a href="/catalogo">Catálogo</a>
+        <a href="/beneficios">Beneficios</a>
+        <a href="/ubicacion">Ubicación</a>
+        <a href="/contacto">Contacto</a>
+        <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="nav-mobile-wa">
+          <img src="/wa.svg" alt="" class="nav-mobile-wa-icon">
+{{#if esCatalogo}}
+          Escríbenos por WhatsApp
+{{else}}
+          <span class="nav-mobile-wa-copy">
+            <span>Escríbenos por WhatsApp</span>
+            <small>+52 899 194 7566</small>
+          </span>
+{{/if}}
+        </a>
+      </nav>
+      <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="header-wa-btn">
+        <img src="/wa.svg" alt="" class="header-wa-icon">
+{{#if esCatalogo}}
+        Escríbenos por WhatsApp
+{{else}}
+        <span class="header-wa-copy">
+          <span>Escríbenos por WhatsApp</span>
+          <small class="header-wa-num">+52 899 194 7566</small>
+        </span>
+{{/if}}
+      </a>
+    </div>
+  </header>
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>

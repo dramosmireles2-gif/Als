@@ -1,6 +1,10 @@
 // =============================================
 // main.js — Catálogo Als Dress · Supabase
 // =============================================
+import { animate, stagger } from 'motion';
+import { sb } from './supabase.js';
+
+const Motion = { animate, stagger };
 
 const WA_NUMBER  = '528991947566';
 const APP_NAME   = 'RentaVestidosAPP-250346467';
@@ -566,10 +570,10 @@ function renderizarCatalogo() {
 
     // ── 4. PRODUCT STAGGER — entrada escalonada ──────────────────────────────
     const cards = contenedor.querySelectorAll('.card-producto');
-    if (!shouldReduceMotion() && window.Motion) {
-        window.Motion.animate(cards,
+    if (!shouldReduceMotion() && Motion) {
+        Motion.animate(cards,
             { opacity: [0, 1], y: [20, 0] },
-            { duration: 0.42, delay: window.Motion.stagger(0.06), ease: [0.25, 0.46, 0.45, 0.94] }
+            { duration: 0.42, delay: Motion.stagger(0.06), ease: [0.25, 0.46, 0.45, 0.94] }
         );
     } else {
         cards.forEach(c => { c.style.opacity = '1'; });
@@ -967,8 +971,8 @@ document.addEventListener('DOMContentLoaded', () => {
             heroLeft.style.transform = 'none';
             heroLeft.classList.add('visible');
 
-            if (!shouldReduceMotion() && window.Motion) {
-                const { animate, stagger } = window.Motion;
+            if (!shouldReduceMotion() && Motion) {
+                const { animate, stagger } = Motion;
                 const heroKids = Array.from(heroLeft.children);
 
                 animate(heroKids,
@@ -993,14 +997,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // ── 2. WHATSAPP FLOAT — pulso de atención ────────────────────────────
         const waFloat = document.querySelector('.btn-flotante.whatsapp');
-        if (waFloat && !shouldReduceMotion() && window.Motion) {
+        if (waFloat && !shouldReduceMotion() && Motion) {
             const ring = document.createElement('span');
             ring.className = 'wa-pulse-ring';
             ring.setAttribute('aria-hidden', 'true');
             waFloat.appendChild(ring);
 
             const pulse = () => {
-                window.Motion.animate(ring,
+                Motion.animate(ring,
                     { scale: [1, 1.85], opacity: [0.65, 0] },
                     { duration: 1.1, ease: 'ease-out' }
                 ).then(() => { setTimeout(pulse, 3000); });
@@ -1028,29 +1032,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // ── 6. CAT-CARD SPRING HOVER — lift de 8px con overshoot ─────────────
-        if (window.matchMedia('(hover: hover)').matches && !shouldReduceMotion() && window.Motion) {
+        if (window.matchMedia('(hover: hover)').matches && !shouldReduceMotion() && Motion) {
             document.querySelectorAll('.cat-card').forEach(card => {
                 card.addEventListener('mouseenter', () => {
-                    window.Motion.animate(card, { y: -8 }, { duration: 0.4, ease: [0.34, 1.56, 0.64, 1] });
+                    Motion.animate(card, { y: -8 }, { duration: 0.4, ease: [0.34, 1.56, 0.64, 1] });
                 });
                 card.addEventListener('mouseleave', () => {
-                    window.Motion.animate(card, { y: 0 }, { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] });
+                    Motion.animate(card, { y: 0 }, { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] });
                 });
             });
         }
 
         // ── 7. BENEFICIOS STAGGER REVEAL — 4 cards en ola ───────────────────
         const beneficioGrid = document.querySelector('.beneficios-grid');
-        if (beneficioGrid && !shouldReduceMotion() && window.Motion) {
+        if (beneficioGrid && !shouldReduceMotion() && Motion) {
             const beneficioCards = beneficioGrid.querySelectorAll('.beneficio-card');
             new IntersectionObserver(([entry], obs) => {
                 if (!entry.isIntersecting) return;
                 obs.disconnect();
                 beneficioCards.forEach(c => c.classList.add('visible'));
-                window.Motion.animate(
+                Motion.animate(
                     beneficioCards,
                     { opacity: [0, 1], y: [24, 0] },
-                    { duration: 0.5, delay: window.Motion.stagger(0.1), ease: [0.25, 0.46, 0.45, 0.94] }
+                    { duration: 0.5, delay: Motion.stagger(0.1), ease: [0.25, 0.46, 0.45, 0.94] }
                 );
             }, { threshold: 0.15 }).observe(beneficioGrid);
         }
@@ -1094,16 +1098,16 @@ document.addEventListener('DOMContentLoaded', () => {
     cargarGaleriaClientas();
 
     // ── 8. BUTTON PRESS FEEDBACK — scale 0.96 → 1 con overshoot ────────────
-    if (!shouldReduceMotion() && window.Motion) {
+    if (!shouldReduceMotion() && Motion) {
         document.querySelectorAll(
             '.hero-btn, .beneficios-btn-wa, .destacados-btn-ver, .btn-flotante, .hero-btn-wa'
         ).forEach(el => {
             el.addEventListener('pointerdown', () => {
-                window.Motion.animate(el, { scale: 0.96 }, { duration: 0.1, ease: 'ease-out' });
+                Motion.animate(el, { scale: 0.96 }, { duration: 0.1, ease: 'ease-out' });
             });
             ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => {
                 el.addEventListener(ev, () => {
-                    window.Motion.animate(el, { scale: 1 }, { duration: 0.35, ease: [0.34, 1.56, 0.64, 1] });
+                    Motion.animate(el, { scale: 1 }, { duration: 0.35, ease: [0.34, 1.56, 0.64, 1] });
                 });
             });
         });
@@ -1114,7 +1118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             const item = btn.closest('.faq-item');
             const isOpen = item.classList.contains('open');
-            const useMotion = !shouldReduceMotion() && window.Motion;
+            const useMotion = !shouldReduceMotion() && Motion;
 
             // Cerrar todos los abiertos
             document.querySelectorAll('.faq-item.open').forEach(el => {
@@ -1122,7 +1126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.classList.remove('open');
                 el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
                 if (useMotion) {
-                    window.Motion.animate(ans,
+                    Motion.animate(ans,
                         { height: [ans.offsetHeight, 0] },
                         { duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }
                     );
@@ -1137,7 +1141,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const ans = item.querySelector('.faq-answer');
                 const fullH = ans.scrollHeight;
                 if (useMotion) {
-                    window.Motion.animate(ans,
+                    Motion.animate(ans,
                         { height: [0, fullH] },
                         { duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }
                     ).then(() => { ans.style.height = 'auto'; });
