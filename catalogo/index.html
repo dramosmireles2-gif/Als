@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Catálogo de vestidos, zapatos, bolsas y accesorios en Als Dress Reynosa. Renta y venta para quinceañeras, bodas y eventos especiales.">
-  <title>Catálogo | Als Dress Reynosa</title>
+  <meta name="description" content="Catálogo de vestidos de fiesta en renta en Reynosa: filtra por talla y color, guarda tus favoritos y pregúntanos por WhatsApp. XV años, graduaciones, bodas y galas.">
+  <title>Catálogo de vestidos en renta | Als Dress Reynosa</title>
+  <link rel="canonical" href="https://alsdress.com.mx/catalogo/">
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website">
   <meta property="og:site_name"   content="Als Dress">
-  <meta property="og:title"       content="Catálogo | Als Dress Reynosa">
-  <meta property="og:description" content="Explora nuestra colección de vestidos, zapatos, bolsas y accesorios para tu evento especial.">
-  <meta property="og:url"         content="https://alsdress.com.mx/catalogo">
+  <meta property="og:title"       content="Catálogo de vestidos en renta | Als Dress Reynosa">
+  <meta property="og:description" content="Filtra por talla y color, guarda tus favoritos y pregúntanos por WhatsApp.">
+  <meta property="og:url"         content="https://alsdress.com.mx/catalogo/">
   <meta property="og:image"       content="https://alsdress.com.mx/hero2.jpeg">
   <meta property="og:locale"      content="es_MX">
 
@@ -23,111 +24,104 @@
 
 {{> header}}
 
-  <main id="contenido">
+  <main id="contenido" class="catalogo">
+    <header class="catalogo__cabeza">
+      <nav class="migas" aria-label="Estás en">
+        <a href="/">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Catálogo</span>
+      </nav>
+      <p class="eyebrow">Renta y venta en Reynosa</p>
+      <h1 class="catalogo__titulo">Catálogo de vestidos</h1>
+      <p class="catalogo__intro">Filtra por tu talla y color, guarda tus favoritos con el <span aria-hidden="true">♡</span><span class="sr-only">corazón</span> y mándanos tu lista por WhatsApp.</p>
+    </header>
 
-  <!-- ===== PAGE HEADER ===== -->
-  <section class="catalogo-page-header">
-    <p class="section-eyebrow">Als Dress · Reynosa</p>
-    <h1>Catálogo</h1>
-    <p class="catalogo-page-desc">Vestidos, zapatos, bolsas y accesorios para tu momento especial.</p>
-  </section>
+    <div class="catalogo__cuerpo">
+      <div class="catalogo__barra">
+        <button class="btn btn--secundario btn--compacto catalogo__abrir-filtros" type="button" aria-controls="filtros" aria-expanded="false" data-filtros-abrir>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+          Filtros <span class="contador-lista" data-filtros-cuantos hidden>0</span>
+        </button>
+        <p class="catalogo__conteo" aria-live="polite" data-conteo>Cargando vestidos…</p>
+      </div>
 
-  <!-- ===== CATÁLOGO ===== -->
-  <section id="catalogo" class="catalogo-page-section">
-    <div class="catalogo-layout">
+      <ul class="catalogo__activos" aria-label="Filtros activos" data-activos></ul>
 
-      <!-- SIDEBAR -->
-      <aside class="catalogo-sidebar" id="catalogoSidebar">
-        <div class="sidebar-header">
-          <span class="sidebar-header-title">Filtros</span>
-          <button class="sidebar-close-btn" id="sidebarClose" aria-label="Cerrar filtros" type="button">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-        </div>
-
-        <div class="sidebar-section">
-          <h3 class="sidebar-title">Categoría</h3>
-          <div class="categorias-sidebar" id="categorias">
-            <button class="cat-btn active" data-categoria="Vestido" type="button">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3L5 8l3 2v11h8V10l3-2-4-5"/><line x1="9" y1="3" x2="15" y2="3"/></svg>
-              Vestidos
-            </button>
-            <button class="cat-btn" data-categoria="Zapato" type="button">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h5l2-4h6l3 4H3z"/><path d="M3 13v4h18v-4"/></svg>
-              Zapatos
-            </button>
-            <button class="cat-btn" data-categoria="Bolsa" type="button">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="13" rx="2"/><path d="M8 9V7a4 4 0 0 1 8 0v2"/></svg>
-              Bolsas
-            </button>
-            <button class="cat-btn" data-categoria="Accesorios" type="button">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-              Accesorios
+      <aside class="filtros" id="filtros" aria-labelledby="filtros-titulo" data-filtros>
+        <div class="filtros__fondo" data-filtros-cerrar></div>
+        <div class="filtros__caja" data-filtros-caja>
+          <div class="filtros__top">
+            <h2 class="filtros__titulo" id="filtros-titulo">Filtros</h2>
+            <button class="menu-movil__cerrar filtros__cerrar" type="button" data-filtros-cerrar>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+              <span class="sr-only">Cerrar filtros</span>
             </button>
           </div>
-        </div>
-
-        <div class="sidebar-section">
-          <h3 class="sidebar-title">Disponibilidad</h3>
-          <div class="sidebar-filtros-disp">
-            <button class="filtro-btn active" data-filter="todos" type="button">Todos</button>
-            <button class="filtro-btn" data-filter="disponible" type="button">&#10003; Disponibles</button>
+          <div class="filtros__grupos">
+            <label class="switch-label filtros__switch"><input class="switch" type="checkbox" role="switch" data-filtro-disponibles> Solo disponibles</label>
+            <fieldset class="filtros__grupo" data-grupo="talla" hidden>
+              <legend>Talla</legend>
+              <div class="chip-grupo" data-opciones="talla"></div>
+            </fieldset>
+            <fieldset class="filtros__grupo" data-grupo="color" hidden>
+              <legend>Color</legend>
+              <div class="chip-grupo" data-opciones="color"></div>
+            </fieldset>
+            <fieldset class="filtros__grupo" data-grupo="ocasion" hidden>
+              <legend>Ocasión</legend>
+              <div class="chip-grupo" data-opciones="ocasion"></div>
+            </fieldset>
+            <fieldset class="filtros__grupo" data-grupo="tipo" hidden>
+              <legend>Tipo</legend>
+              <div class="chip-grupo" data-opciones="tipo"></div>
+            </fieldset>
           </div>
-        </div>
-
-        <div class="sidebar-section">
-          <h3 class="sidebar-title">Talla</h3>
-          <div class="tallas-filtro" id="tallasFiltro"></div>
+          <div class="filtros__pie">
+            <button class="enlace filtros__limpiar" type="button" data-filtros-limpiar>Limpiar filtros</button>
+            <button class="btn btn--primario filtros__ver" type="button" data-filtros-ver>Ver resultados</button>
+          </div>
         </div>
       </aside>
 
-      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+      <div class="catalogo__resultados">
+        <ul class="tarjeta-grid" data-resultados aria-busy="true">
+          <li><div class="tarjeta tarjeta--cargando"><div class="tarjeta__media"></div><div class="tarjeta__cuerpo"><span class="esqueleto"></span><span class="esqueleto esqueleto--corto"></span></div></div></li>
+          <li><div class="tarjeta tarjeta--cargando"><div class="tarjeta__media"></div><div class="tarjeta__cuerpo"><span class="esqueleto"></span><span class="esqueleto esqueleto--corto"></span></div></div></li>
+          <li><div class="tarjeta tarjeta--cargando"><div class="tarjeta__media"></div><div class="tarjeta__cuerpo"><span class="esqueleto"></span><span class="esqueleto esqueleto--corto"></span></div></div></li>
+          <li><div class="tarjeta tarjeta--cargando"><div class="tarjeta__media"></div><div class="tarjeta__cuerpo"><span class="esqueleto"></span><span class="esqueleto esqueleto--corto"></span></div></div></li>
+        </ul>
 
-      <!-- MAIN -->
-      <div class="catalogo-main">
-        <div class="catalogo-toolbar">
-          <button class="toolbar-filtros-btn" id="sidebarToggle" type="button" aria-controls="catalogoSidebar" aria-expanded="false">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
-            Filtros
-          </button>
-          <span class="catalogo-result-count" id="resultCount"></span>
+        <div class="catalogo__vacio" data-vacio hidden>
+          <h2 class="catalogo__vacio-titulo">No encontramos vestidos con esos filtros</h2>
+          <p>A veces llegan nuevos. Escríbenos y te avisamos cuando haya en tu talla.</p>
+          <div class="catalogo__vacio-acciones">
+            <a class="btn btn--wa-numero" href="https://wa.me/528991947566" target="_blank" rel="noopener" data-avisame>
+              <img src="/wa.svg" alt="" width="28" height="28">Avísame cuando llegue
+            </a>
+            <button class="btn btn--secundario" type="button" data-filtros-limpiar>Limpiar filtros</button>
+          </div>
         </div>
 
-        <div id="productos-container" class="productos-grid productos-grid--small">
-          <div class="skeleton-card"></div>
-          <div class="skeleton-card"></div>
-          <div class="skeleton-card"></div>
-          <div class="skeleton-card"></div>
-          <div class="skeleton-card"></div>
-          <div class="skeleton-card"></div>
+        <p class="catalogo__error" data-error hidden>No pudimos cargar el catálogo. Revisa tu conexión e <button class="enlace" type="button" data-reintentar>intenta de nuevo</button>.</p>
+
+        <div class="catalogo__mas">
+          <button class="btn btn--secundario" type="button" data-cargar-mas hidden>Cargar más vestidos</button>
         </div>
-
-        <p id="mensaje-vacio" class="mensaje-vacio hidden">No se encontraron artículos con ese filtro.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="catalogo-visita-cta">
-    <div class="catalogo-visita-cta-inner">
-      <p class="cta-eyebrow">Als Dress · Reynosa, Tamaulipas</p>
-      <h2 class="cta-title">¿No encontraste lo que buscabas?</h2>
-      <p class="cta-body">Visítanos y descubre más opciones. Pruébate estilos, colores y tallas — tenemos piezas que no están en el catálogo.</p>
-      <div class="cta-actions">
-        <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="cta-btn-wa">
-          <img src="/wa.svg" alt="" class="cta-wa-icon">
-          Consultar disponibilidad
-        </a>
-        <a href="/#visitanos" class="cta-btn-location">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-4.35-6-10a6 6 0 1 1 12 0c0 5.65-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
-          Ver ubicación
-        </a>
       </div>
     </div>
-  </section>
 
+    <!-- ===== CIERRE ===== -->
+    <section class="cierre" aria-labelledby="cierre-cat-titulo">
+      <div class="cierre__inner">
+        <h2 class="cierre__titulo" id="cierre-cat-titulo">¿No encontraste lo que <em class="script">buscabas?</em></h2>
+        <p>En la tienda tenemos más opciones, zapatos, bolsas y accesorios. Ven a probártelos o escríbenos.</p>
+        <div class="cierre__acciones">
+          <a class="btn btn--wa" href="https://wa.me/528991947566" target="_blank" rel="noopener"><img src="/wa.svg" alt="" width="24" height="24">Escríbenos</a>
+          <a class="btn btn--contorno-claro" href="/#visitanos">Cómo llegar</a>
+        </div>
+      </div>
+    </section>
   </main>
 
 {{> footer}}
+  <script type="module" src="/src/js/catalogo.js"></script>
 </body>
 </html>

@@ -115,3 +115,4 @@
 .galeria-clientas .carrusel-pausa { display: flex; margin: 8px auto 0; }
 .galeria-clientas .carrusel-pausa[hidden] { display: none; }
 .visitanos .carrusel-pausa { grid-column: 1 / -1; justify-self: start; margin-top: -16px; }
+.cierre__acciones { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }

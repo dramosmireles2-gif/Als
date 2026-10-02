@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Vestido de fiesta en renta en Reynosa. Revisa tallas disponibles y pregúntanos por WhatsApp.">
+  <title>Vestido en renta | Als Dress Reynosa</title>
+  <link rel="canonical" href="https://alsdress.com.mx/catalogo/" data-canonical>
+
+  <!-- Open Graph (genérico: las páginas se arman en el navegador) -->
+  <meta property="og:type"        content="website">
+  <meta property="og:site_name"   content="Als Dress">
+  <meta property="og:title"       content="Vestidos de fiesta en renta | Als Dress Reynosa">
+  <meta property="og:description" content="Revisa tallas disponibles y pregúntanos por WhatsApp.">
+  <meta property="og:image"       content="https://alsdress.com.mx/hero2.jpeg">
+  <meta property="og:locale"      content="es_MX">
+
+{{> head-comun}}
+{{> gtag}}
+  <link rel="stylesheet" href="/src/styles/index.css">
+</head>
+<body data-pagina="vestido">
+
+{{> header}}
+
+  <main id="contenido" class="ficha">
+    <div class="ficha__inner">
+      <nav class="migas" aria-label="Estás en">
+        <a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/catalogo/">Catálogo</a><span aria-hidden="true">/</span><span aria-current="page" data-migas-nombre>Vestido</span>
+      </nav>
+
+      <div class="ficha__cargando" data-cargando aria-live="polite">
+        <div class="ficha__galeria"><div class="ficha__foto esqueleto"></div></div>
+        <div class="ficha__info"><span class="esqueleto"></span><span class="esqueleto esqueleto--corto"></span><span class="sr-only">Cargando vestido…</span></div>
+      </div>
+
+      <div class="ficha__no" data-no-encontrado hidden>
+        <h1 class="ficha__nombre">No encontramos este vestido</h1>
+        <p>Puede que ya no esté en el catálogo o que el link haya cambiado. Escríbenos y te ayudamos a encontrar uno parecido.</p>
+        <div class="ficha__acciones">
+          <a class="btn btn--primario" href="/catalogo/">Ver catálogo</a>
+          <a class="btn btn--wa-numero" href="https://wa.me/528991947566" target="_blank" rel="noopener"><img src="/wa.svg" alt="" width="28" height="28">Escríbenos</a>
+        </div>
+      </div>
+
+      <article class="ficha__contenido" data-ficha hidden>
+        <div class="ficha__galeria">
+          <div class="ficha__foto"><img data-foto-principal alt="" width="600" height="800" fetchpriority="high"></div>
+          <ul class="ficha__miniaturas" data-miniaturas hidden aria-label="Más fotos"></ul>
+        </div>
+
+        <div class="ficha__info">
+          <span class="badge" data-estado></span>
+          <h1 class="ficha__nombre" data-nombre></h1>
+          <p class="ficha__meta" data-meta></p>
+
+          <fieldset class="ficha__tallas">
+            <legend>Elige tu talla</legend>
+            <div class="chip-grupo" data-tallas></div>
+            <p class="campo__ayuda" data-tallas-ayuda hidden>Las tallas tachadas están apartadas por ahora.</p>
+          </fieldset>
+
+          <div class="campo">
+            <label class="campo__label" for="fechaEvento">Fecha de tu evento <span class="ficha__opcional">(opcional)</span></label>
+            <input class="input" type="date" id="fechaEvento" data-fecha aria-describedby="fechaAyuda">
+            <p class="campo__ayuda" id="fechaAyuda">Nos ayuda a revisar si está libre para ese día.</p>
+          </div>
+
+          <a class="btn btn--wa-numero btn--bloque" href="https://wa.me/528991947566" target="_blank" rel="noopener" data-preguntar>
+            <img src="/wa.svg" alt="" width="28" height="28">Preguntar por este vestido
+          </a>
+          <div class="ficha__acciones">
+            <button class="btn btn--secundario" type="button" aria-pressed="false" data-guardar>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.7A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+              <span data-guardar-texto>Añadir a Mi lista</span>
+            </button>
+            <button class="btn btn--secundario" type="button" data-compartir>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
+              Compartir
+            </button>
+          </div>
+          <a class="enlace" href="https://alsdress.setmore.com" target="_blank" rel="noopener" data-agendar>Agendar una prueba en tienda</a>
+
+          <ul class="ficha__datos">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Renta de 3 a 4 días</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg>Ajustes incluidos con tu renta (pídelos con 1 semana de anticipación)</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a2 2 0 0 0-1 3.7L3 13h18l-8-6.3A2 2 0 0 0 12 3zM3 13v1h18v-1"/></svg>Pruébatelo en tienda antes de decidir</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-3.8 7-9.5V6l-7-3-7 3v5.5C5 17.2 12 21 12 21z"/></svg>Se aparta con un depósito de la mitad del valor del vestido</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <section class="seccion seccion--rubor" data-relacionados hidden aria-labelledby="rel-titulo">
+      <div class="seccion__inner">
+        <header class="seccion__cabeza">
+          <p class="eyebrow">Otras opciones</p>
+          <h2 class="seccion__titulo" id="rel-titulo">También te puede gustar</h2>
+        </header>
+        <ul class="tarjeta-grid ficha__relacionados" data-relacionados-lista></ul>
+        <p class="seccion__pie"><a class="btn btn--primario" href="/catalogo/">Ver todo el catálogo</a></p>
+      </div>
+    </section>
+
+    <section class="cierre" aria-labelledby="cierre-ficha-titulo">
+      <div class="cierre__inner">
+        <h2 class="cierre__titulo" id="cierre-ficha-titulo">Complétalo con <em class="script">accesorios</em></h2>
+        <p>En tienda tenemos zapatos, bolsas y accesorios para combinar con tu vestido.</p>
+        <div class="cierre__acciones">
+          <a class="btn btn--wa" href="https://wa.me/528991947566?text=Hola%2C%20quiero%20ver%20zapatos%2C%20bolsas%20y%20accesorios%20para%20combinar%20con%20mi%20vestido." target="_blank" rel="noopener" data-complementos><img src="/wa.svg" alt="" width="24" height="24">Pregúntanos</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+{{> footer}}
+  <script type="module" src="/src/js/vestido.js"></script>
+</body>
+</html>

@@ -110,3 +110,20 @@
 .badge--disponible { background: #fff;          color: var(--wa-700); }
 .badge--apartado   { background: var(--lavanda); color: var(--ink); }
 .badge--nuevo      { background: var(--malva);   color: var(--ink); }
+
+/* Tallas dentro de la tarjeta (las apartadas se ven tachadas) */
+.tarjeta__tallas { display: flex; flex-wrap: wrap; gap: 4px; }
+.talla-mini {
+  display: inline-grid;
+  place-items: center;
+  min-width: 30px;
+  height: 24px;
+  padding: 0 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.talla-mini--apartada { color: var(--muted); text-decoration: line-through; border-style: dashed; }
+.tarjeta__media img { background: var(--champagne); }

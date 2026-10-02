@@ -3,60 +3,9 @@
 // Destacados en carrusel nativo y mapa que se carga al tocarlo.
 // =============================================
 import { autoCarrusel } from './carrusel.js';
-import { agruparPorModelo, obtenerUrlFoto, abrirLightbox, shouldReduceMotion, obtenerSb, cuandoSeAcerque } from './main.js';
-
-const ORDEN_TALLAS = ['XXS', '2XS', 'XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL'];
-const ordenarTallas = tallas => [...tallas].sort((a, b) => {
-    const ia = ORDEN_TALLAS.indexOf(a), ib = ORDEN_TALLAS.indexOf(b);
-    if (ia !== -1 && ib !== -1) return ia - ib;
-    if (ia !== -1) return -1;
-    if (ib !== -1) return 1;
-    return a.localeCompare(b);
-});
-
-// ---- Destacados ----
-function crearTarjeta(modelo) {
-    const urlFoto = obtenerUrlFoto(modelo.foto);
-    const li = document.createElement('li');
-    li.className = 'carrusel__item';
-
-    const tarjeta = document.createElement('article');
-    tarjeta.className = 'tarjeta';
-
-    const media = document.createElement('div');
-    media.className = 'tarjeta__media';
-    const img = document.createElement('img');
-    img.src = urlFoto;
-    img.alt = modelo.nombre;
-    img.width = 600;
-    img.height = 800;
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    img.addEventListener('error', () => { img.src = obtenerUrlFoto(null); }, { once: true });
-    const badge = document.createElement('span');
-    badge.className = `badge tarjeta__badge ${modelo.hayDisponible ? 'badge--disponible' : 'badge--apartado'}`;
-    badge.textContent = modelo.hayDisponible ? 'Disponible' : 'Apartado';
-    media.append(img, badge);
-
-    const cuerpo = document.createElement('div');
-    cuerpo.className = 'tarjeta__cuerpo';
-    const titulo = document.createElement('h3');
-    titulo.className = 'tarjeta__nombre';
-    const boton = document.createElement('button');
-    boton.type = 'button';
-    boton.className = 'tarjeta__enlace';
-    boton.textContent = modelo.nombre;
-    boton.addEventListener('click', () => abrirLightbox(modelo, urlFoto));
-    titulo.appendChild(boton);
-    const tallas = document.createElement('p');
-    tallas.className = 'tarjeta__tallas';
-    tallas.textContent = `Tallas: ${ordenarTallas(modelo.tallasDisponibles).join(' · ')}`;
-    cuerpo.append(titulo, tallas);
-
-    tarjeta.append(media, cuerpo);
-    li.appendChild(tarjeta);
-    return li;
-}
+import { shouldReduceMotion, cuandoSeAcerque } from './main.js';
+import { cargarModelos } from './datos.js';
+import { crearTarjeta } from './tarjeta.js';
 
 function iniciarFlechas(pista) {
     const prev = document.querySelector('[data-carrusel-prev]');
@@ -81,20 +30,14 @@ async function cargarDestacados() {
     const seccion = document.getElementById('destacados');
     if (!pista) return;
     try {
-        const sb = await obtenerSb();
-        const { data, error } = await sb
-            .from('inventario')
-            .select('*')
-            .eq('publicado', true)
-            .eq('destacado', true)
-            .order('nombre');
-        if (error) throw error;
-        const modelos = agruparPorModelo(data || []);
+        const modelos = (await cargarModelos()).filter(m => m.destacado);
         if (!modelos.length) {
             seccion.hidden = true;
             return;
         }
-        pista.replaceChildren(...modelos.map(crearTarjeta));
+        // Primero los que tienen tallas disponibles
+        modelos.sort((x, y) => Number(y.hayDisponible) - Number(x.hayDisponible));
+        pista.replaceChildren(...modelos.map(m => crearTarjeta(m)));
         pista.setAttribute('aria-busy', 'false');
         iniciarFlechas(pista);
     } catch (err) {

@@ -1,0 +1,105 @@
+/* =============================================
+   Mi lista: panel que se abre encima (derecha) y aviso flotante
+   ============================================= */
+.panel-lista { position: fixed; inset: 0; z-index: 1150; }
+.panel-lista[hidden] { display: none; }
+.panel-lista__fondo { position: absolute; inset: 0; background: rgba(26,20,28,.5); opacity: 0; transition: opacity .35s var(--ease-out); }
+.panel-lista__caja {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: min(100%, 440px);
+  height: 100dvh;
+  padding: 12px 16px calc(24px + env(safe-area-inset-bottom));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--marfil);
+  transform: translateX(100%);
+  transition: transform .4s var(--ease-out);
+}
+.panel-lista--abierto .panel-lista__fondo { opacity: 1; }
+.panel-lista--abierto .panel-lista__caja { transform: none; }
+.panel-lista__top { display: flex; align-items: center; justify-content: space-between; min-height: 52px; }
+.panel-lista__titulo { font-family: var(--font-display); font-size: 1.625rem; font-weight: 600; color: var(--ink); }
+.panel-lista__intro { color: var(--muted); }
+.panel-lista__items { display: grid; gap: 10px; list-style: none; margin: 0; padding: 0; }
+.panel-lista__item {
+  display: grid;
+  grid-template-columns: 64px 1fr var(--tap);
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+.panel-lista__item img { width: 64px; height: 85px; object-fit: cover; border-radius: 10px; }
+.panel-lista__texto { display: grid; gap: 2px; }
+.panel-lista__texto a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.panel-lista__texto span { font-size: .875rem; color: var(--muted); }
+.panel-lista__quitar {
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  border: 0;
+  border-radius: 50%;
+  background: var(--rubor);
+  color: var(--ink);
+  cursor: pointer;
+}
+.panel-lista__quitar svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.panel-lista__vacia { display: grid; gap: 16px; justify-items: start; padding: 16px 0; color: var(--ink); }
+.panel-lista__vacia[hidden], .panel-lista__acciones[hidden], .panel-lista__items[hidden] { display: none; }
+.panel-lista__acciones { display: grid; gap: 10px; margin-top: auto; padding-top: 8px; }
+
+/* Aviso flotante (toast) */
+.aviso {
+  position: fixed;
+  left: 50%;
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: min(92vw, 480px);
+  padding: 10px 10px 10px 18px;
+  border-radius: var(--radius);
+  background: var(--noche);
+  color: var(--marfil);
+  font-size: .9375rem;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 12px);
+  transition: opacity .3s var(--ease-out), transform .3s var(--ease-out);
+}
+.aviso:empty { display: none; }
+.aviso--visible { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
+.aviso__accion {
+  flex-shrink: 0;
+  min-height: var(--tap);
+  padding: 0 14px;
+  border: 1px solid var(--malva);
+  border-radius: var(--pill);
+  background: transparent;
+  color: var(--malva);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+@media (max-width: 767px) {
+  /* Encima de la barra inferior */
+  .aviso { bottom: calc(82px + env(safe-area-inset-bottom)); }
+}

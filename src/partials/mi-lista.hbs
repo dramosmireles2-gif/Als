@@ -1,0 +1,27 @@
+  <!-- ===== MI LISTA (panel) ===== -->
+  <div class="panel-lista" id="panelLista" role="dialog" aria-modal="true" aria-labelledby="panelListaTitulo" hidden data-lista-panel>
+    <div class="panel-lista__fondo" data-lista-cerrar></div>
+    <div class="panel-lista__caja">
+      <div class="panel-lista__top">
+        <h2 class="panel-lista__titulo" id="panelListaTitulo">Mi lista</h2>
+        <button class="menu-movil__cerrar" type="button" data-lista-cerrar>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          <span class="sr-only">Cerrar Mi lista</span>
+        </button>
+      </div>
+      <p class="panel-lista__intro">Guarda los vestidos que te gusten y mándanos tu lista por WhatsApp: te los tenemos listos para que te los pruebes.</p>
+      <ul class="panel-lista__items" data-lista-items></ul>
+      <div class="panel-lista__vacia" data-lista-vacia>
+        <p>Aún no tienes vestidos en tu lista. Toca el <span aria-hidden="true">♡</span><span class="sr-only">corazón</span> de los que te gusten.</p>
+        <a class="btn btn--primario" href="/catalogo/">Ver catálogo</a>
+      </div>
+      <div class="panel-lista__acciones" data-lista-acciones>
+        <a class="btn btn--wa-numero btn--bloque" href="https://wa.me/528991947566" target="_blank" rel="noopener" data-lista-enviar>
+          <img src="/wa.svg" alt="" width="28" height="28">Enviar mi lista por WhatsApp
+        </a>
+        <button class="btn btn--secundario btn--bloque" type="button" data-lista-compartir>Compartir mi lista</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="aviso" role="status" aria-live="polite" data-aviso></div>
