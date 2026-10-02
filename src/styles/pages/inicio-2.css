@@ -39,7 +39,7 @@
 .look__item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease-out); }
 .look__nombre { padding: 0 14px; font-family: var(--font-display); font-size: 1.1875rem; font-weight: 600; }
 .look__accion { padding: 0 14px; font-size: .875rem; font-weight: 700; color: var(--orchid-700); }
-@media (min-width: 768px) { .look { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; } }
+@media (min-width: 560px) { .look { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; } }
 @media (min-width: 1024px) { .look { gap: 20px; } }
 @media (hover: hover) and (pointer: fine) { .look__item:hover img { transform: scale(1.04); } }
 

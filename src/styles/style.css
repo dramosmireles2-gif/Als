@@ -53,16 +53,14 @@ a  { text-decoration: none; color: inherit; }
 
 .section-eyebrow {
   font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--orchid-700);
   margin-bottom: 10px;
 }
 
-.section-eyebrow::before { content: '— '; }
-.section-eyebrow::after  { content: ' —'; }
 
 /* ---- REVEAL ANIMATION ---- */
 .reveal {
@@ -170,9 +168,9 @@ a  { text-decoration: none; color: inherit; }
 .cta-eyebrow {
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--orchid-700);
+  color: var(--malva);
   margin-bottom: 16px;
 }
 
@@ -211,10 +209,9 @@ a  { text-decoration: none; color: inherit; }
   border-radius: 999px;
   background: var(--wa-700);
   color: white;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
   text-decoration: none;
   box-shadow: 0 12px 28px rgba(31,143,85,0.32);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -758,27 +755,20 @@ a  { text-decoration: none; color: inherit; }
   height: 6px;
   border-radius: 50%;
   flex-shrink: 0;
+  background: currentColor;
 }
 
 .badge-disponible {
-  background: rgba(255,255,255,0.92);
-  color: var(--orchid-700);
-  border: 1px solid rgba(110,58,135,0.18);
+  background: #fff;
+  color: var(--wa-700);
 }
 
-.badge-disponible .badge-dot {
-  background: var(--orchid-700);
-  box-shadow: 0 0 0 2px rgba(110,58,135,0.2);
-}
 
 .badge-agotado {
-  background: rgba(26,20,28,0.82);
-  color: #fff;
+  background: var(--lavanda);
+  color: var(--ink);
 }
 
-.badge-agotado .badge-dot {
-  background: rgba(255,255,255,0.4);
-}
 
 /* Info */
 .card-info {
@@ -852,10 +842,9 @@ a  { text-decoration: none; color: inherit; }
   height: 48px;
   border: none;
   border-radius: 999px;
-  font-size: 0.74rem;
+  font-size: 0.875rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
   cursor: pointer;
   transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
   margin-top: auto;
@@ -866,12 +855,13 @@ a  { text-decoration: none; color: inherit; }
 }
 
 .btn-disponible {
-  background: var(--ink);
+  background: var(--wa-700);
   color: white;
 }
 
 .btn-disponible:hover {
-  background: var(--ink);
+  background: var(--wa-700);
+  filter: brightness(.92);
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(78,40,98,0.2);
 }
@@ -1002,9 +992,9 @@ a  { text-decoration: none; color: inherit; }
   background: var(--marfil);
   border: none;
   color: var(--ink);
-  font-size: 0.9rem;
-  width: 34px;
-  height: 34px;
+  font-size: 1rem;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -1388,3 +1378,10 @@ a  { text-decoration: none; color: inherit; }
     transform: none;
   }
 }
+
+/* ---- Áreas táctiles mínimas de 44 px en los filtros del catálogo ---- */
+.cat-btn,
+.filtro-btn { min-height: var(--tap); }
+.tallas-filtro .filtro-btn { min-width: var(--tap); }
+.sidebar-close-btn { width: var(--tap); height: var(--tap); }
+.toolbar-filtros-btn { min-height: var(--tap); }

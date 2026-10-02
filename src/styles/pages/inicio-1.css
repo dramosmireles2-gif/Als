@@ -72,7 +72,7 @@
     grid-template-columns: 1.05fr .95fr;
     align-items: center;
     gap: 48px;
-    max-width: 1280px;
+    max-width: 1264px;
     margin: 0 auto;
     padding: 32px 32px 40px;
     background: none;
@@ -152,8 +152,6 @@
 }
 .carrusel__item { scroll-snap-align: start; }
 .carrusel__item .tarjeta { height: 100%; }
-.carrusel__flechas { display: none; gap: 8px; }
-.carrusel__flechas[hidden] { display: none !important; }
 .carrusel__flecha {
   display: grid;
   place-items: center;
@@ -167,9 +165,10 @@
 }
 .carrusel__flecha svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .carrusel__flecha:disabled { opacity: .4; cursor: default; }
+.carrusel__flecha[hidden] { display: none; }
+@media (max-width: 767px) { .carrusel__flecha { display: none; } }
 @media (min-width: 768px) {
   .carrusel { grid-auto-columns: calc((100% - 32px) / 3); gap: 16px; margin: 0; padding: 4px 0 12px; scroll-padding-inline: 0; }
-  .carrusel__flechas { display: flex; }
 }
 @media (min-width: 1100px) {
   .carrusel { grid-auto-columns: calc((100% - 60px) / 4); gap: 20px; }

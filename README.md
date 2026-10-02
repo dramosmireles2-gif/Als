@@ -1,26 +1,40 @@
-# Als Dress — Catálogo Público
+# Als Dress: alsdress.com.mx
 
-Página web del catálogo de vestidos para renta y venta de **Als Dress**, Reynosa.
+Sitio de Als Boutique (renta y venta de vestidos de fiesta en Reynosa). Vite multi-page + Supabase, publicado en GitHub Pages con GitHub Actions.
 
-## Archivos del proyecto
+## Comandos
 
-```
-alsdress-catalogo/
-├── index.html       ← Página principal
-├── style.css        ← Estilos
-├── main.js          ← Lógica (catálogo, filtros, galería)
-├── hero2.jpg        ← Foto de portada (agregar tú)
-├── Icono.jpg        ← Ícono del sitio (agregar tú)
-├── interior1.jpeg   ← Fotos del local (agregar tú)
-├── interior2.jpeg
-└── interior3.jpeg
+```bash
+npm install       # instala dependencias (versiones fijas)
+npm run dev       # servidor local en http://localhost:5173
+npm run build     # genera dist/
+npm run preview   # sirve dist/ en http://localhost:4173
+npm run imagenes  # regenera las fotos responsivas de public/img/
 ```
 
-## ⚠️ Imágenes que debes agregar manualmente
+## Estructura
 
-Las fotos del local y la imagen de portada **no están incluidas** en este repositorio.
-Agrega los siguientes archivos en la misma carpeta:
+```
+index.html              Inicio (10 secciones)
+catalogo/index.html     Catálogo
+_estilos/index.html     Sistema visual (interno, no indexado)
+404.html                Redirige rutas viejas (/beneficios…) a /?p=…
+public/                 Se copia tal cual a dist/ (CNAME, íconos, fotos)
+public/img/             Fotos en AVIF/WebP en varios tamaños (npm run imagenes)
+src/partials/           Bloques compartidos: head-comun, gtag, header, menú, footer, barra inferior, horario
+src/styles/             tokens.css → style.css (heredado) → base.css → components/ → pages/
+src/js/main.js          Común: medición de WhatsApp, catálogo, lightbox, galería
+src/js/inicio.js        Inicio: destacados y mapa
+src/js/nav.js           Header, menú y contador de Mi lista
+src/js/carrusel.js      Carruseles que avanzan solos (con botón Pausar)
+src/js/contraste.js     Revisión de contraste WCAG (se usa en /_estilos)
+docs/sql/               Propuestas de cambios a Supabase (no ejecutadas)
+scripts/imagenes.mjs    Genera las fotos responsivas con sharp
+.github/workflows/      Publicación automática a GitHub Pages
+```
 
-- `hero2.jpg` — Foto de fondo del hero (portada)
-- `Icono.jpg` — Ícono del sitio
-- `interior1.jpeg`, `interior2.jpeg`, `interior3.jpeg` — Fotos del local
+## Publicación
+
+Cada push a `main` ejecuta `.github/workflows/deploy.yml`, que construye `dist/` y lo publica. Requiere **Settings → Pages → Source: GitHub Actions** (el primer push se hace junto con ese cambio).
+
+El rediseño se sigue en `PLAN-REDISENO.md`; las reglas del proyecto están en `CLAUDE.md`.

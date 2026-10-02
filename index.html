@@ -132,22 +132,20 @@
     <!-- ===== 4. DESTACADOS ===== -->
     <section class="seccion seccion--rubor" id="destacados" aria-labelledby="destacados-titulo">
       <div class="seccion__inner">
-        <header class="seccion__cabeza seccion__cabeza--fila">
-          <div>
-            <p class="eyebrow">Selección de temporada</p>
-            <h2 class="seccion__titulo" id="destacados-titulo">Piezas destacadas</h2>
-          </div>
-          <div class="carrusel__flechas">
-            <button class="carrusel__flecha" type="button" data-carrusel-prev aria-controls="destacadosPista"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="sr-only">Anteriores</span></button>
-            <button class="carrusel__flecha" type="button" data-carrusel-next aria-controls="destacadosPista"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg><span class="sr-only">Siguientes</span></button>
-          </div>
+        <header class="seccion__cabeza">
+          <p class="eyebrow">Selección de temporada</p>
+          <h2 class="seccion__titulo" id="destacados-titulo">Piezas destacadas</h2>
         </header>
         <ul class="carrusel" id="destacadosPista" tabindex="0" aria-label="Piezas destacadas, desliza para ver más" aria-busy="true">
           <li class="carrusel__item"><div class="tarjeta tarjeta--cargando"><div class="tarjeta__media"></div><div class="tarjeta__cuerpo"><span class="esqueleto"></span><span class="esqueleto esqueleto--corto"></span></div></div></li>
           <li class="carrusel__item"><div class="tarjeta tarjeta--cargando"><div class="tarjeta__media"></div><div class="tarjeta__cuerpo"><span class="esqueleto"></span><span class="esqueleto esqueleto--corto"></span></div></div></li>
           <li class="carrusel__item"><div class="tarjeta tarjeta--cargando"><div class="tarjeta__media"></div><div class="tarjeta__cuerpo"><span class="esqueleto"></span><span class="esqueleto esqueleto--corto"></span></div></div></li>
         </ul>
-        <p class="seccion__pie"><a class="btn btn--primario" href="/catalogo/">Ver catálogo completo</a></p>
+        <div class="seccion__pie">
+          <button class="carrusel__flecha" type="button" data-carrusel-prev aria-controls="destacadosPista"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="sr-only">Anteriores</span></button>
+          <a class="btn btn--primario" href="/catalogo/">Ver catálogo completo</a>
+          <button class="carrusel__flecha" type="button" data-carrusel-next aria-controls="destacadosPista"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg><span class="sr-only">Siguientes</span></button>
+        </div>
       </div>
     </section>
 

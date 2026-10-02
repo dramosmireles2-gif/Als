@@ -67,7 +67,7 @@ function iniciarFlechas(pista) {
         const max = pista.scrollWidth - pista.clientWidth - 2;
         prev.disabled = pista.scrollLeft <= 2;
         next.disabled = pista.scrollLeft >= max;
-        prev.parentElement.hidden = max <= 0;
+        prev.hidden = next.hidden = max <= 0;
     };
     prev.addEventListener('click', () => pista.scrollBy({ left: -pista.clientWidth * 0.9, behavior: comportamiento() }));
     next.addEventListener('click', () => pista.scrollBy({ left: pista.clientWidth * 0.9, behavior: comportamiento() }));

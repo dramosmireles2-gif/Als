@@ -262,6 +262,12 @@ Sitemap: https://alsdress.com.mx/sitemap.xml
 
 ## 10. Fases de trabajo para Claude Code
 
+### Avance
+- **Fases 0 a 4 terminadas** (2 de octubre de 2026): limpieza, Vite + deploy, tokens y componentes, header/menú/footer/barra inferior, e inicio nuevo. Todo en commits locales, **sin push**.
+- Pendiente de decisión: cargar Google Ads después de pintar la página (para subir la velocidad a 90+), junto con el banner de cookies en la fase 6.
+- Pendiente de David: fotos por ocasión; aplicar `docs/sql/001-propuesta-ocasion.sql` cuando lo decida.
+
+
 **Se trabaja directo en `main`, en local (Claude Code en la PC de David). No crear ramas.**
 - Ojo: GitHub Pages publica desde `main`, así que **cada `git push` publica el sitio en vivo**. Haz commits locales pequeños con mensajes claros, revisa en el servidor local (`npx serve -p 5500 .`, o `npm run dev` / `npm run preview` desde la fase 1) y **nunca hagas `git push` sin el OK explícito de David**.
 - Antes de empezar cada sesión, corre `git pull` para traer cualquier cambio hecho desde otro lado.

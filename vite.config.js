@@ -30,6 +30,7 @@ export default defineConfig({
       },
     },
   },
-  server:  { port: 5173 },
+  // No vigilar las carpetas de build: en Windows el vigilante las deja bloqueadas
+  server:  { port: 5173, watch: { ignored: ['**/dist/**', '**/dist-local/**', '**/_interno/**'] } },
   preview: { port: 4173 },
 });
