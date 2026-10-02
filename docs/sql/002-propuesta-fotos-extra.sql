@@ -1,5 +1,5 @@
 -- =============================================================
--- PROPUESTA 002: columnas foto2 y foto3 (NO EJECUTADA)
+-- PROPUESTA 002: columnas foto2 y foto3 (APLICADA el 3 oct 2026 con el OK de David)
 --
 -- El panel admin (admin.js, modal de edición) YA intenta guardar
 -- fotos extra en las columnas foto2 y foto3, pero esas columnas no

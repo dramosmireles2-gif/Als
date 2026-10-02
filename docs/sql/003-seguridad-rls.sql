@@ -1,5 +1,5 @@
 -- =============================================================
--- PROPUESTA 003: proteger inventario y galería (NO EJECUTADA)
+-- PROPUESTA 003: proteger inventario y galería (APLICADA el 3 oct 2026 con el OK de David)
 --
 -- Problema encontrado (3 oct 2026, solo lectura):
 --   * inventario: RLS DESACTIVADO. Con la llave pública que está en el

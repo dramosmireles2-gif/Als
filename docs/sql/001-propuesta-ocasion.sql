@@ -1,5 +1,5 @@
 -- =============================================================
--- PROPUESTA 001: ocasión de cada vestido (NO EJECUTADA)
+-- PROPUESTA 001: ocasión de cada vestido (APLICADA el 3 oct 2026 con el OK de David)
 -- Para: filtro por ocasión en el inicio y en el catálogo.
 --
 -- Cómo aplicarla (cuando David lo decida):
