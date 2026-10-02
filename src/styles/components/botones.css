@@ -64,3 +64,24 @@
   .btn--claro:hover          { background: var(--rubor); }
   .btn--contorno-claro:hover { background: rgba(227,172,218,.12); }
 }
+
+/* WhatsApp con número visible (hero). Lleva texto chico: verde oscuro (AA) */
+.btn--wa-numero {
+  gap: 12px;
+  min-height: 60px;
+  padding: 8px 28px 8px 20px;
+  background: var(--wa-700);
+  color: #fff;
+  text-align: left;
+}
+.btn--wa-numero img { width: 28px; height: 28px; }
+.btn--wa-numero__texto { display: grid; line-height: 1.25; }
+.btn--wa-numero__num { font-size: 1.1875rem; letter-spacing: .04em; }
+@media (hover: hover) and (pointer: fine) {
+  .btn--wa-numero:hover { filter: brightness(.9); box-shadow: 0 8px 24px rgba(24,117,71,.28); }
+}
+
+/* El ícono wa.svg es negro: en los botones verdes se pinta blanco */
+.btn--wa img,
+.btn--wa-numero img,
+.bottom-bar__item--wa img { filter: brightness(0) invert(1); }

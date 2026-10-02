@@ -1,0 +1,88 @@
+/* =============================================
+   Inicio (2/3): pasos, arma tu look y opiniones
+   ============================================= */
+
+/* ---- 5. Cómo rentar ---- */
+.pasos { display: grid; gap: 16px; list-style: none; margin: 0; padding: 0; }
+.paso { display: grid; gap: 10px; align-content: start; padding: 28px 24px; border-radius: var(--radius-lg); background: #fff; box-shadow: var(--shadow); }
+.paso__num {
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  border-radius: 50%;
+  background: var(--orchid-700);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.paso__titulo { font-family: var(--font-display); font-size: 1.375rem; font-weight: 600; color: var(--ink); }
+.paso p { color: var(--muted); }
+@media (min-width: 768px) { .pasos { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+
+/* ---- 6. Arma tu look ---- */
+.look { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; list-style: none; margin: 0; padding: 0; }
+.look__item {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  height: 100%;
+  padding-bottom: 14px;
+  border-radius: var(--radius-lg);
+  background: #fff;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  color: var(--ink);
+}
+.look__item picture { display: block; aspect-ratio: 3 / 4; overflow: hidden; margin-bottom: 10px; background: var(--rubor); }
+.look__item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease-out); }
+.look__nombre { padding: 0 14px; font-family: var(--font-display); font-size: 1.1875rem; font-weight: 600; }
+.look__accion { padding: 0 14px; font-size: .875rem; font-weight: 700; color: var(--orchid-700); }
+@media (min-width: 768px) { .look { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; } }
+@media (min-width: 1024px) { .look { gap: 20px; } }
+@media (hover: hover) and (pointer: fine) { .look__item:hover img { transform: scale(1.04); } }
+
+/* ---- 7. Opiniones ---- */
+.galeria-clientas { margin-bottom: clamp(24px, 3vw, 40px); }
+.galeria-clientas__pista {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(44%, 200px);
+  gap: 12px;
+  margin: 0 -16px;
+  padding: 4px 16px 12px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 16px;
+  scrollbar-width: thin;
+}
+.galeria-clientas__item { scroll-snap-align: start; }
+.galeria-clientas__boton {
+  position: relative; /* contiene el texto .sr-only dentro del carrusel */
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--ink);
+  text-align: left;
+  cursor: zoom-in;
+}
+.galeria-clientas__boton img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--radius); background: var(--rubor); }
+.galeria-clientas__nombre { font-size: .8125rem; font-weight: 700; }
+@media (min-width: 768px) {
+  .galeria-clientas__pista { grid-auto-columns: 210px; margin: 0; padding: 4px 0 12px; scroll-padding-inline: 0; }
+}
+
+.resenas__google { display: grid; justify-items: center; gap: 2px; width: fit-content; margin: 0 auto 20px; padding: 8px 16px; color: var(--muted); font-weight: 700; }
+.resenas__nota { font-family: var(--font-display); font-size: 3rem; font-weight: 600; line-height: 1; color: var(--ink); }
+.resenas__estrellas, .resena__estrellas { color: var(--orchid-700); letter-spacing: .15em; }
+.resenas__lista { display: grid; gap: 16px; list-style: none; margin: 0; padding: 0; }
+.resena { display: grid; gap: 12px; align-content: start; padding: 24px; border-radius: var(--radius-lg); background: #fff; box-shadow: var(--shadow); }
+.resena blockquote { margin: 0; font-size: 1.0625rem; line-height: 1.6; color: var(--ink); }
+.resena__autora { font-weight: 700; color: var(--muted); }
+@media (min-width: 900px) { .resenas__lista { grid-template-columns: repeat(3, 1fr); gap: 20px; } }

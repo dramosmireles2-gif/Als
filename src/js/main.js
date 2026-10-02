@@ -1,20 +1,35 @@
 // =============================================
 // main.js — Catálogo Als Dress · Supabase
 // =============================================
-import { animate, stagger } from 'motion';
-import { sb } from './supabase.js';
 import './nav.js';
+import { autoCarrusel } from './carrusel.js';
 
-const Motion = { animate, stagger };
+// Supabase y Motion se descargan solo cuando hacen falta: la página abre más rápido
+export const obtenerSb = () => import('./supabase.js').then(m => m.sb);
+const cargarMotion = () => import('motion');
 
-const WA_NUMBER  = '528991947566';
+// Ejecuta fn cuando el elemento está por entrar a la pantalla
+export function cuandoSeAcerque(el, fn, margen = '600px') {
+    if (!el) return;
+    if (!('IntersectionObserver' in window)) { fn(); return; }
+    const io = new IntersectionObserver(entradas => {
+        if (entradas.some(e => e.isIntersecting)) {
+            io.disconnect();
+            fn();
+        }
+    }, { rootMargin: margen });
+    io.observe(el);
+}
+
+
+export const WA_NUMBER  = '528991947566';
 const APP_NAME   = 'RentaVestidosAPP-250346467';
 
 // Google Ads conversion — reemplaza CONVERSION_LABEL con el ID real (AW-11262534800/XXXXXXXX)
 const GA_CONVERSION_ID = 'AW-11262534800';
 const GA_CONVERSION_LABEL = '_Ri3CMHfnrwcEJDJsvop';
 
-function trackWAClick() {
+export function trackWAClick() {
     if (typeof gtag === 'undefined') return;
     // Evento genérico — visible en Google Ads como evento de click
     gtag('event', 'click_whatsapp', { event_category: 'contacto', event_label: 'whatsapp' });
@@ -28,7 +43,7 @@ function trackWAClick() {
     }
 }
 
-function openWhatsApp(url) {
+export function openWhatsApp(url) {
     trackWAClick();
     window.open(url, '_blank', 'noopener');
 }
@@ -44,7 +59,7 @@ let tallaActiva      = null;
 let categoriaActiva  = 'Vestido';
 let lightboxLastFocused = null;
 
-function shouldReduceMotion() {
+export function shouldReduceMotion() {
     return prefersReducedMotion.matches;
 }
 
@@ -92,7 +107,7 @@ function cerrarSidebarCatalogoSiAplica() {
 }
 
 // ---- Helper foto ----
-function obtenerUrlFoto(foto) {
+export function obtenerUrlFoto(foto) {
     const placeholder = 'https://placehold.co/400x500/f5f1eb/8a8a8e?text=Sin+Foto';
     if (!foto) return placeholder;
     if (foto.startsWith('http')) return foto;
@@ -125,41 +140,9 @@ if (shouldReduceMotion()) {
 }
 
 // ============================================
-// 3. GALERÍA DE INTERIORES
-// ============================================
-const slides        = document.querySelectorAll('.foto-slide');
-const dotsContainer = document.getElementById('galeriaDots');
-let slideActual     = 0;
-
-function irASlide(n) {
-    if (!slides.length) return;
-    slides[slideActual].classList.remove('active');
-    dotsContainer.children[slideActual].classList.remove('active');
-    slideActual = (n + slides.length) % slides.length;
-    slides[slideActual].classList.add('active');
-    dotsContainer.children[slideActual].classList.add('active');
-}
-
-if (slides.length && dotsContainer) {
-    slides.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = `galeria-dot${i === 0 ? ' active' : ''}`;
-        dot.setAttribute('aria-label', `Ver foto ${i + 1} del local`);
-        dot.addEventListener('click', () => irASlide(i));
-        dotsContainer.appendChild(dot);
-    });
-    document.getElementById('btn-prev')?.addEventListener('click', () => irASlide(slideActual - 1));
-    document.getElementById('btn-next')?.addEventListener('click', () => irASlide(slideActual + 1));
-    if (!shouldReduceMotion()) {
-        setInterval(() => irASlide(slideActual + 1), 6500);
-    }
-}
-
-// ============================================
 // 4. CARGA DESDE SUPABASE
 // ============================================
-function agruparPorModelo(data) {
+export function agruparPorModelo(data) {
     const modelos = {};
     data.forEach(item => {
         const nombre = (item.nombre || '').trim();
@@ -183,6 +166,7 @@ function agruparPorModelo(data) {
 // Carga el catálogo completo (página /catalogo)
 async function cargarInventario() {
     try {
+        const sb = await obtenerSb();
         const { data, error } = await sb
             .from('inventario')
             .select('*')
@@ -193,142 +177,17 @@ async function cargarInventario() {
 
         todosLosModelos = agruparPorModelo(data);
         construirFiltrosTallas();
+        if (tallaActiva) {
+            const btn = document.querySelector(`#tallasFiltro [data-talla="${CSS.escape(tallaActiva)}"]`);
+            if (btn) btn.classList.add('active');
+            else tallaActiva = null;
+        }
         renderizarCatalogo();
 
     } catch (err) {
         console.error('Error cargando catálogo:', err);
         const c = document.getElementById('productos-container');
         if (c) c.innerHTML = '<p class="mensaje-vacio">No se pudo cargar el catálogo. Intenta más tarde.</p>';
-    }
-}
-
-// Inicia el carrusel de la sección destacados
-function iniciarCarruselDestacados(total) {
-    const carousel = document.getElementById('destCarousel');
-    const track    = document.getElementById('productos-container');
-    const wrapper  = document.getElementById('destWrapper');
-    const prevBtn  = document.getElementById('destPrev');
-    const nextBtn  = document.getElementById('destNext');
-    const dotsEl   = document.getElementById('destDots');
-    if (!carousel || !track || total === 0) return;
-
-    let idx = 0;
-    let gap = parseFloat(getComputedStyle(track).columnGap) || 24;
-
-    function getVisible() {
-        return window.innerWidth > 900 ? 3 : window.innerWidth >= 640 ? 2 : 1;
-    }
-
-    function getMaxIdx() {
-        return Math.max(0, total - getVisible());
-    }
-
-    // All items fit: just center them, no carousel
-    if (getVisible() >= total) {
-        carousel.classList.add('dest-carousel--few');
-        return;
-    }
-
-    function buildDots() {
-        if (!dotsEl) return;
-        dotsEl.innerHTML = '';
-        const maxIdx = getMaxIdx();
-        if (maxIdx <= 0) return;
-        for (let i = 0; i <= maxIdx; i++) {
-            const dot = document.createElement('button');
-            dot.className = `dest-dot${i === 0 ? ' active' : ''}`;
-            dot.setAttribute('aria-label', `Pieza ${i + 1}`);
-            dot.addEventListener('click', () => goTo(i));
-            dotsEl.appendChild(dot);
-        }
-    }
-
-    function goTo(i) {
-        const maxIdx = getMaxIdx();
-        idx = Math.max(0, Math.min(i, maxIdx));
-        const firstCard = track.firstElementChild;
-        if (!firstCard) return;
-        const cardW = firstCard.getBoundingClientRect().width + gap;
-        track.style.transform = `translateX(-${idx * cardW}px)`;
-        dotsEl?.querySelectorAll('.dest-dot').forEach((d, j) => d.classList.toggle('active', j === idx));
-        if (prevBtn) prevBtn.disabled = idx === 0;
-        if (nextBtn) nextBtn.disabled = idx >= maxIdx;
-    }
-
-    buildDots();
-    goTo(0);
-
-    prevBtn?.addEventListener('click', () => goTo(idx - 1));
-    nextBtn?.addEventListener('click', () => goTo(idx + 1));
-
-    let timer = null;
-    const startAutoplay = () => {
-        if (shouldReduceMotion() || timer) return;
-        timer = setInterval(() => goTo(idx >= getMaxIdx() ? 0 : idx + 1), 5500);
-    };
-    const stopAutoplay = () => {
-        if (!timer) return;
-        clearInterval(timer);
-        timer = null;
-    };
-
-    startAutoplay();
-    carousel.addEventListener('mouseenter', stopAutoplay);
-    carousel.addEventListener('mouseleave', startAutoplay);
-
-    // Touch/swipe — primary navigation method on mobile
-    if (wrapper) {
-        let swipeX = 0;
-        wrapper.addEventListener('touchstart', (e) => {
-            swipeX = e.touches[0].clientX;
-            stopAutoplay();
-        }, { passive: true });
-        wrapper.addEventListener('touchend', (e) => {
-            const diff = swipeX - e.changedTouches[0].clientX;
-            if (Math.abs(diff) > 40) goTo(diff > 0 ? idx + 1 : idx - 1);
-            startAutoplay();
-        }, { passive: true });
-    }
-
-    // Recalculate on resize — update gap since CSS changes it at breakpoints
-    window.addEventListener('resize', () => {
-        gap = parseFloat(getComputedStyle(track).columnGap) || 24;
-        buildDots();
-        goTo(Math.min(idx, getMaxIdx()));
-    }, { passive: true });
-}
-
-// Carga solo los items marcados como destacado=true (landing)
-async function cargarDestacados() {
-    const contenedor = document.getElementById('productos-container');
-    if (!contenedor) return;
-
-    try {
-        const { data, error } = await sb
-            .from('inventario')
-            .select('*')
-            .eq('publicado', true)
-            .eq('destacado', true)
-            .order('nombre');
-
-        if (error) throw error;
-
-        if (!data.length) {
-            // Sin destacados: ocultar sección entera
-            document.getElementById('destacados')?.classList.add('hidden');
-            return;
-        }
-
-        todosLosModelos = agruparPorModelo(data);
-        const catPrevia  = categoriaActiva;
-        categoriaActiva  = null;
-        renderizarCatalogo();
-        categoriaActiva  = catPrevia;
-        iniciarCarruselDestacados(todosLosModelos.length);
-
-    } catch (err) {
-        console.error('Error cargando destacados:', err);
-        document.getElementById('destacados')?.classList.add('hidden');
     }
 }
 
@@ -524,13 +383,11 @@ function renderizarCatalogo() {
 
     // ── 4. PRODUCT STAGGER — entrada escalonada ──────────────────────────────
     const cards = contenedor.querySelectorAll('.card-producto');
-    if (!shouldReduceMotion() && Motion) {
-        Motion.animate(cards,
+    if (!shouldReduceMotion()) {
+        cargarMotion().then(({ animate, stagger }) => animate(cards,
             { opacity: [0, 1], y: [20, 0] },
-            { duration: 0.42, delay: Motion.stagger(0.06), ease: [0.25, 0.46, 0.45, 0.94] }
-        );
-    } else {
-        cards.forEach(c => { c.style.opacity = '1'; });
+            { duration: 0.42, delay: stagger(0.06), ease: [0.25, 0.46, 0.45, 0.94] }
+        )).catch(() => {});
     }
 
 }
@@ -626,7 +483,7 @@ function handleLightboxKeydown(event) {
     }
 }
 
-function abrirLightbox(vestido, urlFoto) {
+export function abrirLightbox(vestido, urlFoto) {
     const lb         = document.getElementById('lightbox');
     const disponible = vestido.hayDisponible;
     lightboxLastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -682,6 +539,7 @@ async function cargarGaleriaClientas() {
     const contenedor = document.getElementById('galeria-clientas-grid');
     if (!contenedor) return;
 
+    const sb = await obtenerSb();
     const { data, error } = await sb
         .from('galeria_clientas')
         .select('*')
@@ -696,22 +554,22 @@ async function cargarGaleriaClientas() {
     document.getElementById('sec-galeria-clientas').classList.remove('hidden');
     contenedor.innerHTML = '';
 
-    const crearItem = (foto) => {
-        const div = document.createElement('div');
-        div.className = 'galeria-cliente-item';
-        div.innerHTML = `
-            <img src="${foto.foto_url}" alt="${foto.nombre || 'Clienta Als Dress'}" loading="lazy"
-                 onerror="this.parentElement.style.display='none'">
-            ${foto.nombre ? `<div class="galeria-overlay"><p>${foto.nombre}</p></div>` : ''}`;
-        div.onclick = () => abrirLightboxClientas(foto.foto_url, foto.nombre);
-        return div;
-    };
-
-    // Original + copia para loop continuo e invisible
-    [...data, ...data].forEach(foto => contenedor.appendChild(crearItem(foto)));
-
-    // Velocidad proporcional al número de fotos
-    contenedor.style.animationDuration = `${Math.max(30, data.length * 5)}s`;
+    // Cada foto es un botón que abre la foto grande
+    data.forEach(foto => {
+        const li = document.createElement('li');
+        const nombre = foto.nombre || 'Clienta Als Dress';
+        li.className = 'galeria-clientas__item';
+        li.innerHTML = `
+            <button type="button" class="galeria-clientas__boton">
+                <img src="${foto.foto_url}" alt="" loading="lazy" decoding="async" width="300" height="400"
+                     onerror="this.closest('li').remove()">
+                <span class="sr-only">Ver foto de ${nombre}</span>
+                ${foto.nombre ? `<span class="galeria-clientas__nombre" aria-hidden="true">${foto.nombre}</span>` : ''}
+            </button>`;
+        li.querySelector('button').addEventListener('click', () => abrirLightboxClientas(foto.foto_url, foto.nombre));
+        contenedor.appendChild(li);
+    });
+    autoCarrusel(contenedor);
 }
 
 // ============================================
@@ -750,48 +608,6 @@ function abrirLightboxClientas(url, nombre) {
 // ============================================
 // 9. URL MANAGEMENT — clean paths, no hashes
 // ============================================
-const RUTAS_SECCIONES = {
-    'inicio':      '/',
-    'categorias':  '/',
-    'beneficios':  '/',
-    'faq':         '/',
-    'opiniones':   '/',
-    'contacto':    '/',
-    'visitanos':   '/',
-};
-
-// Intercepta clics en nav para hacer scroll suave en vez de navegar
-function initNavLinks() {
-    const SCROLL_IDS = {
-        '/coleccion':  'categorias',
-        '/beneficios': 'beneficios',
-        '/preguntas':  'faq',
-        '/contacto':   'contacto',
-        '/visita':     'visitanos',
-        '/ubicacion':  'visitanos',
-    };
-    const esCatalogo = document.body.dataset.pagina === 'catalogo';
-    document.querySelectorAll('.hero-btn[href^="/"]').forEach(link => {
-        link.addEventListener('click', e => {
-            const path  = new URL(link.href, location.origin).pathname;
-            const secId = SCROLL_IDS[path];
-            if (secId) {
-                e.preventDefault();
-                if (esCatalogo) {
-                    window.location.href = `/?p=${encodeURIComponent(path)}`;
-                } else {
-                    document.getElementById(secId)?.scrollIntoView({ behavior: 'smooth' });
-                }
-            } else if (path === '/') {
-                if (!esCatalogo) {
-                    e.preventDefault();
-                    document.body.scrollIntoView({ behavior: 'smooth' });
-                }
-            }
-        });
-    });
-}
-
 // Restaura scroll si el usuario llegó por una URL directa (via 404.html redirect)
 function restaurarRuta() {
     const params  = new URLSearchParams(location.search);
@@ -800,8 +616,8 @@ function restaurarRuta() {
     // Always keep URL clean as /
     history.replaceState(null, '', '/');
     const SCROLL_IDS = {
-        '/coleccion':  'categorias',
-        '/beneficios': 'beneficios',
+        '/coleccion':  'ocasiones',
+        '/beneficios': 'como-rentar',
         '/preguntas':  'faq',
         '/contacto':   'contacto',
         '/visita':     'visitanos',
@@ -814,67 +630,6 @@ function restaurarRuta() {
 }
 
 // ============================================
-// 10. CARRUSEL TESTIMONIOS (solo móvil)
-// ============================================
-function iniciarCarruselTestimonios() {
-    if (window.innerWidth > 768) return;
-
-    const grid   = document.getElementById('testimoniosGrid');
-    const dotsEl = document.getElementById('testDots');
-    if (!grid || !dotsEl) return;
-
-    const cards = Array.from(grid.querySelectorAll('.testimonio-card'));
-    if (cards.length < 2) return;
-
-    // Construir dots
-    const dots = cards.map((_, i) => {
-        const d = document.createElement('button');
-        d.type = 'button';
-        d.className = 'test-dot' + (i === 0 ? ' active' : '');
-        d.setAttribute('aria-label', `Ver testimonio ${i + 1}`);
-        d.addEventListener('click', () => goTo(i));
-        dotsEl.appendChild(d);
-        return d;
-    });
-
-    function currentIdx() {
-        const gap = 14;
-        const cardW = cards[0].offsetWidth + gap;
-        return Math.round(grid.scrollLeft / cardW);
-    }
-
-    function goTo(i) {
-        const gap = 14;
-        grid.scrollTo({ left: i * (cards[0].offsetWidth + gap), behavior: 'smooth' });
-    }
-
-    function updateDots() {
-        const idx = currentIdx();
-        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-    }
-
-    grid.addEventListener('scroll', updateDots, { passive: true });
-
-    let timer = null;
-    const startAutoplay = () => {
-        if (shouldReduceMotion() || timer) return;
-        timer = setInterval(() => {
-            const next = (currentIdx() + 1) % cards.length;
-            goTo(next);
-        }, 4200);
-    };
-    const stopAutoplay = () => {
-        if (!timer) return;
-        clearInterval(timer);
-        timer = null;
-    };
-
-    startAutoplay();
-    grid.addEventListener('touchstart', stopAutoplay, { passive: true });
-    grid.addEventListener('touchend', startAutoplay, { passive: true });
-}
-
-// ============================================
 // 11. INIT
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -882,16 +637,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Página de catálogo: mostrar todo, sin filtro de destacados
     if (esCatalogo) {
-        initNavLinks();
-
-        // Aplicar filtro de categoría desde URL (?cat=X)
-        const catParam = new URLSearchParams(location.search).get('cat');
+        // Aplicar filtros desde la URL (?cat=X&talla=M)
+        const params = new URLSearchParams(location.search);
+        const catParam = params.get('cat');
         if (catParam) {
             categoriaActiva = catParam;
             document.querySelectorAll('[data-categoria]').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.categoria === catParam);
             });
         }
+        tallaActiva = params.get('talla');
 
         // Sidebar mobile toggle
         document.getElementById('sidebarToggle')?.addEventListener('click', abrirSidebarCatalogo);
@@ -900,177 +655,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } else {
         restaurarRuta();
-        initNavLinks();
-
-        // ── 1. HERO ENTRANCE — stagger por hijo ──────────────────────────────
-        const heroLeft = document.querySelector('.hero-left');
-        if (heroLeft) {
-            // Tomar control del reveal genérico: hacer el padre visible ya
-            heroLeft.style.opacity = '1';
-            heroLeft.style.transform = 'none';
-            heroLeft.classList.add('visible');
-
-            if (!shouldReduceMotion() && Motion) {
-                const { animate, stagger } = Motion;
-                const heroKids = Array.from(heroLeft.children);
-
-                animate(heroKids,
-                    { opacity: [0, 1], y: [28, 0] },
-                    { duration: 0.65, delay: stagger(0.1), ease: [0.25, 0.46, 0.45, 0.94] }
-                );
-
-                const heroImg = document.querySelector('.hero-image-wrapper img');
-                if (heroImg) {
-                    animate(heroImg,
-                        { opacity: [0, 1], x: [40, 0] },
-                        { duration: 0.8, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }
-                    );
-                }
-            } else {
-                // Sin Motion / reduced-motion: mostrar de inmediato
-                Array.from(heroLeft.children).forEach(el => { el.style.opacity = '1'; });
-                const heroImgFallback = document.querySelector('.hero-image-wrapper img');
-                if (heroImgFallback) heroImgFallback.style.opacity = '1';
-            }
-        }
-
-        // ── 5. RATING COUNTER — cuenta 4.5 → 4.9 al entrar en viewport ──────
-        const ratingEl = document.querySelector('.rating-score');
-        if (ratingEl && !shouldReduceMotion()) {
-            const from = 4.5, to = 4.9, dur = 1200;
-            ratingEl.textContent = from.toFixed(1);
-            new IntersectionObserver(([entry], obs) => {
-                if (!entry.isIntersecting) return;
-                obs.disconnect();
-                const t0 = performance.now();
-                const tick = (now) => {
-                    const p = Math.min((now - t0) / dur, 1);
-                    const eased = 1 - Math.pow(1 - p, 3);
-                    ratingEl.textContent = (from + (to - from) * eased).toFixed(1);
-                    if (p < 1) requestAnimationFrame(tick);
-                };
-                requestAnimationFrame(tick);
-            }, { threshold: 0.5 }).observe(ratingEl);
-        }
-
-        // ── 6. CAT-CARD SPRING HOVER — lift de 8px con overshoot ─────────────
-        if (window.matchMedia('(hover: hover)').matches && !shouldReduceMotion() && Motion) {
-            document.querySelectorAll('.cat-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    Motion.animate(card, { y: -8 }, { duration: 0.4, ease: [0.34, 1.56, 0.64, 1] });
-                });
-                card.addEventListener('mouseleave', () => {
-                    Motion.animate(card, { y: 0 }, { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] });
-                });
-            });
-        }
-
-        // ── 7. BENEFICIOS STAGGER REVEAL — 4 cards en ola ───────────────────
-        const beneficioGrid = document.querySelector('.beneficios-grid');
-        if (beneficioGrid && !shouldReduceMotion() && Motion) {
-            const beneficioCards = beneficioGrid.querySelectorAll('.beneficio-card');
-            new IntersectionObserver(([entry], obs) => {
-                if (!entry.isIntersecting) return;
-                obs.disconnect();
-                beneficioCards.forEach(c => c.classList.add('visible'));
-                Motion.animate(
-                    beneficioCards,
-                    { opacity: [0, 1], y: [24, 0] },
-                    { duration: 0.5, delay: Motion.stagger(0.1), ease: [0.25, 0.46, 0.45, 0.94] }
-                );
-            }, { threshold: 0.15 }).observe(beneficioGrid);
-        }
-
-        // ── 11. HERO PARALLAX — imagen se mueve al 30% del scroll ────────────
-        const heroSection = document.querySelector('.hero');
-        const heroParallaxImg = document.querySelector('.hero-image-wrapper img');
-        if (heroSection && heroParallaxImg && !shouldReduceMotion()) {
-            setTimeout(() => {
-                let ticking = false;
-                window.addEventListener('scroll', () => {
-                    if (ticking) return;
-                    ticking = true;
-                    requestAnimationFrame(() => {
-                        const rect = heroSection.getBoundingClientRect();
-                        if (rect.bottom > 0 && rect.top < window.innerHeight) {
-                            heroParallaxImg.style.translate = `0 ${-rect.top * 0.3}px`;
-                        }
-                        ticking = false;
-                    });
-                }, { passive: true });
-            }, 1200);
-        }
     }
 
-    // Centralizar links de WhatsApp y registrar conversión en cada click
-    const waUrl = `https://wa.me/${WA_NUMBER}`;
+    // Registrar la conversión en cada link de WhatsApp (se respeta el mensaje prellenado)
     document.querySelectorAll(`a[href*="wa.me"]`).forEach(a => {
-        a.href = waUrl;
         a.addEventListener('click', trackWAClick);
     });
 
-    // Tarjetas de categorías → navegar a página de catálogo con filtro
     crearLightbox();
     if (esCatalogo) {
+        cargarMotion();
         cargarInventario();
-    } else {
-        cargarDestacados();
-        iniciarCarruselTestimonios();
     }
-    cargarGaleriaClientas();
-
-    // ── 8. BUTTON PRESS FEEDBACK — scale 0.96 → 1 con overshoot ────────────
-    if (!shouldReduceMotion() && Motion) {
-        document.querySelectorAll(
-            '.hero-btn, .beneficios-btn-wa, .destacados-btn-ver, .hero-btn-wa'
-        ).forEach(el => {
-            el.addEventListener('pointerdown', () => {
-                Motion.animate(el, { scale: 0.96 }, { duration: 0.1, ease: 'ease-out' });
-            });
-            ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => {
-                el.addEventListener(ev, () => {
-                    Motion.animate(el, { scale: 1 }, { duration: 0.35, ease: [0.34, 1.56, 0.64, 1] });
-                });
-            });
-        });
-    }
-
-    // FAQ accordion — Motion anima la altura real (sin max-height hack)
-    document.querySelectorAll('.faq-question').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const item = btn.closest('.faq-item');
-            const isOpen = item.classList.contains('open');
-            const useMotion = !shouldReduceMotion() && Motion;
-
-            // Cerrar todos los abiertos
-            document.querySelectorAll('.faq-item.open').forEach(el => {
-                const ans = el.querySelector('.faq-answer');
-                el.classList.remove('open');
-                el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-                if (useMotion) {
-                    Motion.animate(ans,
-                        { height: [ans.offsetHeight, 0] },
-                        { duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }
-                    );
-                } else {
-                    ans.style.height = '0';
-                }
-            });
-
-            if (!isOpen) {
-                item.classList.add('open');
-                btn.setAttribute('aria-expanded', 'true');
-                const ans = item.querySelector('.faq-answer');
-                const fullH = ans.scrollHeight;
-                if (useMotion) {
-                    Motion.animate(ans,
-                        { height: [0, fullH] },
-                        { duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }
-                    ).then(() => { ans.style.height = 'auto'; });
-                } else {
-                    ans.style.height = fullH + 'px';
-                }
-            }
-        });
-    });
+    cuandoSeAcerque(document.getElementById('opiniones'), cargarGaleriaClientas);
 });

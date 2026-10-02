@@ -70,7 +70,7 @@
   color: var(--ink);
 }
 /* El enlace cubre toda la tarjeta; el corazón queda encima */
-.tarjeta__enlace { color: inherit; text-decoration: none; }
+.tarjeta__enlace { padding: 0; border: 0; background: none; font: inherit; color: inherit; text-align: left; text-decoration: none; cursor: pointer; }
 .tarjeta__enlace::after { content: ""; position: absolute; inset: 0; z-index: 1; }
 .tarjeta__enlace:focus-visible { outline: none; }
 .tarjeta:has(.tarjeta__enlace:focus-visible) { outline: var(--focus-ring); outline-offset: 3px; }

@@ -1,0 +1,183 @@
+/* =============================================
+   Inicio (1/2): estructura común, hero, confianza,
+   ocasiones y destacados
+   ============================================= */
+.eyebrow {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--orchid-700);
+}
+
+.seccion { padding: var(--space-section) 16px; background: var(--marfil); }
+.seccion--rubor { background: var(--rubor); }
+.seccion--champagne { background: var(--champagne); }
+.seccion__inner { max-width: 1200px; margin: 0 auto; }
+.seccion__inner--angosto { max-width: 760px; }
+.seccion__cabeza { display: grid; gap: 8px; margin-bottom: clamp(20px, 3vw, 36px); text-align: center; }
+.seccion__cabeza--fila { display: flex; align-items: end; justify-content: space-between; gap: 16px; text-align: left; }
+.seccion__cabeza--fila > div:first-child { display: grid; gap: 10px; }
+.seccion__titulo {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.seccion__titulo .script, .hero-nuevo__titulo .script { color: var(--orchid-700); font-size: 1.2em; line-height: .9; }
+.seccion__intro { max-width: 60ch; margin: 0 auto; color: var(--muted); font-size: var(--fs-body); }
+.seccion__pie { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 24px; margin-top: clamp(20px, 3vw, 32px); }
+.enlace {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  font-weight: 700;
+  color: var(--orchid-700);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.chip-grupo { list-style: none; margin: 0; padding: 0; }
+
+/* ---- 1. Hero ---- */
+.hero-nuevo {
+  display: grid;
+  background: linear-gradient(180deg, var(--rubor) 0%, var(--marfil) 70%);
+}
+.hero-nuevo__foto { aspect-ratio: 5 / 4; overflow: hidden; background: var(--champagne); }
+.hero-nuevo__foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+.hero-nuevo__texto { display: grid; gap: 16px; align-content: center; padding: 24px 16px 32px; }
+.hero-nuevo__titulo {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  font-weight: 600;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.hero-nuevo__sub { max-width: 46ch; font-size: var(--fs-body); color: var(--muted); }
+.hero-nuevo__ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.buscador-talla { display: grid; gap: 10px; margin-top: 6px; }
+.buscador-talla__titulo { font-weight: 700; font-size: .9375rem; color: var(--ink); }
+
+.hero-nuevo__agendar { justify-self: start; }
+@media (max-width: 479px) {
+  .hero-nuevo__ctas .btn { flex: 1 1 100%; }
+}
+@media (min-width: 768px) {
+  .hero-nuevo__foto { aspect-ratio: 16 / 9; }
+  .hero-nuevo__texto { padding: 32px 32px 40px; }
+}
+@media (min-width: 1024px) {
+  .hero-nuevo {
+    grid-template-columns: 1.05fr .95fr;
+    align-items: center;
+    gap: 48px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 32px 40px;
+    background: none;
+  }
+  .hero-nuevo__foto { order: 2; aspect-ratio: 4 / 5; max-height: 680px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+  .hero-nuevo__texto { padding: 0; }
+}
+/* Teléfono horizontal: el hero no ocupa toda la pantalla */
+@media (max-height: 450px) and (orientation: landscape) {
+  .hero-nuevo { grid-template-columns: 1fr 1fr; align-items: center; }
+  .hero-nuevo__foto { aspect-ratio: auto; height: 100%; max-height: 360px; }
+}
+
+/* ---- 2. Confianza ---- */
+.confianza { background: #fff; border-block: 1px solid var(--line); padding: 14px 16px; }
+.confianza__lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.confianza__lista li,
+.confianza__lista a { display: inline-flex; align-items: center; gap: 8px; min-height: var(--tap); font-size: .9375rem; color: var(--ink); }
+.confianza__lista a { text-decoration: underline; text-decoration-color: var(--lila); text-underline-offset: 4px; }
+.confianza__lista svg { width: 20px; height: 20px; fill: none; stroke: var(--orchid-700); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.confianza__estrella { color: var(--orchid-700); font-size: 1.125rem; }
+
+/* ---- 3. Ocasiones ---- */
+.ocasiones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; list-style: none; margin: 0; padding: 0; }
+.ocasion {
+  display: grid;
+  align-content: end;
+  gap: 4px;
+  min-height: 170px;
+  height: 100%;
+  padding: 18px;
+  border-radius: var(--radius-lg);
+  color: var(--ink);
+  transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out);
+}
+.ocasion__nombre { font-size: clamp(1.8rem, 1.2rem + 2.4vw, 3rem); line-height: 1.1; white-space: nowrap; }
+.ocasion__texto { font-size: .875rem; font-weight: 700; }
+.ocasion--xv { background: linear-gradient(160deg, var(--rubor), var(--malva)); }
+.ocasion--graduacion { background: linear-gradient(160deg, var(--marfil), var(--lavanda)); }
+.ocasion--boda { background: linear-gradient(160deg, var(--marfil), var(--champagne)); border: 1px solid var(--line); }
+.ocasion--gala { background: linear-gradient(160deg, var(--noche), var(--ink)); color: var(--marfil); }
+.ocasion--gala .ocasion__nombre { color: var(--malva); }
+@media (min-width: 768px) {
+  .ocasiones { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+}
+@media (min-width: 1024px) {
+  .ocasiones { gap: 20px; }
+  .ocasion { min-height: 260px; padding: 24px; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .ocasion:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+}
+
+/* ---- 4. Destacados: carrusel nativo con scroll-snap ---- */
+.carrusel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(78%, 280px);
+  gap: 16px;
+  margin: 0 -16px;
+  padding: 4px 16px 12px;
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 16px;
+  scrollbar-width: thin;
+}
+.carrusel__item { scroll-snap-align: start; }
+.carrusel__item .tarjeta { height: 100%; }
+.carrusel__flechas { display: none; gap: 8px; }
+.carrusel__flechas[hidden] { display: none !important; }
+.carrusel__flecha {
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  border: 1px solid var(--lila);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--orchid-700);
+  cursor: pointer;
+}
+.carrusel__flecha svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.carrusel__flecha:disabled { opacity: .4; cursor: default; }
+@media (min-width: 768px) {
+  .carrusel { grid-auto-columns: calc((100% - 32px) / 3); gap: 16px; margin: 0; padding: 4px 0 12px; scroll-padding-inline: 0; }
+  .carrusel__flechas { display: flex; }
+}
+@media (min-width: 1100px) {
+  .carrusel { grid-auto-columns: calc((100% - 60px) / 4); gap: 20px; }
+}
+
+/* Tarjeta en carga (esqueleto) */
+.tarjeta--cargando .tarjeta__media,
+.esqueleto { background: var(--line); animation: pulso 1.2s ease-in-out infinite alternate; }
+.esqueleto { display: block; height: 14px; border-radius: 6px; }
+.esqueleto--corto { width: 55%; }
+@keyframes pulso { from { opacity: 1; } to { opacity: .45; } }

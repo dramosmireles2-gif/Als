@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -45,11 +45,15 @@
       "latitude": 26.056655677167793,
       "longitude": -98.29061312382362
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "ratingCount": "100"
-    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "11:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "11:00", "closes": "19:00" }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/als_dress",
+      "https://web.facebook.com/alsdress",
+      "https://share.google/LVeJ1ASnao0Bqx3BE"
+    ],
     "priceRange": "$$",
     "image": "https://alsdress.com.mx/hero2.jpeg"
   }
@@ -62,433 +66,250 @@
 {{> header}}
 
   <main id="contenido">
-
-<!-- ===== HERO ===== -->
-  <section id="inicio" class="hero">
-    <div class="hero-shell">
-      <div class="hero-main">
-        <div class="hero-left reveal">
-          <p class="hero-eyebrow">Als Boutique · Reynosa, Tamaulipas</p>
-
-          <h1 class="hero-title">
-            El vestido<br>
-            que <em>buscabas.</em>
-          </h1>
-
-          <div class="hero-deco" aria-hidden="true"></div>
-
-          <p class="hero-description">
-            Vestidos de fiesta, gala y eventos especiales.<br>
-            Luce increíble sin gastar una fortuna.
-          </p>
-
-          <div class="hero-btns">
-            <a href="/catalogo" class="hero-btn hero-btn-primary">
-              <span class="hero-btn-label">Ver colección</span>
-              <span class="btn-arrow">→</span>
-            </a>
-            <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="hero-btn hero-btn-wa">
-              <img src="/wa.svg" alt="" class="hero-btn-wa-icon">
-              <span class="hero-btn-copy">
-                <strong>Preguntar por WhatsApp</strong>
-                <small>+52 899 194 7566</small>
-              </span>
-            </a>
-          </div>
+    <!-- ===== 1. HERO ===== -->
+    <section class="hero-nuevo" id="inicio" aria-labelledby="hero-titulo">
+      <div class="hero-nuevo__foto">
+        <picture>
+          <source type="image/webp" srcset="/img/hero2-480.webp 480w, /img/hero2-800.webp 800w, /img/hero2-1122.webp 1122w" sizes="(min-width: 1024px) 46vw, 100vw">
+          <img src="/img/hero2-800.webp" alt="Cuatro clientas con vestidos largos de fiesta de Als Dress" width="1122" height="1402" fetchpriority="high">
+        </picture>
+      </div>
+      <div class="hero-nuevo__texto">
+        <p class="eyebrow">Als Boutique · Reynosa, Tamaulipas</p>
+        <h1 class="hero-nuevo__titulo" id="hero-titulo">El vestido que <em class="script">buscabas.</em></h1>
+        <p class="hero-nuevo__sub">Renta y venta de vestidos de fiesta para XV años, graduaciones, bodas y galas. Pruébatelo en tienda antes de decidir.</p>
+        <div class="hero-nuevo__ctas">
+          <a class="btn btn--wa-numero" href="https://wa.me/528991947566" target="_blank" rel="noopener">
+            <img src="/wa.svg" alt="" width="28" height="28">
+            <span class="btn--wa-numero__texto">
+              <span>Escríbenos por WhatsApp</span>
+              <span class="btn--wa-numero__num">899 194 7566</span>
+            </span>
+          </a>
+          <a class="btn btn--primario" href="/catalogo/">Ver colección</a>
         </div>
+        <a class="enlace hero-nuevo__agendar" href="https://alsdress.setmore.com" target="_blank" rel="noopener" data-agendar>Agendar una prueba en tienda</a>
+        <nav class="buscador-talla" aria-labelledby="buscador-titulo">
+          <p class="buscador-talla__titulo" id="buscador-titulo">¿Qué talla buscas?</p>
+          <ul class="chip-grupo">
+            <li><a class="chip" href="/catalogo/?cat=Vestido&amp;talla=XS">XS</a></li>
+            <li><a class="chip" href="/catalogo/?cat=Vestido&amp;talla=S">S</a></li>
+            <li><a class="chip" href="/catalogo/?cat=Vestido&amp;talla=M">M</a></li>
+            <li><a class="chip" href="/catalogo/?cat=Vestido&amp;talla=L">L</a></li>
+            <li><a class="chip" href="/catalogo/?cat=Vestido&amp;talla=XL">XL</a></li>
+            <li><a class="chip" href="/catalogo/?cat=Vestido&amp;talla=2XL">2XL</a></li>
+            <li><a class="chip" href="/catalogo/?cat=Vestido&amp;talla=3XL">3XL</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
 
-        <div class="hero-right">
-          <div class="hero-image-wrapper">
-            <img src="/hero2.webp" alt="Modelos usando vestidos de Als Dress">
+    <!-- ===== 2. CONFIANZA ===== -->
+    <section class="confianza" aria-label="Por qué rentar con nosotras">
+      <ul class="confianza__lista">
+        <li><a href="https://share.google/LVeJ1ASnao0Bqx3BE" target="_blank" rel="noopener"><span class="confianza__estrella" aria-hidden="true">★</span> <strong>4.9</strong> en Google · 89 reseñas</a></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg> Ajustes incluidos con tu renta</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a2 2 0 0 0-1 3.7L3 13h18l-8-6.3A2 2 0 0 0 12 3zM3 13v1h18v-1"/></svg> Pruébatelo en tienda</li>
+      </ul>
+    </section>
+
+    <!-- ===== 3. COMPRA POR OCASIÓN ===== -->
+    <section class="seccion" id="ocasiones" aria-labelledby="ocasiones-titulo">
+      <div class="seccion__inner">
+        <header class="seccion__cabeza">
+          <p class="eyebrow">Compra por ocasión</p>
+          <h2 class="seccion__titulo" id="ocasiones-titulo">¿Para qué es tu vestido?</h2>
+        </header>
+        <ul class="ocasiones">
+          <li><a class="ocasion ocasion--xv" href="/catalogo/?cat=Vestido"><span class="ocasion__nombre script">XV años</span><span class="ocasion__texto">Para ti, tu mamá y tu madrina</span></a></li>
+          <li><a class="ocasion ocasion--graduacion" href="/catalogo/?cat=Vestido"><span class="ocasion__nombre script">Graduación</span><span class="ocasion__texto">Luce increíble en tu gran día</span></a></li>
+          <li><a class="ocasion ocasion--boda" href="/catalogo/?cat=Vestido"><span class="ocasion__nombre script">Boda</span><span class="ocasion__texto">Invitada, dama o mamá de los novios</span></a></li>
+          <li><a class="ocasion ocasion--gala" href="/catalogo/?cat=Vestido"><span class="ocasion__nombre script">Gala</span><span class="ocasion__texto">Cenas, posadas y eventos de noche</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 4. DESTACADOS ===== -->
+    <section class="seccion seccion--rubor" id="destacados" aria-labelledby="destacados-titulo">
+      <div class="seccion__inner">
+        <header class="seccion__cabeza seccion__cabeza--fila">
+          <div>
+            <p class="eyebrow">Selección de temporada</p>
+            <h2 class="seccion__titulo" id="destacados-titulo">Piezas destacadas</h2>
           </div>
+          <div class="carrusel__flechas">
+            <button class="carrusel__flecha" type="button" data-carrusel-prev aria-controls="destacadosPista"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="sr-only">Anteriores</span></button>
+            <button class="carrusel__flecha" type="button" data-carrusel-next aria-controls="destacadosPista"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg><span class="sr-only">Siguientes</span></button>
+          </div>
+        </header>
+        <ul class="carrusel" id="destacadosPista" tabindex="0" aria-label="Piezas destacadas, desliza para ver más" aria-busy="true">
+          <li class="carrusel__item"><div class="tarjeta tarjeta--cargando"><div class="tarjeta__media"></div><div class="tarjeta__cuerpo"><span class="esqueleto"></span><span class="esqueleto esqueleto--corto"></span></div></div></li>
+          <li class="carrusel__item"><div class="tarjeta tarjeta--cargando"><div class="tarjeta__media"></div><div class="tarjeta__cuerpo"><span class="esqueleto"></span><span class="esqueleto esqueleto--corto"></span></div></div></li>
+          <li class="carrusel__item"><div class="tarjeta tarjeta--cargando"><div class="tarjeta__media"></div><div class="tarjeta__cuerpo"><span class="esqueleto"></span><span class="esqueleto esqueleto--corto"></span></div></div></li>
+        </ul>
+        <p class="seccion__pie"><a class="btn btn--primario" href="/catalogo/">Ver catálogo completo</a></p>
+      </div>
+    </section>
+
+    <!-- ===== 5. CÓMO RENTAR ===== -->
+    <section class="seccion" id="como-rentar" aria-labelledby="pasos-titulo">
+      <div class="seccion__inner">
+        <header class="seccion__cabeza">
+          <p class="eyebrow">Así de fácil</p>
+          <h2 class="seccion__titulo" id="pasos-titulo">Cómo rentar en 3 pasos</h2>
+        </header>
+        <ol class="pasos">
+          <li class="paso">
+            <span class="paso__num" aria-hidden="true">1</span>
+            <h3 class="paso__titulo">Elige en línea</h3>
+            <p>Explora el catálogo y mándanos por WhatsApp los vestidos que te gustaron. Te decimos si los tenemos en tu talla.</p>
+          </li>
+          <li class="paso">
+            <span class="paso__num" aria-hidden="true">2</span>
+            <h3 class="paso__titulo">Pruébatelo</h3>
+            <p>Ven a la tienda a probártelo. Los ajustes van incluidos con tu renta: pídelos con al menos 1 semana de anticipación.</p>
+          </li>
+          <li class="paso">
+            <span class="paso__num" aria-hidden="true">3</span>
+            <h3 class="paso__titulo">Luce y devuelve</h3>
+            <p>La renta es por 3 a 4 días: tiempo para tu evento y para devolverlo sin prisas.</p>
+          </li>
+        </ol>
+        <p class="seccion__pie">
+          <a class="btn btn--secundario" href="https://alsdress.setmore.com" target="_blank" rel="noopener" data-agendar>Agendar prueba</a>
+          <a class="enlace" href="#faq">Ver preguntas frecuentes</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== 6. ARMA TU LOOK ===== -->
+    <section class="seccion seccion--champagne" id="arma-tu-look" aria-labelledby="look-titulo">
+      <div class="seccion__inner">
+        <header class="seccion__cabeza">
+          <p class="eyebrow">Completa tu outfit</p>
+          <h2 class="seccion__titulo" id="look-titulo">Arma tu <em class="script">look</em></h2>
+          <p class="seccion__intro">Además de vestidos, en tienda tenemos zapatos, bolsas y accesorios. Pregúntanos y te ayudamos a combinarlos.</p>
+        </header>
+        <ul class="look">
+          <li><a class="look__item" href="/catalogo/?cat=Vestido">
+            <picture><source type="image/avif" srcset="/img/cat-vestidos-400.avif 400w, /img/cat-vestidos-700.avif 700w" sizes="(min-width: 1024px) 22vw, 45vw"><img src="/img/cat-vestidos-400.webp" srcset="/img/cat-vestidos-400.webp 400w, /img/cat-vestidos-700.webp 700w" sizes="(min-width: 1024px) 22vw, 45vw" alt="" width="1086" height="1448" loading="lazy" decoding="async"></picture>
+            <span class="look__nombre">Vestidos</span><span class="look__accion">Ver catálogo</span></a></li>
+          <li><a class="look__item" href="https://wa.me/528991947566?text=Hola%2C%20quiero%20ver%20zapatos%20para%20combinar%20con%20mi%20vestido." target="_blank" rel="noopener">
+            <picture><source type="image/avif" srcset="/img/cat-zapatos-400.avif 400w, /img/cat-zapatos-700.avif 700w" sizes="(min-width: 1024px) 22vw, 45vw"><img src="/img/cat-zapatos-400.webp" srcset="/img/cat-zapatos-400.webp 400w, /img/cat-zapatos-700.webp 700w" sizes="(min-width: 1024px) 22vw, 45vw" alt="" width="1086" height="1448" loading="lazy" decoding="async"></picture>
+            <span class="look__nombre">Zapatos</span><span class="look__accion">Preguntar por WhatsApp</span></a></li>
+          <li><a class="look__item" href="https://wa.me/528991947566?text=Hola%2C%20quiero%20ver%20bolsas%20para%20combinar%20con%20mi%20vestido." target="_blank" rel="noopener">
+            <picture><source type="image/avif" srcset="/img/cat-bolsas-400.avif 400w, /img/cat-bolsas-700.avif 700w" sizes="(min-width: 1024px) 22vw, 45vw"><img src="/img/cat-bolsas-400.webp" srcset="/img/cat-bolsas-400.webp 400w, /img/cat-bolsas-700.webp 700w" sizes="(min-width: 1024px) 22vw, 45vw" alt="" width="1086" height="1448" loading="lazy" decoding="async"></picture>
+            <span class="look__nombre">Bolsas</span><span class="look__accion">Preguntar por WhatsApp</span></a></li>
+          <li><a class="look__item" href="https://wa.me/528991947566?text=Hola%2C%20quiero%20ver%20accesorios%20para%20combinar%20con%20mi%20vestido." target="_blank" rel="noopener">
+            <picture><source type="image/avif" srcset="/img/cat-accesorios-400.avif 400w, /img/cat-accesorios-700.avif 700w" sizes="(min-width: 1024px) 22vw, 45vw"><img src="/img/cat-accesorios-400.webp" srcset="/img/cat-accesorios-400.webp 400w, /img/cat-accesorios-700.webp 700w" sizes="(min-width: 1024px) 22vw, 45vw" alt="" width="1086" height="1448" loading="lazy" decoding="async"></picture>
+            <span class="look__nombre">Accesorios</span><span class="look__accion">Preguntar por WhatsApp</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 7. OPINIONES ===== -->
+    <section class="seccion" id="opiniones" aria-labelledby="opiniones-titulo">
+      <div class="seccion__inner">
+        <header class="seccion__cabeza">
+          <p class="eyebrow">Opiniones</p>
+          <h2 class="seccion__titulo" id="opiniones-titulo">Ellas ya lo <em class="script">lucieron</em></h2>
+        </header>
+        <div class="galeria-clientas hidden" id="sec-galeria-clientas">
+          <ul class="galeria-clientas__pista" id="galeria-clientas-grid" tabindex="0" aria-label="Fotos de clientas, desliza para ver más"></ul>
+        </div>
+        <div class="resenas">
+          <a class="resenas__google" href="https://share.google/LVeJ1ASnao0Bqx3BE" target="_blank" rel="noopener">
+            <span class="resenas__nota">4.9</span>
+            <span class="resenas__estrellas" aria-hidden="true">★★★★★</span>
+            <span>89 reseñas en Google</span>
+          </a>
+          <ul class="resenas__lista">
+            <li class="resena"><p class="resena__estrellas"><span aria-hidden="true">★★★★★</span><span class="sr-only">5 de 5 estrellas</span></p><blockquote><p>Excelente atención y servicio, 100% recomendado, tienen mucha variedad de vestidos.</p></blockquote><p class="resena__autora">Hellen Cruz</p></li>
+            <li class="resena"><p class="resena__estrellas"><span aria-hidden="true">★★★★★</span><span class="sr-only">5 de 5 estrellas</span></p><blockquote><p>El mejor lugar sin duda en atención y servicio. Muy lindos sus vestidos y con mucha accesibilidad y accesorios muy bellos.</p></blockquote><p class="resena__autora">Mayra López Hernández</p></li>
+            <li class="resena"><p class="resena__estrellas"><span aria-hidden="true">★★★★★</span><span class="sr-only">5 de 5 estrellas</span></p><blockquote><p>Muchísima variedad de vestidos en diferentes estilos, y la calidad es buenísima. ¡Les recomiendo este lugar!</p></blockquote><p class="resena__autora">Cecilia M.</p></li>
+          </ul>
+          <p class="seccion__pie"><a class="btn btn--secundario" href="https://share.google/LVeJ1ASnao0Bqx3BE" target="_blank" rel="noopener">Ver todas en Google</a></p>
         </div>
       </div>
+    </section>
 
-    </div>
-  </section>
-  <!-- ===== CATEGORÍAS VISUALES ===== -->
-  <section id="categorias" class="cat-visual-section">
-    <div class="cat-visual-inner">
-      <div class="section-header reveal">
-        <p class="section-eyebrow">Explora nuestra colección</p>
-        <h2>Encuentra tu estilo</h2>
-      </div>
-      <div class="cat-cards-grid">
-
-        <a class="cat-card" data-goto-categoria="Vestido" href="/catalogo?cat=Vestido" aria-label="Ver colección de vestidos">
-          <img src="/cat-vestidos.webp" alt="Vestidos" class="cat-card-img">
-          <div class="cat-card-overlay"></div>
-          <div class="cat-card-content">
-            <div class="cat-card-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2C10 5 7 6 5 6l2 14h10L19 6c-2 0-5-1-7-4z"/></svg>
-            </div>
-            <h3 class="cat-card-name">Vestidos</h3>
-            <span class="cat-card-link">Ver colección →</span>
-          </div>
-        </a>
-
-        <a class="cat-card" data-goto-categoria="Zapato" href="/catalogo?cat=Zapato" aria-label="Ver colección de zapatos">
-          <img src="/cat-zapatos.webp" alt="Zapatos" class="cat-card-img">
-          <div class="cat-card-overlay"></div>
-          <div class="cat-card-content">
-            <div class="cat-card-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 18h20M2 18l3-8h5l2 4 4-4h4l2 8"/></svg>
-            </div>
-            <h3 class="cat-card-name">Zapatos</h3>
-            <span class="cat-card-link">Ver colección →</span>
-          </div>
-        </a>
-
-        <a class="cat-card" data-goto-categoria="Bolsa" href="/catalogo?cat=Bolsa" aria-label="Ver colección de bolsas">
-          <img src="/cat-bolsas.webp" alt="Bolsas" class="cat-card-img">
-          <div class="cat-card-overlay"></div>
-          <div class="cat-card-content">
-            <div class="cat-card-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg>
-            </div>
-            <h3 class="cat-card-name">Bolsas</h3>
-            <span class="cat-card-link">Ver colección →</span>
-          </div>
-        </a>
-
-        <a class="cat-card" data-goto-categoria="Accesorios" href="/catalogo?cat=Accesorios" aria-label="Ver colección de accesorios">
-          <img src="/cat-accesorios.webp" alt="Accesorios" class="cat-card-img">
-          <div class="cat-card-overlay"></div>
-          <div class="cat-card-content">
-            <div class="cat-card-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M2 9h20"/></svg>
-            </div>
-            <h3 class="cat-card-name">Accesorios</h3>
-            <span class="cat-card-link">Ver colección →</span>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PIEZAS DESTACADAS ===== -->
-  <section id="destacados" class="destacados-section">
-    <div class="destacados-inner">
-      <div class="section-header reveal">
-        <p class="section-eyebrow">Selección de temporada</p>
-        <h2>Piezas destacadas</h2>
-      </div>
-
-      <div class="dest-carousel" id="destCarousel">
-        <button class="dest-arrow dest-arrow--prev" id="destPrev" aria-label="Anterior">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <div class="dest-track-wrapper" id="destWrapper">
-          <div id="productos-container" class="dest-track">
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
-          </div>
-        </div>
-        <button class="dest-arrow dest-arrow--next" id="destNext" aria-label="Siguiente">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-
-      <div class="dest-dots" id="destDots"></div>
-      <p id="mensaje-vacio" class="mensaje-vacio hidden">Sin piezas destacadas por el momento.</p>
-
-      <div class="destacados-cta reveal">
-        <a href="/catalogo" class="destacados-btn-ver">
-          Ver catálogo completo
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== BENEFICIOS ===== -->
-  <section id="beneficios" class="beneficios-section">
-    <div class="beneficios-inner">
-      <div class="section-header reveal">
-        <p class="section-eyebrow">Por qué elegirnos</p>
-        <h2>Renta fácil, sin complicaciones</h2>
-      </div>
-
-      <div class="beneficios-grid">
-
-        <div class="beneficio-card reveal">
-          <div class="beneficio-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 3c-2 3-4.5 4-6.5 4l1.8 13h9.4L18.5 7c-2 0-4.5-1-6.5-4z"></path>
-            </svg>
-          </div>
-          <h3>Renta fácil</h3>
-          <p>Proceso sencillo y seguro.</p>
-        </div>
-
-        <div class="beneficio-card reveal">
-          <div class="beneficio-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 21s7-3.8 7-9.5V6l-7-3-7 3v5.5C5 17.2 12 21 12 21z"></path>
-              <path d="M9.5 12.5l1.7 1.7 3.3-3.5"></path>
-            </svg>
-          </div>
-          <h3>Calidad garantizada</h3>
-          <p>Prendas en perfecto estado.</p>
-        </div>
-
-        <div class="beneficio-card reveal">
-          <div class="beneficio-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.7A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path>
-            </svg>
-          </div>
-          <h3>Luces increíble</h3>
-          <p>Diseños que te harán destacar.</p>
-        </div>
-
-        <div class="beneficio-card reveal">
-          <div class="beneficio-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 21s-6-4.35-6-10a6 6 0 1 1 12 0c0 5.65-6 10-6 10z"></path>
-              <circle cx="12" cy="11" r="2.2"></circle>
-            </svg>
-          </div>
-          <h3>Reynosa, Tamaulipas</h3>
-          <p>Atención local y personalizada.</p>
-        </div>
-
-      </div>
-
-      <div class="beneficios-cta reveal">
-        <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="beneficios-btn-wa">
-          <img src="/wa.svg" alt="" class="beneficios-wa-icon">
-          Consultar disponibilidad
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===== GALERÍA CLIENTAS ===== -->
-  <section id="sec-galeria-clientas" class="galeria-clientas-section hidden">
-    <div class="section-header reveal">
-      <p class="section-eyebrow">Ellas ya lo lucieron</p>
-      <h2>Nuestras Clientas</h2>
-    </div>
-    <div class="galeria-cinta-wrapper">
-      <div id="galeria-clientas-grid" class="galeria-cinta"></div>
-    </div>
-  </section>
-
-  <!-- ===== FAQ ===== -->
-  <section id="faq" class="faq-section">
-    <div class="faq-inner">
-      <div class="section-header reveal">
-        <p class="section-eyebrow">Resolvemos tus dudas</p>
-        <h2>Preguntas frecuentes</h2>
-      </div>
-      <div class="faq-list">
-
-        <div class="faq-item reveal">
-          <button class="faq-question" aria-expanded="false">
-            ¿Cuánto tiempo dura la renta?
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer">
+    <!-- ===== 8. PREGUNTAS FRECUENTES ===== -->
+    <section class="seccion seccion--rubor" id="faq" aria-labelledby="faq-titulo">
+      <div class="seccion__inner seccion__inner--angosto">
+        <header class="seccion__cabeza">
+          <p class="eyebrow">Resolvemos tus dudas</p>
+          <h2 class="seccion__titulo" id="faq-titulo">Preguntas frecuentes</h2>
+        </header>
+        <div class="acordeon">
+          <details class="acordeon__item">
+            <summary>¿Cuánto tiempo dura la renta?</summary>
             <p>La renta es por <strong>3 a 4 días</strong>, tiempo suficiente para tu evento y la devolución sin contratiempos.</p>
-          </div>
-        </div>
-
-        <div class="faq-item reveal">
-          <button class="faq-question" aria-expanded="false">
-            ¿Necesito dejar un depósito?
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer">
+          </details>
+          <details class="acordeon__item">
+            <summary>¿Necesito dejar un depósito?</summary>
             <p>Sí. Al apartar o rentar el vestido se solicita un depósito equivalente a <strong>la mitad del valor del vestido</strong> como garantía.</p>
-          </div>
-        </div>
-
-        <div class="faq-item reveal">
-          <button class="faq-question" aria-expanded="false">
-            ¿Puedo apartar un vestido sin visitar la tienda?
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer">
+          </details>
+          <details class="acordeon__item">
+            <summary>¿Puedo apartar un vestido sin visitar la tienda?</summary>
             <p>Por el momento la renta es <strong>exclusivamente presencial</strong>. Puedes escribirnos por WhatsApp para verificar disponibilidad antes de venir y así no hacer un viaje en vano.</p>
-          </div>
-        </div>
-
-        <div class="faq-item reveal">
-          <button class="faq-question" aria-expanded="false">
-            ¿Hacen ajustes al vestido?
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer">
-            <p>Sí, contamos con servicio de ajustes para que el vestido te quede <strong>a la medida perfecta</strong>.</p>
-          </div>
-        </div>
-
-        <div class="faq-item reveal">
-          <button class="faq-question" aria-expanded="false">
-            ¿Qué pasa si el vestido se daña o mancha?
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer">
+          </details>
+          <details class="acordeon__item">
+            <summary>¿Hacen ajustes al vestido?</summary>
+            <p>Sí, contamos con servicio de ajustes para que el vestido te quede <strong>a la medida perfecta</strong>. Van incluidos con tu renta; pídelos con al menos <strong>1 semana de anticipación</strong>.</p>
+          </details>
+          <details class="acordeon__item" data-faq-extra>
+            <summary>¿Qué pasa si el vestido se daña o mancha?</summary>
             <p>Se cobra una cantidad <strong>proporcional al daño</strong>. En caso de daño severo, el costo puede equivaler al valor total de la prenda.</p>
-          </div>
-        </div>
-
-        <div class="faq-item reveal">
-          <button class="faq-question" aria-expanded="false">
-            ¿Hay reembolsos si cancelo?
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer">
+          </details>
+          <details class="acordeon__item" data-faq-extra>
+            <summary>¿Hay reembolsos si cancelo?</summary>
             <p>No manejamos reembolsos una vez que el vestido se aparta o se renta. En casos muy particulares, lo abonado puede aplicarse como <strong>crédito para una futura renta</strong>.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 9. VISÍTANOS ===== -->
+    <section class="seccion" id="visitanos" aria-labelledby="visitanos-titulo">
+      <div class="seccion__inner visitanos">
+        <div class="visitanos__info">
+          <p class="eyebrow">Estamos esperándote</p>
+          <h2 class="seccion__titulo" id="visitanos-titulo">Visítanos en Reynosa</h2>
+          <address class="visitanos__dir">Primaveras 117, Col. Antonio J. Bermúdez<br>88727 Reynosa, Tamaulipas</address>
+{{> horario}}
+          <div class="visitanos__ctas">
+            <a class="btn btn--primario" href="https://www.google.com/maps/dir/?api=1&amp;destination=26.056655677167793,-98.29061312382362" target="_blank" rel="noopener" data-como-llegar>Cómo llegar</a>
+            <a class="btn btn--secundario" href="https://alsdress.setmore.com" target="_blank" rel="noopener" data-agendar>Agendar prueba</a>
           </div>
         </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TESTIMONIOS ===== -->
-  <section id="opiniones" class="testimonios-section">
-    <div class="section-header reveal">
-      <p class="section-eyebrow">Lo que dicen nuestras clientas</p>
-      <h2>Opiniones Reales</h2>
-    </div>
-
-    <!-- Rating summary -->
-    <div class="testimonios-rating reveal">
-      <div class="rating-score">4.9</div>
-      <div class="rating-mid">
-        <div class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <span class="rating-label">Basado en reseñas reales</span>
-      </div>
-      <div class="rating-divider"></div>
-      <div class="rating-badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Reseñas verificadas
-      </div>
-    </div>
-
-    <div class="testimonios-grid" id="testimoniosGrid">
-
-      <div class="testimonio-card reveal">
-        <span class="testimonio-quote-deco" aria-hidden="true">"</span>
-        <div class="estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>Excelente atención y servicio, 100% recomendado, tienen mucha variedad de vestidos.</p>
-        <div class="testimonio-author">
-          <div class="testimonio-avatar">HC</div>
-          <div class="testimonio-author-info">
-            <h4>Hellen Cruz</h4>
-            <span class="testimonio-verified">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Clienta verificada
-            </span>
-          </div>
+        <div class="visitanos__mapa" data-mapa>
+          <button class="mapa-fachada" type="button" data-mapa-cargar>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-4.4-6-10a6 6 0 1 1 12 0c0 5.6-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
+            <span class="mapa-fachada__titulo">Als Dress</span>
+            <span class="mapa-fachada__dir">Primaveras 117, Reynosa</span>
+            <span class="mapa-fachada__accion">Ver mapa</span>
+          </button>
         </div>
+        <ul class="visitanos__fotos" aria-label="Fotos de la tienda">
+          <li><picture><source type="image/avif" srcset="/img/interior1-480.avif 480w, /img/interior1-900.avif 900w" sizes="(min-width: 1024px) 33vw, 80vw"><img src="/img/interior1-480.webp" srcset="/img/interior1-480.webp 480w, /img/interior1-900.webp 900w" sizes="(min-width: 1024px) 33vw, 80vw" alt="Probadores amplios de la tienda Als Dress" width="1600" height="1200" loading="lazy" decoding="async"></picture></li>
+          <li><picture><source type="image/avif" srcset="/img/interior2-480.avif 480w, /img/interior2-900.avif 900w" sizes="(min-width: 1024px) 33vw, 80vw"><img src="/img/interior2-480.webp" srcset="/img/interior2-480.webp 480w, /img/interior2-900.webp 900w" sizes="(min-width: 1024px) 33vw, 80vw" alt="Vestidos exhibidos en Als Dress" width="1200" height="1600" loading="lazy" decoding="async"></picture></li>
+          <li><picture><source type="image/avif" srcset="/img/interior3-480.avif 480w, /img/interior3-900.avif 900w" sizes="(min-width: 1024px) 33vw, 80vw"><img src="/img/interior3-480.webp" srcset="/img/interior3-480.webp 480w, /img/interior3-900.webp 900w" sizes="(min-width: 1024px) 33vw, 80vw" alt="Interior de la boutique Als Dress" width="1600" height="1200" loading="lazy" decoding="async"></picture></li>
+        </ul>
       </div>
+    </section>
 
-      <div class="testimonio-card reveal">
-        <span class="testimonio-quote-deco" aria-hidden="true">"</span>
-        <div class="estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>El mejor lugar sin duda en atención y servicio. Muy lindos sus vestidos y con mucha accesibilidad y accesorios muy bellos.</p>
-        <div class="testimonio-author">
-          <div class="testimonio-avatar">ML</div>
-          <div class="testimonio-author-info">
-            <h4>Mayra López Hernández</h4>
-            <span class="testimonio-verified">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Clienta verificada
-            </span>
-          </div>
-        </div>
+    <!-- ===== 10. CIERRE ===== -->
+    <section class="cierre" id="contacto" aria-labelledby="cierre-titulo">
+      <div class="cierre__inner">
+        <h2 class="cierre__titulo" id="cierre-titulo">Tu vestido te está <em class="script">esperando</em></h2>
+        <p>Escríbenos y te decimos qué tenemos en tu talla para tu evento.</p>
+        <a class="btn btn--wa" href="https://wa.me/528991947566" target="_blank" rel="noopener"><img src="/wa.svg" alt="" width="24" height="24">Escríbenos por WhatsApp</a>
       </div>
-
-      <div class="testimonio-card reveal">
-        <span class="testimonio-quote-deco" aria-hidden="true">"</span>
-        <div class="estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>Muchísima variedad de vestidos en diferentes estilos, y la calidad es buenísima. ¡Les recomiendo este lugar!</p>
-        <div class="testimonio-author">
-          <div class="testimonio-avatar">CM</div>
-          <div class="testimonio-author-info">
-            <h4>Cecilia M.</h4>
-            <span class="testimonio-verified">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Clienta verificada
-            </span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <div class="test-dots" id="testDots"></div>
-  </section>
-
-  <!-- ===== UBICACIÓN ===== -->
-  <section id="visitanos" class="ubicacion-section">
-    <div class="section-header reveal">
-      <p class="section-eyebrow">Estamos esperándote</p>
-      <h2>Visítanos en Reynosa</h2>
-    </div>
-    <div class="ubicacion-grid">
-      <div class="ubicacion-galeria reveal">
-        <div class="galeria-wrapper">
-          <img src="/interior1.webp" class="foto-slide active" alt="Interior Als Dress 1">
-          <img src="/interior2.webp" class="foto-slide" alt="Interior Als Dress 2">
-          <img src="/interior3.webp" class="foto-slide" alt="Interior Als Dress 3">
-          <button id="btn-prev" class="ctrl-galeria ctrl-prev">&#10094;</button>
-          <button id="btn-next" class="ctrl-galeria ctrl-next">&#10095;</button>
-          <div class="galeria-dots" id="galeriaDots"></div>
-        </div>
-        <p class="galeria-desc">Ven y disfruta de un espacio cómodo con probadores amplios e iluminación perfecta.</p>
-      </div>
-      <div class="ubicacion-mapa reveal">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3584.2937178945017!2d-98.29061312382362!3d26.056655677167793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86650f59b87c169b%3A0x18fa5aa25b17a307!2sAls%20Dress!5e0!3m2!1ses-419!2smx!4v1770759259715!5m2!1ses-419!2smx"
-          loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
-          title="Ubicación Als Dress en Reynosa">
-        </iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CONTACTO ===== -->
-  <section id="contacto" class="contacto-section">
-    <div class="contacto-inner">
-      <div class="section-header reveal">
-        <p class="section-eyebrow">Hablemos de tu evento</p>
-        <h2>Contáctanos por el canal que prefieras</h2>
-      </div>
-
-      <div class="contacto-grid">
-        <a href="https://wa.me/528991947566" target="_blank" rel="noopener" class="contacto-card contacto-card--primary reveal">
-          <span class="contacto-card-kicker">Respuesta rápida</span>
-          <h3>WhatsApp</h3>
-          <p>Pregúntanos por tallas, disponibilidad y precios en minutos.</p>
-          <span class="contacto-card-cta">Escribir ahora</span>
-        </a>
-
-        <a href="https://www.instagram.com/als_dress" target="_blank" rel="noopener" class="contacto-card reveal">
-          <span class="contacto-card-kicker">Inspiración</span>
-          <h3>Instagram</h3>
-          <p>Descubre nuevos looks, clientas reales y piezas destacadas.</p>
-          <span class="contacto-card-cta">Ver perfil</span>
-        </a>
-
-        <a href="https://web.facebook.com/alsdress?locale=es_LA" target="_blank" rel="noopener" class="contacto-card reveal">
-          <span class="contacto-card-kicker">Confianza</span>
-          <h3>Facebook</h3>
-          <p>Revisa reseñas y mantente al día con novedades de la boutique.</p>
-          <span class="contacto-card-cta">Ver reseñas</span>
-        </a>
-      </div>
-    </div>
-  </section>
+    </section>
 
   </main>
 
 {{> footer}}
+  <script type="module" src="/src/js/inicio.js"></script>
 </body>
 </html>

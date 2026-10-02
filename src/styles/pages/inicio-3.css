@@ -1,0 +1,115 @@
+/* =============================================
+   Inicio (3/3): preguntas, visítanos y cierre
+   ============================================= */
+
+/* ---- 8. Preguntas frecuentes (acordeón nativo) ---- */
+.acordeon { border-top: 1px solid var(--lila); }
+.acordeon__item { border-bottom: 1px solid var(--lila); }
+.acordeon__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 60px;
+  padding: 14px 0;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  color: var(--ink);
+  list-style: none;
+  cursor: pointer;
+}
+.acordeon__item summary::-webkit-details-marker { display: none; }
+.acordeon__item summary::after {
+  content: "+";
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--orchid-700);
+  font-size: 1.375rem;
+  line-height: 1;
+  transition: transform .3s var(--ease-out);
+}
+.acordeon__item[open] summary::after { transform: rotate(45deg); }
+.acordeon__item p { padding: 0 48px 20px 0; color: var(--muted); }
+
+/* ---- 9. Visítanos ---- */
+.visitanos { display: grid; gap: 28px; }
+.visitanos__info { display: grid; gap: 14px; align-content: start; }
+.visitanos__dir { font-style: normal; font-size: 1.0625rem; color: var(--ink); }
+.visitanos .horario { max-width: 380px; }
+.visitanos__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+.visitanos__mapa { min-height: 280px; border-radius: var(--radius-lg); overflow: hidden; }
+.visitanos__mapa iframe { display: block; width: 100%; height: 100%; min-height: 320px; border: 0; }
+.mapa-fachada {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  border: 0;
+  background: radial-gradient(circle at 1px 1px, rgba(110,58,135,.18) 1px, transparent 0) 0 0 / 18px 18px, var(--champagne);
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+.mapa-fachada svg { width: 40px; height: 40px; fill: none; stroke: var(--orchid-700); stroke-width: 1.8; }
+.mapa-fachada__titulo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; }
+.mapa-fachada__dir { color: var(--muted); }
+.mapa-fachada__accion { display: inline-flex; align-items: center; min-height: var(--tap); margin-top: 8px; padding: 0 22px; border-radius: var(--pill); background: var(--orchid-700); color: #fff; font-weight: 700; }
+.visitanos__fotos {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 80%;
+  gap: 12px;
+  margin: 0 -16px;
+  padding: 0 16px 8px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 16px;
+}
+.visitanos__fotos li { scroll-snap-align: start; }
+.visitanos__fotos img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-lg); }
+@media (min-width: 1024px) {
+  .visitanos { grid-template-columns: 1fr 1.1fr; gap: 40px 48px; }
+  .visitanos__fotos { grid-column: 1 / -1; grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); margin: 0; padding: 0; overflow: visible; }
+}
+
+/* ---- 10. Cierre ---- */
+.cierre { padding: var(--space-section) 16px; background: var(--noche); color: var(--lavanda); text-align: center; }
+.cierre__inner { display: grid; justify-items: center; gap: 16px; max-width: 640px; margin: 0 auto; }
+.cierre__titulo { font-family: var(--font-display); font-size: var(--fs-h2); font-weight: 600; line-height: 1.15; color: var(--marfil); }
+.cierre__titulo .script { color: var(--malva); font-size: 1.25em; }
+.cierre .btn { margin-top: 8px; }
+
+/* Barras de desplazamiento discretas en los carruseles */
+.carrusel,
+.galeria-clientas__pista,
+.visitanos__fotos { scrollbar-width: thin; scrollbar-color: var(--lila) transparent; }
+
+/* Botón Pausar / Reanudar de los carruseles automáticos */
+.carrusel-pausa {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--tap);
+  margin-top: 4px;
+  padding: 0 16px;
+  border: 1px solid var(--lila);
+  border-radius: var(--pill);
+  background: #fff;
+  color: var(--orchid-700);
+  font: inherit;
+  font-size: .875rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.carrusel-pausa[hidden] { display: none; }
+.carrusel-pausa svg { width: 16px; height: 16px; fill: currentColor; }
+.visitanos .carrusel-pausa { grid-column: 1 / -1; justify-self: start; margin-top: -16px; }
