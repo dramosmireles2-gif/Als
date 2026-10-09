@@ -82,7 +82,7 @@
 }
 
 /* ---- 10. Cierre ---- */
-.cierre { padding: var(--space-section) 16px; background: linear-gradient(160deg, var(--orchid-800), var(--noche)); color: var(--rubor); text-align: center; }
+.cierre { padding: var(--space-section) 16px; background: var(--orchid-800); color: var(--rubor); text-align: center; }
 .cierre__inner { display: grid; justify-items: center; gap: 16px; max-width: 640px; margin: 0 auto; }
 .cierre__titulo { font-family: var(--font-display); font-size: var(--fs-h2); font-weight: 600; line-height: 1.15; color: var(--marfil); }
 .cierre .btn { margin-top: 8px; }
