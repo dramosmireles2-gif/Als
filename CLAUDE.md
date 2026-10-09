@@ -13,7 +13,7 @@ Sitio de **Als Boutique**, negocio familiar de renta y venta de vestidos de fies
 - WhatsApp: `https://wa.me/528991947566`. Agenda: `https://alsdress.setmore.com`.
 - Nunca inventes precios, horarios, reseñas ni datos legales: usa `[PENDIENTE: …]` y pregúntale a David.
 - Supabase: tablas `inventario` (filtro `publicado = true`) y `galeria_clientas`. Solo se usa la key publishable en el frontend. Los cambios de esquema se proponen como SQL y **no se ejecutan** sin permiso.
-- **El catálogo se administra desde otro repo, `../AdminAls/sistema-als`** (mismo Supabase). La web solo lee: no renombrar ni borrar columnas, no cambiar valores de `estado_actual` y conservar `obtenerUrlFoto()` (fotos de AppSheet y de Supabase Storage). Ver la sección 11 del plan.
+- **El catálogo se administra desde otro repo, `../sistema-als`** (mismo Supabase). La web solo lee: no renombrar ni borrar columnas, no cambiar valores de `estado_actual` y conservar `obtenerUrlFoto()` (fotos de AppSheet y de Supabase Storage). Ver la sección 11 del plan.
 - Mobile-first, accesible (AA, foco visible, áreas táctiles ≥ 44 px), respetar `prefers-reduced-motion`.
 - Se trabaja **directo en `main`, en local, sin crear ramas**. GitHub Pages publica desde `main`, así que **`git push` = publicar en vivo**: haz solo commits locales y **nunca hagas push sin el OK explícito de David**. Corre `git pull` al iniciar cada sesión.
 - Servidor local: `npm run dev` (http://localhost:5173). Build: `npm run build` y `npm run preview`.

@@ -1,6 +1,7 @@
 /* =============================================
    Página de cada vestido
    ============================================= */
+.ficha__inner { min-height: calc(100svh - var(--alto-header)); }
 .ficha__inner { max-width: 1200px; margin: 0 auto; padding: 8px 16px var(--space-section); }
 .ficha__contenido,
 .ficha__cargando { display: grid; gap: 24px; margin-top: 8px; }

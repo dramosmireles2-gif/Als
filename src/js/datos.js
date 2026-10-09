@@ -4,8 +4,22 @@
 // = varias filas), calcula el slug para los links y la familia de color.
 // =============================================
 
-// Supabase se descarga solo cuando hace falta
-export const obtenerSb = () => import('./supabase.js').then(m => m.sb);
+// Supabase: el sitio solo LEE, así que se consulta directo su API (sin la librería
+// de 214 KB). La llave es la pública; las reglas de la base (RLS) solo le dejan
+// leer los vestidos publicados y la galería.
+const SUPABASE_URL = 'https://nykekrnbijochjcnkrga.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_3B_zCPi9bJYN6TEmoVB3jg_VJ1C45Sj';
+
+// Devuelve { data, error } igual que la librería de Supabase
+export async function leerTabla(tabla, consulta) {
+    try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/${tabla}?${consulta}`, { headers: { apikey: SUPABASE_KEY } });
+        if (!res.ok) throw new Error(`Supabase respondió ${res.status}`);
+        return { data: await res.json(), error: null };
+    } catch (error) {
+        return { data: null, error };
+    }
+}
 
 // ---- Fotos: AppSheet (viejas), Google Drive o Supabase Storage (nuevas) ----
 const APP_NAME = 'RentaVestidosAPP-250346467';
@@ -133,8 +147,7 @@ let cache = null;
 // Todos los modelos publicados (una sola consulta por página)
 export function cargarModelos() {
     if (!cache) {
-        cache = obtenerSb()
-            .then(sb => sb.from('inventario').select('*').eq('publicado', true).order('nombre'))
+        cache = leerTabla('inventario', 'select=*&publicado=eq.true&order=nombre.asc')
             .then(({ data, error }) => {
                 if (error) throw error;
                 return agrupar(data || []);

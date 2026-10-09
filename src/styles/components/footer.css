@@ -69,3 +69,21 @@
   .site-footer__links a:hover,
   .site-footer__legal a:hover { color: var(--malva); }
 }
+
+/* Enlaces legales y "Configurar cookies" */
+.site-footer__legales { display: flex; flex-wrap: wrap; gap: 0 20px; list-style: none; margin: 0; padding: 0; }
+.site-footer__boton {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--marfil);
+  font: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(227,172,218,.5);
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) { .site-footer__boton:hover { color: var(--malva); } }

@@ -27,6 +27,7 @@ const chkDisponibles = $('[data-filtro-disponibles]');
 const esPanel = window.matchMedia('(max-width: 1023px)');
 
 let modelos = [];
+let hayOcasiones = false; // se vuelve true cuando el admin marque ocasiones
 let mostrados = POR_PAGINA;
 const estado = { talla: new Set(), color: new Set(), ocasion: new Set(), tipo: new Set(), disponibles: false };
 
@@ -56,7 +57,7 @@ function filtrar() {
     return modelos.filter(m => {
         if (estado.tipo.size && !estado.tipo.has(slug(m.tipo))) return false;
         if (estado.color.size && !estado.color.has(m.familia)) return false;
-        if (estado.ocasion.size && !m.ocasion.some(o => estado.ocasion.has(slug(o)))) return false;
+        if (estado.ocasion.size && hayOcasiones && !m.ocasion.some(o => estado.ocasion.has(slug(o)))) return false;
         if (estado.talla.size && !m.tallas.some(t => estado.talla.has(t.talla) && (!estado.disponibles || t.disponible))) return false;
         if (estado.disponibles && !m.hayDisponible) return false;
         return true;
@@ -213,6 +214,8 @@ async function iniciar() {
     errorEl.hidden = true;
     try {
         modelos = await cargarModelos();
+        hayOcasiones = modelos.some(m => m.ocasion.length);
+        if (!hayOcasiones) estado.ocasion.clear();
         construirFiltros();
         pintar();
     } catch (err) {

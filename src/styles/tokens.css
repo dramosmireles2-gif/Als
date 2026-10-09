@@ -2,6 +2,13 @@
    tokens.css: sistema visual Als Dress
    Paleta del moodboard aprobado. El rosa frambuesa anterior quedó eliminado.
    ============================================= */
+/* Fuentes de respaldo con las medidas de Playfair, Lato y Allura: mientras
+   cargan las reales, el texto ocupa el mismo espacio y la página no "salta".
+   Medidas calculadas con @capsizecss/metrics. */
+@font-face { font-family: 'Playfair respaldo'; src: local('Georgia'); size-adjust: 101.39%; ascent-override: 106.72%; descent-override: 24.76%; line-gap-override: 0%; }
+@font-face { font-family: 'Lato respaldo'; src: local('Arial'); size-adjust: 97.69%; ascent-override: 101.03%; descent-override: 21.80%; line-gap-override: 0%; }
+@font-face { font-family: 'Allura respaldo'; src: local('Georgia Italic'), local('Georgia'); size-adjust: 75.82%; ascent-override: 105.51%; descent-override: 59.35%; line-gap-override: 0%; }
+
 :root {
   /* Color */
   --ink:        #1A141C; /* textos, trazo del logo */
@@ -20,9 +27,9 @@
   --wa-700:     #187547; /* hover WhatsApp y texto verde sobre claro (5.7:1) */
 
   /* Tipografía */
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body:    'Lato', system-ui, sans-serif;
-  --font-script:  'Allura', cursive; /* 1 a 3 palabras máximo, nunca párrafos */
+  --font-display: 'Playfair Display', 'Playfair respaldo', Georgia, serif;
+  --font-body:    'Lato', 'Lato respaldo', Arial, sans-serif;
+  --font-script:  'Allura', 'Allura respaldo', cursive; /* 1 a 3 palabras máximo, nunca párrafos */
 
   --fs-h1:   clamp(2.4rem, 1.6rem + 3.6vw, 4rem);
   --fs-h2:   clamp(1.9rem, 1.4rem + 2vw, 2.6rem);

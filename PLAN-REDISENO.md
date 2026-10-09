@@ -263,6 +263,7 @@ Sitemap: https://alsdress.com.mx/sitemap.xml
 ## 10. Fases de trabajo para Claude Code
 
 ### Avance
+- **Fase 6 terminada** (9 de octubre de 2026): /como-rentar/ (pasos, guía para tallas por WhatsApp, 8 preguntas con FAQPage), aviso de privacidad y política de cookies (borradores; falta el nombre o razón social del responsable), aviso de cookies con Consent Mode v2, Google Ads cargado después de la página, 404 nueva, robots.txt y sitemap. El sitio lee Supabase sin la librería (-214 KB). Sin tabla de tallas ni Meta Pixel (decisión de David).
 - **Fase 5 terminada** (3 de octubre de 2026): catálogo con filtros en la URL (talla, color por familias, disponibles), página de cada vestido (/vestido/?m=slug, respaldo ?id=), Mi lista como panel con envío por WhatsApp. Sin precios (decisión de David). Script para pasar las fotos a Supabase listo; lo aplica David.
 - **Fases 0 a 4 terminadas** (2 de octubre de 2026): limpieza, Vite + deploy, tokens y componentes, header/menú/footer/barra inferior, e inicio nuevo. Todo en commits locales, **sin push**.
 - **Aprobado por David:** en la fase 6, cargar Google Ads después de pintar la página (para subir la velocidad a 90+), junto con el banner de cookies y Consent Mode; verificar con Tag Assistant.
@@ -292,7 +293,7 @@ Horario · dirección completa · razón social para el aviso · precios o rango
 
 ---
 
-## 11. Relación con el panel admin (`../AdminAls/sistema-als`)
+## 11. Relación con el panel admin (`../sistema-als`)
 
 Hay un panel admin aparte (repo `sistema-als`, HTML + JS + Supabase, PWA) con el que David da de alta vestidos, los publica u oculta en la web (`publicado`), marca destacados (`destacado`), cambia su estado (Disponible / Rentado…) y registra rentas y clientes. **La web y el admin comparten el mismo proyecto de Supabase.** El admin es la fuente de verdad del catálogo.
 

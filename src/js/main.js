@@ -6,10 +6,11 @@
 // =============================================
 import './nav.js';
 import './mi-lista.js';
+import './consent.js';
 import { autoCarrusel } from './carrusel.js';
-import { obtenerSb } from './datos.js';
+import { leerTabla } from './datos.js';
 
-export { obtenerSb, obtenerUrlFoto } from './datos.js';
+export { obtenerUrlFoto } from './datos.js';
 
 // Ejecuta fn cuando el elemento está por entrar a la pantalla
 export function cuandoSeAcerque(el, fn, margen = '600px') {
@@ -197,12 +198,7 @@ async function cargarGaleriaClientas() {
     const contenedor = document.getElementById('galeria-clientas-grid');
     if (!contenedor) return;
 
-    const sb = await obtenerSb();
-    const { data, error } = await sb
-        .from('galeria_clientas')
-        .select('*')
-        .eq('activa', true)
-        .order('created_at', { ascending: false });
+    const { data, error } = await leerTabla('galeria_clientas', 'select=*&activa=eq.true&order=created_at.desc');
 
     if (error || !data || data.length === 0) {
         document.getElementById('sec-galeria-clientas').classList.add('hidden');

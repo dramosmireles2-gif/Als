@@ -9,7 +9,6 @@
     "imagenes": "node scripts/imagenes.mjs"
   },
   "dependencies": {
-    "@supabase/supabase-js": "2.117.2",
     "motion": "13.5.0"
   },
   "devDependencies": {

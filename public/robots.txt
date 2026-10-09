@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /_estilos/
+
+Sitemap: https://alsdress.com.mx/sitemap.xml
