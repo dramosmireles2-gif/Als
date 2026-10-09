@@ -34,7 +34,7 @@ Nota: en las capturas de página completa, la barra inferior y el aviso de cooki
 Qué vende (renta y venta de vestidos de fiesta), dónde (Reynosa, en el header y en la frase del hero) y cómo contactar (WhatsApp con número, visible sin scroll): sí.
 
 ## Pendientes
-- **Hero (punto 5 de la revisión):** sigue la foto ilustrativa. Cambiar a `interior2` (racks de la tienda), a una foto de clientas o a una sesión en tienda.
+- **Hero (punto 5 de la revisión): HECHO.** Foto real de la tienda según el tamaño: `interior1` (horizontal, racks de color) en teléfono y tablet, con encuadre 3:2; `interior2` (vertical, pasillo con racks) en computadora, con encuadre cuadrado. Se descartó el carrusel: las fotos tienen orientaciones distintas, un hero que rota frena la carga y la skill pide un solo momento de movimiento. La imagen para compartir (og-image.jpg, 1200x630) también es de la tienda. Capturas: `revision/hero-tienda-375.png` y `revision/hero-tienda-1440.png`. Recomendación: una sesión de fotos en tienda (las actuales son de teléfono).
 - **Graduación:** falta una foto real de una graduación.
 - **Sombra única:** si se quiere llegar a 0 señales, quitar la sombra de las tarjetas sobre fondo blanco y dejarla solo en lo que flota (aviso, panel).
 - **Galería:** la foto con id `1c1249c8…` apunta al panel de Supabase, no a una imagen.

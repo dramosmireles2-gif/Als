@@ -35,8 +35,8 @@
   display: grid;
   background: var(--marfil);
 }
-.hero-nuevo__foto { aspect-ratio: 5 / 4; overflow: hidden; background: var(--champagne); }
-.hero-nuevo__foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+.hero-nuevo__foto { aspect-ratio: 3 / 2; overflow: hidden; background: var(--champagne); }
+.hero-nuevo__foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 88%; }
 .hero-nuevo__texto { display: grid; gap: 16px; align-content: center; padding: 24px 16px 32px; }
 .hero-nuevo__titulo {
   font-family: var(--font-display);
@@ -68,7 +68,8 @@
     padding: 32px 32px 40px;
     background: none;
   }
-  .hero-nuevo__foto { order: 2; aspect-ratio: 4 / 5; max-height: 680px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+  .hero-nuevo__foto { order: 2; aspect-ratio: 1 / 1; max-height: 640px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+  .hero-nuevo__foto img { object-position: center 42%; }
   .hero-nuevo__texto { padding: 0; }
 }
 /* Teléfono horizontal: el hero no ocupa toda la pantalla */

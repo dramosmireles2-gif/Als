@@ -9,8 +9,8 @@ const FOTOS = {
   'cat-zapatos.webp':    [400, 700],
   'cat-bolsas.webp':     [400, 700],
   'cat-accesorios.webp': [400, 700],
-  'interior1.webp':      [480, 900],
-  'interior2.webp':      [480, 900],
+  'interior1.webp':      [480, 900, 1200, 1600], // también hero (teléfono y tablet)
+  'interior2.webp':      [480, 900, 1200],       // también hero (computadora)
   'interior3.webp':      [480, 900],
 };
 
