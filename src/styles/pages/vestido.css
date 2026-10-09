@@ -10,6 +10,8 @@
 .ficha__galeria { display: grid; gap: 10px; align-content: start; }
 .ficha__foto { aspect-ratio: 3 / 4; overflow: hidden; border-radius: var(--radius-lg); background: var(--champagne); }
 .ficha__foto img { width: 100%; height: 100%; object-fit: cover; }
+/* Destino de la foto que viaja desde la tarjeta (base.css). Solo el cuadro del esqueleto lleva el nombre. */
+.ficha__cargando .ficha__foto { view-transition-name: foto-vestido; }
 .ficha__miniaturas { display: flex; gap: 8px; list-style: none; margin: 0; padding: 0; }
 .ficha__miniaturas[hidden] { display: none; }
 .ficha__miniatura { width: 72px; padding: 0; border: 2px solid transparent; border-radius: var(--radius-sm); background: none; overflow: hidden; cursor: pointer; }

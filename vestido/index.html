@@ -30,7 +30,21 @@
       </nav>
 
       <div class="ficha__cargando" data-cargando aria-live="polite">
-        <div class="ficha__galeria"><div class="ficha__foto esqueleto"></div></div>
+        <div class="ficha__galeria"><div class="ficha__foto esqueleto" data-foto-viaje></div></div>
+        <script>
+          // Si llegaste desde una tarjeta, su foto se muestra aquí desde el primer cuadro
+          // (la misma foto ya está en caché). Así la transición tiene a dónde "viajar".
+          try {
+            var viaje = JSON.parse(sessionStorage.getItem('als:viaje') || 'null');
+            if (viaje && viaje.f && viaje.u === location.pathname + location.search) {
+              var fotoViaje = new Image(600, 800);
+              fotoViaje.alt = '';
+              fotoViaje.referrerPolicy = 'no-referrer';
+              fotoViaje.src = viaje.f;
+              document.querySelector('[data-foto-viaje]').appendChild(fotoViaje);
+            }
+          } catch (e) {}
+        </script>
         <div class="ficha__info"><span class="esqueleto"></span><span class="esqueleto esqueleto--corto"></span><span class="sr-only">Cargando vestido…</span></div>
       </div>
 

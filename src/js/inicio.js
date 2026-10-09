@@ -69,3 +69,21 @@ cuandoSeAcerque(document.getElementById('destacados'), cargarDestacados);
 iniciarMapa();
 // Fotos de la tienda: avanzan solas en teléfono (en computadora se ven las 3)
 autoCarrusel(document.querySelector('.visitanos__fotos'));
+
+// Telón del probador: se abre cuando la foto del hero ya está lista (máximo 1.5 s de espera)
+function abrirTelon() {
+    const raiz = document.documentElement;
+    const foto = document.querySelector('.hero-nuevo__foto');
+    if (!raiz.classList.contains('telon') || !foto) return;
+    try { sessionStorage.setItem('als:telon', '1'); } catch { /* sin almacenamiento: se abre igual */ }
+    const img = foto.querySelector('img');
+    const lista = img.decode ? img.decode().catch(() => {}) : Promise.resolve();
+    const pausa = new Promise(r => setTimeout(r, 250));
+    const limite = new Promise(r => setTimeout(r, 1500));
+    Promise.race([Promise.all([lista, pausa]), limite]).then(() => {
+        clearTimeout(window.alsTelon);
+        foto.addEventListener('transitionend', () => raiz.classList.remove('telon', 'telon--abrir'), { once: true });
+        requestAnimationFrame(() => raiz.classList.add('telon--abrir'));
+    });
+}
+abrirTelon();

@@ -209,6 +209,50 @@ function cerrarPanel({ devolverFoco = true } = {}) {
     if (devolverFoco) btnAbrir.focus();
 }
 
+// Cerrar el panel arrastrándolo hacia abajo desde la barrita o el título (solo en teléfono y tablet).
+// La caja sigue el dedo; si bajó más de un cuarto o se soltó rápido, se cierra; si no, regresa.
+function iniciarArrastre() {
+    const fondo = panel.querySelector('.filtros__fondo');
+    let inicio = null;
+    let dy = 0;
+    const soltar = (cerrar) => {
+        caja.style.transition = '';
+        caja.style.transform = '';
+        fondo.style.transition = '';
+        fondo.style.opacity = '';
+        if (cerrar) cerrarPanel();
+    };
+    caja.addEventListener('pointerdown', e => {
+        if (!esPanel.matches || !panel.classList.contains('filtros--abierto') || e.button !== 0) return;
+        const enZona = e.target.closest('.filtros__top') || e.clientY - caja.getBoundingClientRect().top < 28;
+        if (!enZona) return;
+        inicio = { y: e.clientY, t: e.timeStamp, id: e.pointerId };
+        dy = 0;
+    });
+    caja.addEventListener('pointermove', e => {
+        if (!inicio || e.pointerId !== inicio.id) return;
+        dy = Math.max(0, e.clientY - inicio.y);
+        if (dy < 6 && !caja.hasPointerCapture(e.pointerId)) return;
+        if (!caja.hasPointerCapture(e.pointerId)) {
+            caja.setPointerCapture(e.pointerId);
+            caja.style.transition = fondo.style.transition = 'none';
+        }
+        caja.style.transform = `translateY(${dy}px)`;
+        fondo.style.opacity = String(Math.max(0, 1 - dy / caja.offsetHeight));
+    });
+    const fin = e => {
+        if (!inicio || e.pointerId !== inicio.id) return;
+        const arrastrando = caja.hasPointerCapture(e.pointerId);
+        const velocidad = dy / Math.max(1, e.timeStamp - inicio.t); // px por ms, promedio del gesto
+        inicio = null;
+        if (!arrastrando) return;
+        caja.releasePointerCapture(e.pointerId);
+        soltar(e.type === 'pointerup' && (dy > caja.offsetHeight * 0.25 || (dy > 40 && velocidad > 0.6)));
+    };
+    caja.addEventListener('pointerup', fin);
+    caja.addEventListener('pointercancel', fin);
+}
+
 // ---- Arranque ----
 async function iniciar() {
     errorEl.hidden = true;
@@ -228,6 +272,7 @@ async function iniciar() {
 
 leerUrl();
 btnAbrir.addEventListener('click', abrirPanel);
+iniciarArrastre();
 document.querySelectorAll('[data-filtros-cerrar]').forEach(b => b.addEventListener('click', () => cerrarPanel()));
 btnVer.addEventListener('click', () => {
     cerrarPanel({ devolverFoco: false });

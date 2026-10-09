@@ -3,7 +3,7 @@
 // Toda la tarjeta lleva a la página del vestido; el ♡ es un botón aparte.
 // =============================================
 import { prepararFoto, urlVestido } from './datos.js';
-import { estaEnLista, alternarEnLista } from './mi-lista.js';
+import { estaEnLista, alternarEnLista, rebote } from './mi-lista.js';
 
 const ICONO_CORAZON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.7A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>';
 
@@ -14,6 +14,29 @@ function pintarFav(fav) {
 }
 // Un solo oyente actualiza todos los corazones cuando cambia la lista
 document.addEventListener('lista:cambio', () => document.querySelectorAll('.tarjeta__fav[data-slug]').forEach(pintarFav));
+
+// La foto de la tarjeta "viaja" a la página del vestido (View Transitions entre páginas).
+// Es mejora progresiva: sin soporte, la navegación es normal. La URL de la foto se pasa
+// para que la página del vestido la muestre desde el primer cuadro.
+let tarjetaTocada = null;
+document.addEventListener('click', e => {
+    const enlace = e.target.closest?.('.tarjeta__enlace');
+    if (!enlace || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const img = enlace.closest('.tarjeta').querySelector('.tarjeta__media img');
+    tarjetaTocada = img;
+    try { sessionStorage.setItem('als:viaje', JSON.stringify({ u: enlace.getAttribute('href'), f: img.currentSrc || img.src })); } catch { /* sin almacenamiento */ }
+});
+window.addEventListener('pageswap', e => {
+    if (!e.viewTransition || !tarjetaTocada) return;
+    const img = tarjetaTocada;
+    tarjetaTocada = null;
+    img.style.viewTransitionName = 'foto-vestido';
+    e.viewTransition.finished.finally(() => { img.style.viewTransitionName = ''; });
+});
+// Al volver con el botón Atrás (página guardada en memoria) se limpia el nombre
+window.addEventListener('pageshow', e => {
+    if (e.persisted) document.querySelectorAll('.tarjeta__media img').forEach(i => { i.style.viewTransitionName = ''; });
+});
 
 export function crearTarjeta(modelo, { prioridad = false } = {}) {
     const li = document.createElement('li');
@@ -44,7 +67,7 @@ export function crearTarjeta(modelo, { prioridad = false } = {}) {
     fav.dataset.slug = modelo.slug;
     fav.dataset.nombre = modelo.nombre;
     pintarFav(fav);
-    fav.addEventListener('click', () => alternarEnLista(modelo));
+    fav.addEventListener('click', () => { if (alternarEnLista(modelo)) rebote(fav); });
     media.append(img, badge, fav);
 
     // Texto

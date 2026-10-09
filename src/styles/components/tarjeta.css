@@ -56,6 +56,9 @@
 }
 .tarjeta__fav svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; }
 .tarjeta__fav[aria-pressed="true"] svg { fill: currentColor; }
+/* Rebote al guardar en Mi lista (mi-lista.js → rebote). También lo usa el botón de la ficha. */
+@keyframes corazon-rebote { 0% { transform: scale(1); } 35% { transform: scale(1.3); } 65% { transform: scale(.92); } 100% { transform: scale(1); } }
+.con-rebote svg { animation: corazon-rebote .45s var(--ease-out); }
 
 .tarjeta__cuerpo {
   display: grid;

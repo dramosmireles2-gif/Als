@@ -89,6 +89,7 @@
   }
   .filtros--abierto .filtros__caja { transform: none; }
   .filtros__caja::before { content: ""; align-self: center; width: 40px; height: 4px; border-radius: 4px; background: var(--line); }
+  .filtros__top { touch-action: none; } /* se arrastra hacia abajo para cerrar (catalogo.js) */
   .filtros__grupos { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 4px 0 8px; }
   .filtros__pie { padding-top: 12px; border-top: 1px solid var(--line); }
   .filtros__ver { flex: 1; }

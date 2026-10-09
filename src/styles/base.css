@@ -42,3 +42,15 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ---- View Transitions entre páginas (mejora progresiva; Firefox navega normal) ----
+   La foto de la tarjeta viaja al cuadro de la foto en la página del vestido. El resto
+   de la página solo hace un fundido corto. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation-duration: .2s; }
+  ::view-transition-group(foto-vestido) { animation-duration: .45s; animation-timing-function: var(--ease-out); }
+  ::view-transition-old(foto-vestido),
+  ::view-transition-new(foto-vestido) { height: 100%; object-fit: cover; }
+}

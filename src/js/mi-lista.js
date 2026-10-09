@@ -37,6 +37,15 @@ export function alternarEnLista(modelo, talla = null) {
     return true;
 }
 
+// Pequeño rebote del ♡ al guardar (no se usa con reduced-motion)
+export function rebote(boton) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    boton.classList.remove('con-rebote');
+    void boton.offsetWidth; // reinicia la animación si tocan dos veces seguidas
+    boton.classList.add('con-rebote');
+    boton.addEventListener('animationend', () => boton.classList.remove('con-rebote'), { once: true });
+}
+
 // Guarda la talla elegida en la página del vestido (si ya está en la lista)
 export function actualizarTalla(slug, talla) {
     const lista = leerLista();

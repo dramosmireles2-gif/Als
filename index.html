@@ -59,6 +59,16 @@
   }
   </script>
 {{> gtag}}
+  <script>
+    // Telón del probador: solo la primera visita de la sesión y si no pidieron menos movimiento.
+    // inicio.js lo abre; si algo falla, se quita solo a los 4 s.
+    try {
+      if (!sessionStorage.getItem('als:telon') && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+        document.documentElement.classList.add('telon');
+        window.alsTelon = setTimeout(function () { document.documentElement.classList.remove('telon'); }, 4000);
+      }
+    } catch (e) {}
+  </script>
   <link rel="stylesheet" href="/src/styles/index.css">
 </head>
 <body>

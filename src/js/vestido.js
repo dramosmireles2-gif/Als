@@ -3,7 +3,7 @@
 // =============================================
 import { buscarModelo, cargarModelos, prepararFoto, FAMILIAS, urlVestido } from './datos.js';
 import { urlWhatsApp, mensajeVestido, linkPublico } from './whatsapp.js';
-import { estaEnLista, alternarEnLista, actualizarTalla, mostrarAviso } from './mi-lista.js';
+import { estaEnLista, alternarEnLista, actualizarTalla, mostrarAviso, rebote } from './mi-lista.js';
 import { crearTarjeta } from './tarjeta.js';
 
 const $ = sel => document.querySelector(sel);
@@ -155,7 +155,7 @@ async function iniciar() {
     actualizarWhatsApp();
 
     $('[data-fecha]').addEventListener('input', actualizarWhatsApp);
-    $('[data-guardar]').addEventListener('click', () => alternarEnLista(modelo, tallaElegida));
+    $('[data-guardar]').addEventListener('click', e => { if (alternarEnLista(modelo, tallaElegida)) rebote(e.currentTarget); });
     document.addEventListener('lista:cambio', pintarGuardar);
     $('[data-compartir]').addEventListener('click', compartir);
 
