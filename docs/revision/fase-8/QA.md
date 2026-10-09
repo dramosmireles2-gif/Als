@@ -61,10 +61,9 @@ con la etiqueta `_Ri3CMHfnrwcEJDJsvop` después de tocar el botón de WhatsApp d
 Pendiente después de publicar: confirmar con Tag Assistant y en Google Ads → Conversiones que entra el clic.
 
 ## 6. [PENDIENTE] que siguen en el sitio
-1. **Aviso de privacidad:** `[PENDIENTE: nombre completo o razón social del responsable]` (se ve en la página).
-2. Aviso de privacidad y política de cookies marcados como **BORRADOR**: revisar con abogado o contador.
-3. Foto de **graduación** provisional en "¿Para qué es tu vestido?" (TODO-FOTO-REAL).
-4. Confirmar calificación **4.9 con 89 reseñas** en Google.
+1. ~~Responsable del aviso~~: Eduardo Ramos Sosa (listo). Avisos legales publicados tal cual con el OK de David, con la redacción revisada.
+2. Foto de **graduación** provisional: se queda así por ahora (decisión de David).
+3. ~~Calificación~~: confirmada en Google, 4.9 con 89 opiniones.
 5. Fotos del catálogo aún en AppSheet: correr el script de migración.
 6. Galería de clientas: corregir la fila `1c1249c8…` que apunta al panel de Supabase (ya no se muestra).
 7. Supabase: apagar registros nuevos y activar la protección de contraseñas filtradas.
