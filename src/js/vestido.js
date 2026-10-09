@@ -140,10 +140,10 @@ async function iniciar() {
     const estado = $('[data-estado]');
     estado.className = `badge ${modelo.hayDisponible ? 'badge--disponible' : 'badge--apartado'}`;
     estado.textContent = modelo.hayDisponible ? 'Disponible' : 'Apartado por ahora';
-    const meta = [modelo.tipo];
-    if (modelo.color) meta.push(`Color: ${modelo.color}`);
-    else if (familia) meta.push(`Tono: ${familia.nombre.toLowerCase()}`);
-    $('[data-meta]').textContent = meta.join(' · ');
+    let meta = modelo.tipo;
+    if (modelo.color) meta += ` en color ${modelo.color.toLowerCase()}`;
+    else if (familia) meta += ` en tono ${familia.nombre.toLowerCase()}`;
+    $('[data-meta]').textContent = meta;
 
     // La fecha del evento no puede ser en el pasado
     const hoy = new Date();

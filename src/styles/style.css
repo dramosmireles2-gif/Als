@@ -279,10 +279,8 @@ a  { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.62rem;
+  font-size: 0.875rem;
   font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
   color: var(--orchid-700);
   margin-top: 14px;
 }
@@ -315,10 +313,8 @@ a  { text-decoration: none; color: inherit; }
   gap: 8px;
 }
 .lightbox-tallas > span:first-child {
-  font-size: 0.65rem;
+  font-size: 0.875rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
   color: var(--muted);
 }
 .lightbox-tallas-chips {

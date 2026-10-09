@@ -23,10 +23,9 @@
 
 .site-footer__col { display: grid; align-content: start; gap: 10px; }
 .site-footer__titulo {
-  font-size: .75rem;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
   color: var(--malva);
 }
 .site-footer address { font-style: normal; line-height: 1.6; }

@@ -238,7 +238,7 @@ function abrirLightboxClientas(url, nombre) {
     document.getElementById('lightbox-img').src  = url;
     document.getElementById('lightbox-img').alt  = nombre || 'Clienta Als Dress';
 
-    document.getElementById('lightbox-categoria').textContent = 'ALS DRESS';
+    document.getElementById('lightbox-categoria').textContent = 'Als Dress';
     document.getElementById('lightbox-nombre').textContent    = nombre || 'Clienta Als Dress';
 
     document.getElementById('lb-tallas-section').style.display = 'none';

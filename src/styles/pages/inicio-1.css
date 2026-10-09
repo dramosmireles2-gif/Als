@@ -2,14 +2,6 @@
    Inicio (1/2): estructura común, hero, confianza,
    ocasiones y destacados
    ============================================= */
-.eyebrow {
-  font-size: .75rem;
-  font-weight: 700;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--orchid-700);
-}
-
 .seccion { padding: var(--space-section) 16px; background: var(--marfil); }
 .seccion--rubor { background: var(--rubor); }
 .seccion--champagne { background: var(--champagne); }

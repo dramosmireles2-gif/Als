@@ -73,10 +73,8 @@
 .menu-movil__info { display: grid; gap: 8px; color: var(--ink); }
 .menu-movil__titulo {
   margin-top: 8px;
-  font-size: .75rem;
+  font-size: .9375rem;
   font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
   color: var(--muted);
 }
 .menu-movil__llegar,
