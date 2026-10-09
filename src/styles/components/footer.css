@@ -13,11 +13,14 @@
   margin: 0 auto;
 }
 .site-footer__marca img { width: 64px; height: 64px; border-radius: 50%; }
+/* La firma: único lugar del sitio con Allura */
 .site-footer__nombre {
   margin-top: 12px;
-  font-family: var(--font-display);
-  font-size: 1.625rem;
-  font-weight: 600;
+  font-family: var(--font-script);
+  font-size: 2.75rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--malva);
 }
 .site-footer__lema { max-width: 32ch; margin-top: 6px; color: var(--lavanda); }
 

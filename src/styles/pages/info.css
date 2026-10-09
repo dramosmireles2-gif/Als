@@ -3,7 +3,6 @@
    ============================================= */
 .info__cabeza { display: grid; gap: 8px; max-width: 1200px; margin: 0 auto; padding: 8px 16px 4px; }
 .info__titulo { font-family: var(--font-display); font-size: clamp(2rem, 1.6rem + 2vw, 3rem); font-weight: 600; line-height: 1.1; color: var(--ink); }
-.info__titulo .script { color: var(--orchid-700); font-size: 1.2em; line-height: .9; }
 .info__intro { max-width: 62ch; font-size: var(--fs-body); color: var(--muted); }
 
 .pasos--detalle { grid-template-columns: 1fr; }
