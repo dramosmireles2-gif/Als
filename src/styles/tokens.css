@@ -7,7 +7,7 @@
    Medidas calculadas con @capsizecss/metrics. */
 @font-face { font-family: 'Playfair respaldo'; src: local('Georgia'); size-adjust: 101.39%; ascent-override: 106.72%; descent-override: 24.76%; line-gap-override: 0%; }
 @font-face { font-family: 'Lato respaldo'; src: local('Arial'); size-adjust: 97.69%; ascent-override: 101.03%; descent-override: 21.80%; line-gap-override: 0%; }
-@font-face { font-family: 'Allura respaldo'; src: local('Georgia Italic'), local('Georgia'); size-adjust: 75.82%; ascent-override: 105.51%; descent-override: 59.35%; line-gap-override: 0%; }
+@font-face { font-family: 'Allura respaldo'; src: local('Georgia'); size-adjust: 75.82%; ascent-override: 105.51%; descent-override: 59.35%; line-gap-override: 0%; }
 
 :root {
   /* Color */

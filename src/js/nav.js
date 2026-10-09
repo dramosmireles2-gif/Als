@@ -7,7 +7,7 @@ const esTelefono = window.matchMedia('(max-width: 767px)');
 
 // ---- Header: se compacta al bajar; en teléfono se esconde al bajar rápido ----
 const header = document.querySelector('[data-header]');
-let ultimoY = window.scrollY;
+let ultimoY = 0; // no leer scrollY al cargar: forzaría el primer layout dentro del script
 let pendiente = false;
 
 function actualizarHeader() {

@@ -107,7 +107,7 @@ function crearLightbox() {
     lb.innerHTML = `
         <div class="lightbox-inner">
             <div class="lightbox-img-wrap">
-                <img id="lightbox-img" src="" alt="">
+                <img id="lightbox-img" alt="" width="600" height="800">
             </div>
             <div class="lightbox-info">
                 <button class="lightbox-cerrar" id="lightboxCerrar">✕</button>
@@ -198,7 +198,10 @@ async function cargarGaleriaClientas() {
     const contenedor = document.getElementById('galeria-clientas-grid');
     if (!contenedor) return;
 
-    const { data, error } = await leerTabla('galeria_clientas', 'select=*&activa=eq.true&order=created_at.desc');
+    const respuesta = await leerTabla('galeria_clientas', 'select=*&activa=eq.true&order=created_at.desc');
+    const error = respuesta.error;
+    // Solo URLs que sí son fotos (una fila apuntaba al panel de Supabase, no a la imagen)
+    const data = (respuesta.data || []).filter(f => f.foto_url && !f.foto_url.includes('supabase.com/dashboard'));
 
     if (error || !data || data.length === 0) {
         document.getElementById('sec-galeria-clientas').classList.add('hidden');
@@ -296,5 +299,6 @@ document.addEventListener('click', e => {
 document.addEventListener('DOMContentLoaded', () => {
     if (location.pathname === '/' || location.pathname === '/index.html') restaurarRuta();
     crearLightbox();
-    cuandoSeAcerque(document.getElementById('opiniones'), cargarGaleriaClientas);
+    // Se pide con más anticipación: si llega tarde, empuja las reseñas mientras las lees
+    cuandoSeAcerque(document.getElementById('opiniones'), cargarGaleriaClientas, '1600px');
 });
