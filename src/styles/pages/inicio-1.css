@@ -50,7 +50,6 @@
 .buscador-talla { display: grid; gap: 10px; margin-top: 6px; }
 .buscador-talla__titulo { font-weight: 700; font-size: .9375rem; color: var(--ink); }
 
-.hero-nuevo__agendar { justify-self: start; }
 @media (max-width: 479px) {
   .hero-nuevo__ctas .btn { flex: 1 1 100%; }
 }

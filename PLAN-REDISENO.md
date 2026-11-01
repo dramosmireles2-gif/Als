@@ -11,8 +11,8 @@
 - **Clientas:** mujeres de 15 a 55 años. Ocasiones: XV años (la clienta y su mamá o madrina), graduaciones, bodas (invitadas, damas, mamá de los novios), posadas y cenas de fin de año, eventos de gala.
 - **Cómo se renta hoy (de las FAQ actuales):** renta de 3 a 4 días, depósito del 50 % del valor, renta **solo presencial**, sí hacen ajustes, no hay reembolsos (en algunos casos queda como crédito).
 - **Embudo real:** Meta Ads / Google Ads / Google Maps → sitio → **WhatsApp** (+52 899 194 7566) → visita y prueba en tienda → renta.
-  Ya existe una agenda en Setmore (`alsdress.setmore.com`) con los servicios "Renta de vestidos", "Rentar vestido" y "Recoger vestidos".
-- **Conversión principal:** clic a WhatsApp (ya se mide con Google Ads `AW-11262534800`). **Secundaria:** cita agendada y clic en "Cómo llegar".
+  Ya no hay agenda en línea: Setmore se quitó el 1 nov 2026 (fase 9). Las clientas llegan a probarse sin cita.
+- **Conversión principal:** clic a WhatsApp (ya se mide con Google Ads `AW-11262534800`). **Secundaria:** clic en "Cómo llegar".
 
 ### Análisis del nicho (Reynosa)
 - Casi toda la competencia (SOSA, Elegance, Gabrielle, Dress to Go…) vive **solo en Facebook e Instagram**. Un sitio rápido, con catálogo filtrable por talla y disponibilidad real, ya es una ventaja. El objetivo es que el sitio **ahorre la pregunta "lo tienes en mi talla"** y lleve a la clienta al WhatsApp ya decidida.
@@ -137,7 +137,7 @@ Todos con estado `:focus-visible` (anillo de 2 px `--lila` + offset) y área tá
 ### Páginas
 
 1. **Inicio `/`**
-   1. **Hero:** "El vestido que *buscabas*." + subtítulo + CTA "Ver colección" + secundario "Agendar prueba" (Setmore). Debajo, una barra de búsqueda rápida: **Ocasión** [XV · Graduación · Boda · Gala] × **Talla** [chips] → abre `/catalogo` ya filtrado.
+   1. **Hero:** "El vestido que *buscabas*." + subtítulo + CTA "Ver colección" + secundario WhatsApp (sin citas desde la fase 9). Debajo, una barra de búsqueda rápida: **Ocasión** [XV · Graduación · Boda · Gala] × **Talla** [chips] → abre `/catalogo` ya filtrado.
    2. **Prueba de confianza en una línea:** ★ calificación de Google `[PENDIENTE: dato real]` · "Ajustes incluidos" · "Pruébatelo en tienda".
    3. **Compra por ocasión:** 4 tarjetas grandes con foto (en lugar de "categorías por tipo de prenda").
    4. **Novedades / destacados:** carrusel con scroll-snap nativo, que se puede arrastrar, sin librería.
@@ -145,7 +145,7 @@ Todos con estado `:focus-visible` (anillo de 2 px `--lila` + offset) y área tá
    6. **Arma tu look:** vestido + zapatos + bolsa + accesorio (upsell; enlaza al catálogo filtrado).
    7. **Ellas ya lo lucieron (`#opiniones`):** galería de clientas (Supabase `galeria_clientas`) + reseñas reales de Google.
    8. **FAQ corta** (las 4 más importantes) + link a todas.
-   9. **Visítanos (`#visitanos`):** mapa con lazy load (fachada estática; el iframe se carga al tocar), dirección, horario, botones "Cómo llegar" y "Agendar prueba".
+   9. **Visítanos (`#visitanos`):** mapa con lazy load (fachada estática; el iframe se carga al tocar), dirección, horario, botones "Cómo llegar" y WhatsApp.
    10. **CTA final** sobre fondo `--noche`: "Tu vestido te está esperando" + WhatsApp.
 
 2. **Catálogo `/catalogo`**
@@ -160,12 +160,12 @@ Todos con estado `:focus-visible` (anillo de 2 px `--lila` + offset) y área tá
    - Galería con swipe y zoom; tallas como botones (disponible / apartado); colores; precio; "Ideal para: XV, Graduación".
    - CTA principal: **"Preguntar por este vestido"** → WhatsApp con mensaje prellenado:
      `Hola, me interesa el vestido "<nombre>" en talla <talla>. Mi evento es el <fecha>. ¿Está disponible?` (campo de fecha opcional antes de enviar).
-   - Secundarios: "Agendar prueba" (Setmore), "Añadir a Mi lista", **"Compartir"** (Web Share API; si no hay soporte, copiar link).
+   - Secundarios: "Añadir a Mi lista", **"Compartir"** (Web Share API; si no hay soporte, copiar link).
    - "Complétalo con…" (zapatos/bolsas) y "También te puede gustar".
    - Meta OG dinámicos no funcionan en un sitio estático, así que hay que generar en build un `og-image` genérico. *(Fase futura: generar páginas estáticas por vestido desde Supabase en build, para SEO.)*
 
 4. **Cómo rentar `/como-rentar`**
-   - Pasos detallados, políticas (duración 3–4 días, depósito 50 %, ajustes, daños, cancelaciones; copiar el texto **exacto** de las FAQ actuales), **guía de tallas en cm** `[PENDIENTE: tabla de medidas]`, FAQ completa con `FAQPage` schema, CTA "Agendar prueba".
+   - Pasos detallados, políticas (duración 3–4 días, depósito 50 %, ajustes, daños, cancelaciones; copiar el texto **exacto** de las FAQ actuales), **guía de tallas en cm** `[PENDIENTE: tabla de medidas]`, FAQ completa con `FAQPage` schema, CTA "Quiero probarme vestidos" (WhatsApp).
 
 5. **Aviso de privacidad `/aviso-de-privacidad`**: ver sección 7.
 6. **Política de cookies `/politica-de-cookies`**: ver sección 7.
@@ -225,7 +225,7 @@ Prohibido: parallax pesado en móvil, autoplay de video con sonido, animar `widt
 
 **Conversiones (no romper lo que ya funciona):**
 - Conservar `AW-11262534800` y la conversión al hacer clic en WhatsApp (`trackWAClick` actual), **y verificar con Tag Assistant después del deploy**.
-- Centralizar en `tracking.js`: `track(evento, params)`. Eventos nuevos: `click_whatsapp` (con `origen`: header/ficha/lista/bottom-bar), `agendar_prueba`, `enviar_lista_wa`, `agregar_lista`, `ver_vestido`, `filtro_aplicado`, `click_como_llegar`, `click_llamar`.
+- Centralizar en `tracking.js`: `track(evento, params)`. Eventos nuevos: `click_whatsapp` (con `origen`: header/ficha/lista/bottom-bar), `enviar_lista_wa`, `agregar_lista`, `ver_vestido`, `filtro_aplicado`, `click_como_llegar`, `click_llamar`.
 - Recomendado: agregar el **Meta Pixel** (David usa Meta Ads) con el mismo consentimiento. `[CONFIRMAR ID]`.
 
 **robots.txt** (`public/robots.txt`):
@@ -265,6 +265,7 @@ Sitemap: https://alsdress.com.mx/sitemap.xml
 ### Avance
 - **Fase 6 terminada** (9 de octubre de 2026): /como-rentar/ (pasos, guía para tallas por WhatsApp, 8 preguntas con FAQPage), aviso de privacidad y política de cookies (borradores; falta el nombre o razón social del responsable), aviso de cookies con Consent Mode v2, Google Ads cargado después de la página, 404 nueva, robots.txt y sitemap. El sitio lee Supabase sin la librería (-214 KB). Sin tabla de tallas ni Meta Pixel (decisión de David).
 - **Fase 7 terminada** (9 de octubre de 2026), versión de la skill de dirección de arte: 1 momento de firma, el telón del probador que abre la foto del hero (solo la primera visita de la sesión), y 3 movimientos útiles: la foto de la tarjeta viaja a la página del vestido (View Transitions entre páginas, mejora progresiva), el ♡ rebota al guardar en Mi lista y el panel de filtros se cierra arrastrándolo hacia abajo. Todo se apaga con prefers-reduced-motion. CLS 0 en inicio y en la página del vestido. Capturas en docs/revision/f7-*.png.
+- **Fase 9 terminada** (1 de noviembre de 2026): se quitó Setmore. Los botones "Agendar prueba" del inicio y de Cómo rentar ahora abren WhatsApp con "quiero ir a la tienda a probarme vestidos" (cuentan como conversión); en la página del vestido y el hero se quitó el enlace porque ya hay WhatsApp justo arriba; en el cierre de Cómo rentar quedó "Cómo llegar". Textos: "sin cita". Aviso de privacidad y cookies sin mención de la agenda (fecha 1 nov 2026).
 - **Fase 8, QA local terminado** (9 de octubre de 2026): 0 errores de consola, 0 links rotos, todas las imágenes con medidas y alt, WhatsApp con mensaje en todos los botones, conversión verificada con los 3 casos del aviso de cookies (consentimiento tácito por decisión de David), reduced-motion sin animaciones. Lighthouse en esta PC: inicio 83–89 y catálogo 79–84 (accesibilidad y SEO 100). Falta: migrar las fotos, la razón social, publicar con David, Tag Assistant, Search Console y PageSpeed Insights. El hero volvió a la foto de las clientas (lo pidió el dueño). Reporte: docs/revision/fase-8/QA.md.
 - **Fase 5 terminada** (3 de octubre de 2026): catálogo con filtros en la URL (talla, color por familias, disponibles), página de cada vestido (/vestido/?m=slug, respaldo ?id=), Mi lista como panel con envío por WhatsApp. Sin precios (decisión de David). Script para pasar las fotos a Supabase listo; lo aplica David.
 - **Fases 0 a 4 terminadas** (2 de octubre de 2026): limpieza, Vite + deploy, tokens y componentes, header/menú/footer/barra inferior, e inicio nuevo. Todo en commits locales, **sin push**.
@@ -289,6 +290,31 @@ Sitemap: https://alsdress.com.mx/sitemap.xml
 | **6. Cómo rentar, legales, 404, robots, sitemap** | Páginas + banner de cookies con Consent Mode v2 | Textos marcados como borrador; consent verificado en DevTools |
 | **7. Animaciones** | Telón del hero, líneas de abanico, view transitions, FLIP | Todo se apaga con reduced-motion; sin CLS |
 | **8. QA + medición** | Pruebas en dispositivos, Tag Assistant, Search Console (enviar sitemap) | Conversión WA registrada en Google Ads; 0 errores en consola |
+| **9. Quitar las citas (Setmore)** | Ver detalle abajo | `grep -ri "setmore\|agendar\|data-agendar"` sin resultados en el código fuente; conversión WA intacta |
+| **10. Hero nuevo: "Probador de noche"** | Ver detalle abajo | Aprobado por David en capturas 375/768/1440; AA; Lighthouse móvil sin bajar; CLS 0 |
+
+### Fase 9. Quitar el sistema de citas (decisión de David, 1 nov 2026)
+Ya no se usa Setmore. **Las clientas llegan a probarse sin cita, en horario de tienda.**
+1. Cambiar los 7 links a `alsdress.setmore.com` por un botón de WhatsApp con mensaje prellenado ("Hola, quiero ir a probarme vestidos…"), con el mismo estilo secundario, para que sume a la conversión que ya mide Google Ads:
+   - `index.html`: hero (enlace "Agendar una prueba en tienda"), sección Cómo funciona y Visítanos.
+   - `vestido/index.html`: enlace debajo del botón de WhatsApp (mensaje con el nombre del vestido).
+   - `como-rentar/index.html`: paso 1 ("agendar tu prueba"), pie de pasos y CTA final ("Agenda tu prueba o escríbenos…").
+2. Copy: "Ven a probártelo en horario de tienda, sin cita." Revisar las FAQ de Cómo rentar por si alguna menciona citas.
+3. Legales: quitar "agendar una prueba / agenda en línea / Setmore" del aviso de privacidad y de la política de cookies.
+4. Limpiar CSS (`.hero-nuevo__agendar`), atributo `data-agendar` y las menciones en `CLAUDE.md` y en este plan (secciones 0, 4 y 7).
+5. Verificar: build sin errores y cada botón nuevo dispara la conversión de WhatsApp.
+
+### Fase 10. Hero nuevo: "Probador de noche" (aprobado el concepto, 1 nov 2026)
+Problema: el hero se ve simple y el fondo marfil se siente blanco y plano. **Solo cambia el hero**; el resto de las secciones se queda igual.
+- **Fondo:** `--noche` #2A1E30 con textura de terciopelo (grano/patrón SVG ligero, sin imágenes pesadas) y una luz suave de probador detrás de la foto. Debe enlazar visualmente con el telón (mismo terciopelo orquídea).
+- **Foto:** la misma de las clientas (`hero2`, la pidió el dueño), enmarcada en forma de arco de probador, con un marco fino en lila/champagne.
+- **Texto:** H1 en marfil (Playfair), subtítulo en rubor/lavanda claro; acento en Allura de 1–3 palabras junto a la foto (ej. "pruébatelo aquí"), sin resaltar palabras dentro del H1.
+- **CTAs:** WhatsApp sigue como primario. "Ver colección" pasa a variante clara para fondo oscuro (`btn--claro` o contorno marfil). Chips de talla con variante oscura (borde lila, texto marfil, foco visible).
+- **Header:** revisar cómo convive el header claro con el hero oscuro (sin tocar el logo).
+- **Móvil primero (375 px):** foto arriba en arco, texto abajo sobre noche; WhatsApp visible sin scroll y sin que lo tape el aviso de cookies.
+- **Telón:** se conserva como momento de firma; ajustar colores al fondo nuevo. Todo con `prefers-reduced-motion`.
+- **Pasos:** wireframe 375/1440 → maqueta en local → capturas antes/después en `docs/revision/fase-10/` → OK de David → commit local (sin push).
+- Revisar contraste AA de cada texto y botón sobre `--noche`, y que LCP y CLS no empeoren.
 
 ### Datos que hacen falta (pedírselos a David; nunca inventarlos)
 Horario · dirección completa · razón social para el aviso · precios o rangos de renta (¿se muestran?) · tabla de tallas en cm · links de Instagram y Facebook · ID del Meta Pixel · calificación y número real de reseñas en Google · ¿hay columnas de `ocasion`, `color`, `precio`, `largo` en la tabla `inventario` de Supabase? (si no existen, proponer la migración SQL, **sin ejecutarla**).
