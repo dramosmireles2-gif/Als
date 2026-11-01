@@ -73,7 +73,7 @@ autoCarrusel(document.querySelector('.visitanos__fotos'));
 // Telón del probador: se abre cuando la foto del hero ya está lista (máximo 1.5 s de espera)
 function abrirTelon() {
     const raiz = document.documentElement;
-    const foto = document.querySelector('.hero-nuevo__foto');
+    const foto = document.querySelector('.hero-nuevo__arco');
     if (!raiz.classList.contains('telon') || !foto) return;
     try { sessionStorage.setItem('als:telon', '1'); } catch { /* sin almacenamiento: se abre igual */ }
     const img = foto.querySelector('img');

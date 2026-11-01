@@ -43,6 +43,12 @@
   .chip:not([aria-pressed="true"]):not(:disabled):hover { background: var(--rubor); }
 }
 
+/* Sobre fondo noche (hero): borde lila 4.4:1, texto marfil 15:1 */
+.chip-grupo--oscuro .chip { background: transparent; color: var(--marfil); border-color: var(--lila); }
+@media (hover: hover) and (pointer: fine) {
+  .chip-grupo--oscuro .chip:not([aria-pressed="true"]):not(:disabled):hover { background: rgba(227,172,218,.14); border-color: var(--malva); }
+}
+
 /* Swatch de color: el nombre va en .sr-only y en title */
 .swatch {
   width: var(--tap);

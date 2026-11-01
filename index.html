@@ -79,11 +79,12 @@
     <!-- ===== 1. HERO ===== -->
     <section class="hero-nuevo" id="inicio" aria-labelledby="hero-titulo">
       <div class="hero-nuevo__foto">
-        <!-- Foto de clientas con vestidos de Als Dress (la que pidió conservar el dueño). Solo WebP: se decodifica más rápido. -->
-        <picture>
-          <source type="image/webp" srcset="/img/hero2-480.webp 480w, /img/hero2-800.webp 800w, /img/hero2-1122.webp 1122w" sizes="(min-width: 1024px) 46vw, 100vw">
+        <!-- Foto de clientas con vestidos de Als Dress (la que pidió conservar el dueño), en un arco de probador. Solo WebP: se decodifica más rápido. -->
+        <picture class="hero-nuevo__arco">
+          <source type="image/webp" srcset="/img/hero2-480.webp 480w, /img/hero2-800.webp 800w, /img/hero2-1122.webp 1122w" sizes="(min-width: 1024px) 480px, 100vw">
           <img src="/img/hero2-800.webp" alt="Cuatro clientas con vestidos largos de fiesta de Als Dress" width="1122" height="1402" fetchpriority="high">
         </picture>
+        <p class="hero-nuevo__firma" aria-hidden="true">pruébatelo aquí</p>
       </div>
       <div class="hero-nuevo__texto">
         <h1 class="hero-nuevo__titulo" id="hero-titulo">El vestido que buscabas.</h1>
@@ -96,11 +97,11 @@
               <span class="btn--wa-numero__num">899 194 7566</span>
             </span>
           </a>
-          <a class="btn btn--secundario" href="/catalogo/">Ver colección</a>
+          <a class="btn btn--contorno-claro" href="/catalogo/">Ver colección</a>
         </div>
         <nav class="buscador-talla" aria-labelledby="buscador-titulo">
           <p class="buscador-talla__titulo" id="buscador-titulo">¿Qué talla buscas?</p>
-          <ul class="chip-grupo">
+          <ul class="chip-grupo chip-grupo--oscuro">
             <li><a class="chip" href="/catalogo/?cat=Vestido&amp;talla=XS">XS</a></li>
             <li><a class="chip" href="/catalogo/?cat=Vestido&amp;talla=S">S</a></li>
             <li><a class="chip" href="/catalogo/?cat=Vestido&amp;talla=M">M</a></li>
